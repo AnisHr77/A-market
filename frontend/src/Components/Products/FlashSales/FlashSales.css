@@ -1,0 +1,68 @@
+.slider-btn {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 50%;
+    font-size: 22px;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+}
+
+
+.recommendations{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: "Plus Jakarta sans";
+    margin-left:3rem;
+    margin-bottom: 1rem;
+    border-top:1px solid #44464b;
+
+}
+
+
+
+.flexing {
+    width: 100%;
+    display: flex;
+
+}
+
+.slider-btn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+
+.flexing::-webkit-scrollbar {
+    display: none;
+}
+
+.RecommendationCard{
+
+    width: 200px;
+    height: 300px;
+    gap:5px;
+}
+.RecommendationCard img{
+    border-radius: 8px;
+    width: 193px;
+    height: 176px;
+}
+.Prices{
+    display: flex;
+    justify-content: space-between;
+}
+.Sold{
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px ;
+    color: #f93950;
+}
+.Statistiques{
+    font-size: 13px;
+    margin-top: 5px;
+    align-self: flex-start;
+    gap:15px;
+}

@@ -1,0 +1,13 @@
+# 🔁 General
+node_modules/
+.DS_Store
+.env
+
+# 📦 Backend-specific
+backend/node_modules/
+backend/.env
+
+# 📦 Frontend-specific
+frontend/node_modules/
+frontend/build/
+frontend/.env

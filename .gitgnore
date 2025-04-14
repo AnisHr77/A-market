@@ -1,9 +1,0 @@
-# Ignore node_modules and environment files
-node_modules/
-.env
-.DS_Store
-
-# Ignore build files
-frontend/build/
-backend/node_modules/
-backend/.env

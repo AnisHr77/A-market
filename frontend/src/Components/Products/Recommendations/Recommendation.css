@@ -1,0 +1,103 @@
+.slider-btn {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 50%;
+    font-size: 22px;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+}
+
+
+.recommendations {
+    width: 100%;
+    overflow: hidden;
+}
+
+.slider-wrapper {
+    max-width: 100%;
+}
+
+.slider-btn {
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    font-size: 22px;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+}
+
+.slider-btn:disabled {
+
+    display: none;
+}
+
+
+
+
+.flexing {
+
+    display: flex;
+
+}
+
+.slider-wrapper {
+    position: relative;
+    display: flex;
+    align-self: flex-start;
+}
+
+.slider-btn {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 50%;
+    font-size: 22px;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}
+
+.slider-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+
+.flexing::-webkit-scrollbar {
+    display: none;
+}
+
+.RecommendationCard{
+
+    width: 200px;
+    height: 300px;
+    gap:5px;
+}
+.RecommendationCard img{
+    border-radius: 8px;
+    width: 193px;
+    height: 176px;
+}
+.Prices{
+    display: flex;
+    justify-content: space-between;
+
+
+}
+.Sold{
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px ;
+    color: #f93950;
+    position: relative;
+    top:-12px
+}
+.Statistiques{
+    font-size: 13px;
+
+    align-self: flex-start;
+    gap:15px;
+}

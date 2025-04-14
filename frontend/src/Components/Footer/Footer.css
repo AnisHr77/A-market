@@ -1,0 +1,86 @@
+.Footer{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    background-color: #25282d;
+    font-family: "Plus Jakarta sans";
+    color: white;
+    border: #33363b 1px solid;
+}
+.FooterContainer{
+    display: flex;
+    justify-content: space-between;
+    margin-left: 5%;
+    width: 80%;
+    margin-top: 1%;
+
+}
+ul h3{
+
+    align-self: flex-start;
+
+}
+li{
+    margin-top: 1.2rem;
+    margin-left: 1rem;
+    color: grey;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+
+.Bottom {
+    width: 100%;
+    display: flex;
+    max-width: 100%;
+    justify-content: space-evenly;
+    margin-left: 28%;
+}
+.Payment {
+    display: flex;
+    width: 60%;
+    gap: 1rem;
+
+
+}
+.SocialMedia{
+    display: flex;
+    width: 50%;
+}
+.SocialMedia div{
+    display: flex;
+    align-items: center;
+    margin-left:2rem
+}
+.CopyRight{
+    color: grey;
+    margin-left: 5%;
+    margin-bottom: 30px;
+    margin-top: 2%;
+    font-weight: bold;
+}
+#twitter , #facebook, #linkedin, #insta{
+    color: white;
+    height: 30px;
+    width: 30px;
+    cursor: pointer;
+}
+#linkedin:hover{
+    color: #5783cc;
+}
+#twitter:hover{
+    color: #000000;
+}
+
+#insta:hover{
+    color: #fb00d5;
+}
+#facebook:hover{
+    color: #0039ac;
+}
+li:hover{
+     color: #abb1b3;
+ }
