@@ -77,10 +77,11 @@ const ProductsFilter = () => {
                     display: 'flex',
                     flexWrap: 'wrap',
                     gap: `${gap}px`,
-                    justifyContent: 'flex-start',
+                    justifyContent: 'center,
                     maxWidth: '100%',
                     marginTop: '2rem',
                     boxSizing: 'border-box',
+                    aligneItems:'center',
                 }}
             >
                 {filteredProducts.slice(0, visibleCount).map(product => (
