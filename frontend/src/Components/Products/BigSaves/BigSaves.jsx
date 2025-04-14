@@ -52,8 +52,8 @@ const BigSaves = () => {
                     disabled={currentIndex === 0}
                     style={{
                         position: 'absolute',
-                        left: '-30px',
-                        top: '27%',
+                        top: '25%',
+                        left:'5px',
                         transform: 'translateY(-50%)',
                         zIndex: 2,
                     }}>
@@ -69,6 +69,7 @@ const BigSaves = () => {
                         width: '100%',
                         justifyContent: 'flex-start',
                         paddingBottom: '3rem',
+                        paddingLeft: '2rem',
                     }}
                 >
                     <div
@@ -92,8 +93,8 @@ const BigSaves = () => {
                     disabled={currentIndex >= maxIndex}
                     style={{
                         position: 'absolute',
-                        right: '-20px',
-                        top: '27%',
+                         right: '-50px',
+                        top: '25%',
                         transform: 'translateY(-50%)',
                         zIndex: 2,
                     }}>
