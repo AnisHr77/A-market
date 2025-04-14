@@ -53,7 +53,7 @@ const Recommendations = () => {
                     style={{
                         position: 'absolute',
                          top: '25%',
-                        left:'5px',
+                        left:'-22px',
                         transform: 'translateY(-50%)',
                         zIndex: 2,
                     }}
@@ -92,7 +92,7 @@ const Recommendations = () => {
                     disabled={currentIndex >= maxIndex}
                     style={{
                         position: 'absolute',
-                       right: '-50px',
+                        right: '-20px',
                         top: '25%',
                         transform: 'translateY(-50%)',
                         zIndex: 2,
