@@ -1,7 +1,7 @@
 .categories-container {
     display: flex;
     flex-direction: column;
-    padding-left: 225px;
+    padding-left: 250px;
     box-sizing: border-box;
     width: 100%;
     max-width: 1385px;
@@ -16,11 +16,17 @@
 }
 @media (min-width: 1300px) {
     .categories-container {
-        padding-left: 145px;
+        padding-left: 175px;
         margin-left: auto;
         margin-right: auto;
     }
-}
+        
+    }
 
+@media screen and (min-width: 1125px) and (max-width: 1200px) {
+    .categories-container {
+        padding-left: 180px;
+    }
+}
 
 
