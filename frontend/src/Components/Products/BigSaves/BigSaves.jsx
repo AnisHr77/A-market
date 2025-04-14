@@ -93,8 +93,8 @@ const BigSaves = () => {
                     disabled={currentIndex >= maxIndex}
                     style={{
                         position: 'absolute',
-                         right: '-50px',
-                        top: '25%',
+                         right: '-20px',
+                        top: '25%',,
                         transform: 'translateY(-50%)',
                         zIndex: 2,
                     }}>
