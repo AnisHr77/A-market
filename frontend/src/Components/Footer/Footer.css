@@ -84,3 +84,6 @@ li{
 li:hover{
      color: #abb1b3;
  }
+@media screen and (max-width: 490px){
+    .Footer{display: none;}
+}

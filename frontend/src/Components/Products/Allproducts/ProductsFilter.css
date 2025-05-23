@@ -1,32 +1,96 @@
 .categories-container {
     display: flex;
     flex-direction: column;
-    padding-left: 110px;
+    position: relative;
     box-sizing: border-box;
     width: 100%;
     max-width: 1385px;
-    margin-top: 0 ;
-    margin-left: 0px ;
-    margin-right: 0 ;
+
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: center;
     align-items: center;
     border-top: 1px solid rgba(255, 255, 255, 0.17);
     margin-bottom: 5rem;
     font-family: "Plus Jakarta sans";
 
+    padding-left: 6rem;
+
 }
-@media (min-width: 1300px) {
+.flexingg {
+
+    display: flex;
+
+
+    flex-wrap: wrap;
+    gap: 48px;
+    justify-content: center;
+    max-width: 100%;
+    margin-top: 2rem;
+    box-sizing: border-box;
+    align-items: center;
+}
+
+.ButtonesCategory {
+    display: flex;
+    gap: 1.5rem;
+    height: 55px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    justify-content: flex-start;
+    margin-left: auto;
+    margin-right: auto;
+    scroll-behavior: smooth;
+    max-width:100%;
+    margin-top: 2rem;
+}
+
+.ButtonesCategory::-webkit-scrollbar {
+    display: none;
+}
+
+
+
+.Productstext{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 3rem;
+}
+
+
+
+@media screen and (max-width: 490px) {
     .categories-container {
-        padding-left: 115px;
-        margin-left: auto;
-        margin-right: auto;
+        padding-left: 0px;
+        max-width: 400px;
+        overflow: hidden;
+
     }
-        
+    .ButtonesCategory{
+        max-width: 380px !important;
+        padding-left: 20px;
+    }
+    .flexingg{
+        display: flex;
+        width: 93%;
+        margin-left: 1rem;
+        padding-bottom: 1rem;
+        overflow: scroll;
+        justify-content: flex-start;
+        flex-wrap: nowrap;
+
+    }
+    .flexingg > * {
+        flex: 0 0 calc(100% / 7 - 16px);
+    }
+    .seemore{
+        display: none;
     }
 
-@media screen and (min-width: 1125px) and (max-width: 1200px) {
-    .categories-container {
-        padding-left: 105px;
-    }
 }
 
 

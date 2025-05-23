@@ -1,10 +1,17 @@
-
-import React from 'react';
+import React, { useState } from 'react';
 import { toast } from 'react-toastify';
 import { useCart } from '../../../Context/CartContext';
+import { useFavorites } from '../../../Context/FavoritesContext';
+import { FaRegHeart, FaHeart } from "react-icons/fa";
 
 const RecommendationCard = ({ item }) => {
     const { addToCart } = useCart();
+    const { addFavorite, removeFavorite, isFavorite } = useFavorites();
+
+    const [isClicked, setIsClicked] = useState(false);
+
+
+    const favorited = isFavorite(item.id);
 
     const handleAddToCart = () => {
         addToCart(item);
@@ -16,34 +23,81 @@ const RecommendationCard = ({ item }) => {
         });
     };
 
+    const toggleFavorite = () => {
+        if (isFavorite(item.id)) {
+            removeFavorite(item.id);
+        } else {
+            addFavorite({
+                id: item.id,
+                image: item.image,
+                title: item.title,
+                description: item.description,
+                price: item.price
+            });
+        }
+        setIsClicked(true);
+        setTimeout(() => setIsClicked(false), 150);
+    };
+
+    const heartStyle = {
+        position: 'relative',
+        width: '20px',
+        height: '20px',
+        left: '172px',
+        top: '-180px',
+        cursor: 'pointer',
+        transition: 'transform 0.2s ease, color 0.2s ease',
+        transform: isClicked ? 'scale(1.4)' : 'scale(1)',
+        color: favorited ? 'red' : 'black'
+    };
+
     return (
         <div className="ContainerCard">
-
-            <div className='RecommendationCard' style={{marginBottom:-1.5 }}>
-                <img src={item.image} alt={item.title}/>
-                <p style={{fontSize:'13px',fontWeight:'bold',top:'-10px'}}>{item.description}</p>
-                <div className='Prices'>
-                    <p style={{fontSize:'13.5px',position:'relative',top:'-12px'}}>Now  ${item.price}</p>
-                    <p style={{fontSize:'13.5px',color:'grey',textDecoration:'line-through',position:'relative',top:'-12px'}}> ${item.oldprice}</p>
-                    <button onClick={handleAddToCart} style={{ width: '70px', height: '30px', borderRadius: '20px', border: 'none' }}>Add</button>
+            <div className='RecommendationCard'>
+                <div>
+                    <img src={item.image} alt={item.title} />
+                    {favorited ? (
+                        <FaHeart onClick={toggleFavorite} style={heartStyle} />
+                    ) : (
+                        <FaRegHeart onClick={toggleFavorite} style={heartStyle} />
+                    )}
                 </div>
-                <div className="Sold">
-                    <div>
-                        {item.Sold}K  +sold
+
+                <div style={{ position: "relative", top: "-20px" }}>
+                    <p style={{ fontSize: '13px', fontWeight: 'bold' }}>{item.description}</p>
+
+                    <div className='Prices'>
+                        <p style={{ fontSize: '13.5px', position: 'relative', top: '-12px' }}>
+                            Now ${item.price}
+                        </p>
+                        <p style={{
+                            fontSize: '13.5px',
+                            color: 'grey',
+                            textDecoration: 'line-through',
+                            position: 'relative',
+                            top: '-12px'
+                        }}>
+                            ${item.oldprice}
+                        </p>
+                        <button
+                            onClick={handleAddToCart}
+                            style={{ width: '70px', height: '30px', borderRadius: '20px', border: 'none' }}
+                        >
+                            Add
+                        </button>
                     </div>
-                    <div>
-                        {item.Comment}
+
+                    <div className="Sold">
+                        <div>{item.Sold}K +sold</div>
+                        <div>{item.Comment}</div>
                     </div>
 
+                    <div style={{ display: 'flex' }} className="Statistiques">
+                        <div>{item.Stars}</div>
+                        <div style={{ position: 'relative', top: '2px' }}>{item.Statistiques}</div>
+                    </div>
                 </div>
-                <div style={{ display:'flex'}} className="Statistiques">
-                    <div> {item.Stars}</div>
-                    <div style={{position:'relative',top:'2px'}}>{item.Statistiques}</div>
-
-                </div>
-
             </div>
-
         </div>
     );
 };

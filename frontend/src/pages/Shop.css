@@ -15,5 +15,6 @@
     opacity: 1;
 }
 @media (max-width: 390px){
-    overflow: hidden;
+    overflow-x: hidden;
+    max-width: 490px;
 }

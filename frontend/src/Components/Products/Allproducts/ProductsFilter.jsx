@@ -22,10 +22,10 @@ const ProductsFilter = () => {
     useEffect(() => {
         const handleResize = () => {
             const width = window.innerWidth;
-            if (width < 500) setCardsToShow(1);
-            else if (width < 800) setCardsToShow(2);
+            if (width < 500) setCardsToShow(3);
+
             else if (width < 1124) setCardsToShow(3);
-            else if (width < 1300) setCardsToShow(4);
+            else if (width < 1400) setCardsToShow(4);
             else setCardsToShow(5);
         };
 
@@ -40,13 +40,13 @@ const ProductsFilter = () => {
 
     return (
         <div className="categories-container">
-            <div>
-                <h2 style={{ fontSize: '30px', marginBottom: '3rem',marginTop:'3rem', color: 'white', fontWeight: 'bold', justifyContent: 'center', textAlign: 'center' }}>
+            <div className={'ProductstextC'}>
+                <h2 className={"Productstext"}>
                     Special Offers
                     <br /> Explore Your Interests
                 </h2>
 
-                <div style={{ marginBottom: '3rem', display: 'flex', gap: '2rem', flexWrap: 'wrap',margin: '1rem auto 2rem auto', }}>
+                <div className={"ButtonesCategory"} >
                     {categories.map(category => (
                         <button
                             key={category}
@@ -55,7 +55,8 @@ const ProductsFilter = () => {
                                 setVisibleMultiplier(3); // Reset view when changing category
                             }}
                             style={{
-                                padding: '15px 30px',
+
+                                padding: '10px 35px',
                                 backgroundColor: selectedCategory === category ? '#ffffff' : '#272b30',
                                 color: selectedCategory === category ? '#0b0b0b' : '#d8cfe2',
                                 border: '2px solid #d8cfe2',
@@ -72,18 +73,8 @@ const ProductsFilter = () => {
             </div>
 
             <div
-                className="flexing"
-                style={{
-                    display: 'flex',
-                    flexWrap: 'wrap',
-                    gap: `${gap}px`,
-                    justifyContent: 'center',
-                    maxWidth: '100%',
-                    marginTop: '2rem',
-                    boxSizing: 'border-box',
-                    alignItems: 'center',
+                className="flexingg"
 
-                }}
             >
                 {filteredProducts.slice(0, visibleCount).map(product => (
                     <ProductCard  key={product.id} item={product} />
@@ -92,6 +83,7 @@ const ProductsFilter = () => {
 
             {visibleCount < filteredProducts.length && (
                 <button
+                    className={"seemore"}
                     onClick={handleShowMore}
                     style={{
                         marginTop: '3.5rem',
@@ -105,7 +97,7 @@ const ProductsFilter = () => {
                         cursor: 'pointer'
                     }}
                 >
-                   See more <span style={{position:'relative',top:'-0.5px',right:'-2px',fontSize:'10px'}}>˅</span>
+                    See more <span style={{position:'relative',top:'-0.5px',right:'-2px',fontSize:'10px'}}>˅</span>
                 </button>
             )}
         </div>

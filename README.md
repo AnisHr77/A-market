@@ -3,7 +3,7 @@
 A full-stack e-commerce platform built with:
 - **Frontend:** React.js
 - **Backend:** Node.js & Express.js
-- **Database:** ( MongoDB)
+- **Database:** ( MySQL)
 
 ## Installation
 

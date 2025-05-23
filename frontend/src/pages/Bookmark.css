@@ -1,0 +1,66 @@
+.bookmark {
+    position: absolute;
+    width: 100%;
+    top: 0;
+    left: 8%;
+    font-family: "Plus Jakarta Sans", sans-serif;
+    justify-content: center;
+}
+
+.bookmark h1 {
+    text-align: center;
+    position: relative;
+    right: 4%;
+    margin-top: 3%;
+
+}
+
+.favorites-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    gap: 2%;
+    width: 90%;
+    position: relative;
+    right: 4%;
+    margin: 4rem auto;
+
+
+
+}
+
+.favorite-card {
+    width: 200px;
+    text-align: center;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #ddd;
+}
+
+
+@media (min-width: 768px) {
+    .favorites-list > .favorite-card:nth-last-child(-n+4) {
+        border-bottom: none;
+    }
+}
+
+.favorites-list img {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+}
+
+.remove-btn {
+    background-color: #ff4d4f;
+    border: none;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-top: 8px;
+    transition: background-color 0.2s ease;
+}
+
+.remove-btn:hover {
+    background-color: #d9363e;
+}
