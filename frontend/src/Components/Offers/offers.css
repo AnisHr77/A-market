@@ -98,17 +98,21 @@ button:active{
 
 
 
-@media (max-width: 760px) {
+@media (max-width: 490px) {
     .Offers {
+        margin-top: -2rem;
         grid-template-columns: 1fr;
+        justify-content: center;
+        align-items: center;
         left: 0;
-        margin-top: 0;
+
     }
 
     .offersList {
+
         flex-direction: column;
         align-items: center;
-        margin: 30px 20px;
+        margin: 30px 30px;
     }
 
     .offersCard {

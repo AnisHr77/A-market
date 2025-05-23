@@ -1,27 +1,32 @@
-import React, {useState} from 'react'
-
+import React, { useState } from 'react';
 import { SlArrowDown } from "react-icons/sl";
 
 const Categories = () => {
-    const[isHovered , setisHovered]=useState(false);
-    const Categories=['fashion' , 'Laptops' , 'Phones' , 'Toys' , 'Sports' ,'Boocks'];
+    const [isHovered, setIsHovered] = useState(false);
+    const categories = ['Fashion', 'Laptops', 'Phones', 'Toys', 'Sports', 'Books'];
+
     return (
-        <div>
-            <div    className="category-container"
+        <div
+            className="category-container"
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+            style={{ position: 'relative', display: 'inline-block' }} // Ensure it positions properly
+        >
+            <a href="#" id="categoryText">
+                Categories <SlArrowDown style={{ width: '10px', height: '10px', position: 'relative' }} />
+            </a>
 
-                    onMouseEnter={() => setisHovered(true)}
-                    onMouseLeave={() => setisHovered(false)}>
-
-                <a href='#' id='categoryText'>Categories <SlArrowDown style={{ width: '5px', height: '5px',position:'relative'}} /> </a>
-
-                {isHovered && (
-                    <ul id='categoryList'>
-                        {Categories.map((category, index) => (
-                            <li key={index}  id='categoryItem'>{Categories[index]}</li>))}
-                    </ul>
-                )}
-            </div>
+            {isHovered && (
+                <ul>
+                    {categories.map((category, index) => (
+                        <li key={index} id="categoryItem" style={{ padding: '5px 0' }}>
+                            {category}
+                        </li>
+                    ))}
+                </ul>
+            )}
         </div>
-    )
-}
-export default Categories
+    );
+};
+
+export default Categories;

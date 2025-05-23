@@ -40,6 +40,7 @@
 .flexing {
 
     display: flex;
+    padding-bottom: 1rem;
 
 }
 
@@ -84,7 +85,6 @@
 .Prices{
     display: flex;
     justify-content: space-between;
-
     gap:5px;
 
 
@@ -98,8 +98,19 @@
     top:-12px
 }
 .Statistiques{
+    top: -0.5rem;
     font-size: 13px;
-
     align-self: flex-start;
-    gap:15px;
+
+}
+#cibook{
+    color: #000000!important;
+    cursor: pointer;
+    z-index: 999;
+    font-size: 14px ;
+
+}
+#cibook:active{
+    fill: red;
+    object-fit: fill !important;
 }

@@ -5,23 +5,23 @@ import './FlashSales.css';
 import { IoIosFlash } from "react-icons/io";
 import { FaChevronLeft,FaChevronRight } from "react-icons/fa6";
 
+
+
+
 const FlashSales = () => {
-    const [cart, setCart] = useState([]);
-
-    const handleAddToCart = (product) => {
-        setCart(prevCart => [...prevCart, product]);
-    };
-
     const cardWidth = 200;
     const gap = 48;
+
     const [currentIndex, setCurrentIndex] = useState(0);
     const [cardsToShow, setCardsToShow] = useState(5);
+    const [isSmallScreen, setIsSmallScreen] = useState(false);
 
     useEffect(() => {
         const handleResize = () => {
             const width = window.innerWidth;
-            if (width < 500) setCardsToShow(1);
-            else if (width < 800) setCardsToShow(2);
+            setIsSmallScreen(width < 768);
+
+            if (width < 500) setCardsToShow(3);
             else if (width < 1124) setCardsToShow(3);
             else if (width < 1300) setCardsToShow(4);
             else setCardsToShow(5);
@@ -46,50 +46,58 @@ const FlashSales = () => {
     return (
         <div className="recommendations">
             <h2 style={{
-                display: 'flex',
-                justifyContent: 'center',
                 fontSize: '25px',
-                height: '32px',
                 marginBottom: '1.5rem',
-                marginTop: '1rem'
+                marginTop: '1.5rem',
+                marginLeft: '1rem'
             }}>
-               <IoIosFlash style={{fontWeight:'bold',position:'relative',top:'3px'}}/> Flash Sales
+                <IoIosFlash style={{
+                    fontWeight: 'bold',
+                    position: 'relative',
+                    top: '3px'
+                }} /> Flash Sales
             </h2>
 
-            <div style={{ position: 'relative', width: `${sliderWidth}px`, margin: '0 auto' }}>
-
-                <button
-                    className="slider-btn"
-                    onClick={handlePrev}
-                    disabled={currentIndex === 0}
-                    style={{
-                        position: 'absolute',
-                        top: '25%',
-                        left:'-22px',
-                        transform: 'translateY(-50%)',
-                        zIndex: 2,
-                    }}
-                >
-                    <FaChevronLeft  style={{color:'#303030',fontSize:'15px',fontWeight:'bold'}}/>
-                </button>
-
+            <div
+                style={{
+                    position: 'relative',
+                    width: isSmallScreen ? '100%' : `${sliderWidth}px`,
+                    margin: '0 auto'
+                }}
+            >
+                {!isSmallScreen && (
+                    <button
+                        className="slider-btn"
+                        onClick={handlePrev}
+                        disabled={currentIndex === 0}
+                        style={{
+                            position: 'absolute',
+                            top: '25%',
+                            left: '-22px',
+                            transform: 'translateY(-50%)',
+                            zIndex: 2,
+                        }}
+                    >
+                        <FaChevronLeft style={{ color: '#303030', fontSize: '15px', fontWeight: 'bold' }} />
+                    </button>
+                )}
 
                 <div
                     className="flexing"
                     style={{
-                        overflow: 'hidden',
+                        overflowX: isSmallScreen ? 'auto' : 'hidden',
+                        overflowY: 'hidden',
                         width: '100%',
                         justifyContent: 'flex-start',
-                        paddingBottom: '3rem',
-
                     }}
                 >
                     <div
                         style={{
                             display: 'flex',
                             gap: `${gap}px`,
-                            transform: `translateX(-${currentIndex * (cardWidth + gap)}px)`,
-                            transition: 'transform 0.5s ease',
+                            transform: isSmallScreen ? 'none' : `translateX(-${currentIndex * (cardWidth + gap)}px)`,
+                            transition: isSmallScreen ? 'none' : 'transform 0.5s ease',
+                            minWidth: isSmallScreen ? 'max-content' : 'auto',
                         }}
                     >
                         {FlashSalesData.map((item) => (
@@ -98,20 +106,22 @@ const FlashSales = () => {
                     </div>
                 </div>
 
-                <button
-                    className="slider-btn"
-                    onClick={handleNext}
-                    disabled={currentIndex >= maxIndex}
-                    style={{
-                        position: 'absolute',
-                        right: '-20px',
-                        top: '25%',
-                        transform: 'translateY(-50%)',
-                        zIndex: 2,
-                    }}
-                >
-                    <FaChevronRight  style={{color:'#303030',fontSize:'15px',fontWeight:'bold'}}/>
-                </button>
+                {!isSmallScreen && (
+                    <button
+                        className="slider-btn"
+                        onClick={handleNext}
+                        disabled={currentIndex >= maxIndex}
+                        style={{
+                            position: 'absolute',
+                            right: '-20px',
+                            top: '25%',
+                            transform: 'translateY(-50%)',
+                            zIndex: 2,
+                        }}
+                    >
+                        <FaChevronRight style={{ color: '#303030', fontSize: '15px', fontWeight: 'bold' }} />
+                    </button>
+                )}
             </div>
         </div>
     );

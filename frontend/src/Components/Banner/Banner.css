@@ -16,12 +16,16 @@
     transition: background-image 0.5s ease-in-out;
     z-index: 0 !important;
 }
-h1{
+#BestOffers{
 
     position: relative;
-
+    justify-content: center;
     text-align: center;
-    right: -3rem;
+
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    align-items: center;
+    left: 3rem !important;
     font-family: "Plus Jakarta sans";
     font-size: 3rem;
 
@@ -44,17 +48,24 @@ h1{
     cursor: pointer;
 }
 
-/* === Mobile (≤490px) === */
-@media (max-width: 390px) {
+@media (max-width: 490px) {
     #ImgSlider {
         position: relative;
         right: 0rem;
-        width: 390px;
-        max-width: 390px;
-        height: 130px;
-        margin: 7rem 0rem 0rem 0rem;
+        width: 100%;
+        max-width: 100%;
+        height: 250px;
+        margin: 4rem 0rem 0rem 0rem;
         border-radius: 10px;
         z-index: 0 !important;
+    }
+    #BestOffers{
+        max-width: 400px;
+        margin-top: 2rem;
+        margin-bottom: 2rem;
+
+        left: 0 !important;
+
     }
 
     #switcher {

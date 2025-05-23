@@ -79,7 +79,7 @@
     text-align:center;
     justify-content: center;
     top: -15px;
-    right: 115px;
+    left: 35%;
 }
 #counter{
     position: absolute;
@@ -155,7 +155,7 @@
     height: 23px;
     cursor: pointer;
 }
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 490px) {
     .navbar-left {
         display: none;
         position: fixed;

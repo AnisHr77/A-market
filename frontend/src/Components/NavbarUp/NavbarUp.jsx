@@ -18,6 +18,7 @@ import Notification from "./Notification";
             <div className="Conatiner">
             <Currency />
             <Categories />
+
             <SearchIA />
              <Reorder />
               <SearchBar />

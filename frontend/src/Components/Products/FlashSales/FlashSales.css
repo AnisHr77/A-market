@@ -18,8 +18,10 @@
     margin-left:3rem;
     margin-bottom: 1rem;
     border-top:1px solid #44464b;
+    overflow-x: auto;
 
 }
+
 
 
 
@@ -65,4 +67,29 @@
     margin-top: 5px;
     align-self: flex-start;
     gap:15px;
+}
+@media screen and (max-width: 490px) {
+    .recommendations {
+        margin-left:1rem;
+
+        width: 93%;
+        overflow-x: auto;
+
+    }
+
+    .RecommendationCard {
+        padding-bottom: 1rem;
+    }
+
+    .flexing {
+        display: flex;
+        overflow-x: auto;
+        scroll-behavior: smooth;
+        gap: 48px;
+        scrollbar-width: none;
+    }
+
+    .flexing::-webkit-scrollbar {
+        display: none;
+    }
 }
