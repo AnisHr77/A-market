@@ -44,7 +44,7 @@ const FlashSales = () => {
     };
 
     return (
-        <div className="recommendations">
+        <div id={'flash'} className="recommendations">
             <h2 style={{
                 fontSize: '25px',
                 marginBottom: '1.5rem',

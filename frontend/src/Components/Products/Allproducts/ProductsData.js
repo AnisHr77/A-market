@@ -9,7 +9,13 @@ const ProductsData = [
         oldprice:'400',
         Stars:'★★★☆☆',
         Statistiques:442,
-        category: 'Phones' },
+        category: 'Phones',
+        colors: [
+            { hex: "#000000", image: "https://row.hyperx.com/cdn/shop/files/hyperx_alloy_core_rgb_uk_1_main.jpg?v=1734473869" },
+            { hex: "#ff0000", image: "https://row.hyperx.com/cdn/shop/files/hyperx_alloy_core_rgb_uk_1_main.jpg?v=1734473869" },
+            { hex: "#0066ff", image: "https://row.hyperx.com/cdn/shop/files/hyperx_alloy_core_rgb_uk_1_main.jpg?v=1734473869" }
+        ]
+    },
 
 
     { id: 22,
@@ -23,6 +29,12 @@ const ProductsData = [
         oldprice:'80',
         Stars:'★★★☆☆',
         Statistiques:442,
+        colors: [
+            { hex: "#000000", image: "https://row.hyperx.com/cdn/shop/files/hyperx_alloy_core_rgb_uk_1_main.jpg?v=1734473869" },
+            { hex: "#ff0000", image: "https://row.hyperx.com/cdn/shop/files/hyperx_alloy_core_rgb_uk_1_main.jpg?v=1734473869" },
+            { hex: "#0066ff", image: "https://row.hyperx.com/cdn/shop/files/hyperx_alloy_core_rgb_uk_1_main.jpg?v=1734473869" }
+        ]
+
     }
     ,
     { id:23 ,
@@ -36,6 +48,12 @@ const ProductsData = [
         oldprice:'80',
         Stars:'★★★☆☆',
         Statistiques:442,
+        colors: [
+            { hex: "#000000", image: "https://row.hyperx.com/cdn/shop/files/hyperx_alloy_core_rgb_uk_1_main.jpg?v=1734473869" },
+            { hex: "#ff0000", image: "https://row.hyperx.com/cdn/shop/files/hyperx_alloy_core_rgb_uk_1_main.jpg?v=1734473869" },
+            { hex: "#0066ff", image: "https://row.hyperx.com/cdn/shop/files/hyperx_alloy_core_rgb_uk_1_main.jpg?v=1734473869" }
+        ]
+
     },
 
 
@@ -49,7 +67,15 @@ const ProductsData = [
         price:'70',
         oldprice:'80',
         Stars:'★★★☆☆',
-        Statistiques:442,},
+        Statistiques:442,
+        colors: [
+            { hex: "#000000", image: "https://row.hyperx.com/cdn/shop/files/hyperx_alloy_core_rgb_uk_1_main.jpg?v=1734473869" },
+            { hex: "#ff0000", image: "https://row.hyperx.com/cdn/shop/files/hyperx_alloy_core_rgb_uk_1_main.jpg?v=1734473869" },
+            { hex: "#0066ff", image: "https://row.hyperx.com/cdn/shop/files/hyperx_alloy_core_rgb_uk_1_main.jpg?v=1734473869" }
+        ]
+
+
+    },
 
     { id: 25,
         title: 'Sony Headphones',
@@ -61,7 +87,15 @@ const ProductsData = [
         price:'70',
         oldprice:'80',
         Stars:'★★★☆☆',
-        Statistiques:442,},
+        Statistiques:442,
+        colors: [
+            { hex: "#000000", image: "https://row.hyperx.com/cdn/shop/files/hyperx_alloy_core_rgb_uk_1_main.jpg?v=1734473869" },
+            { hex: "#ff0000", image: "https://row.hyperx.com/cdn/shop/files/hyperx_alloy_core_rgb_uk_1_main.jpg?v=1734473869" },
+            { hex: "#0066ff", image: "https://row.hyperx.com/cdn/shop/files/hyperx_alloy_core_rgb_uk_1_main.jpg?v=1734473869" }
+        ]
+
+
+    },
     { id: 26,
         title: 'Sony Headphones',
         category: 'Mouse / Keyboard',
@@ -72,7 +106,13 @@ const ProductsData = [
         price:'70',
         oldprice:'80',
         Stars:'★★★☆☆',
-        Statistiques:442},
+        Statistiques:442,
+        colors: [
+            { hex: "#000000", image: "https://row.hyperx.com/cdn/shop/files/hyperx_alloy_core_rgb_uk_1_main.jpg?v=1734473869" },
+            { hex: "#ff0000", image: "https://row.hyperx.com/cdn/shop/files/hyperx_alloy_core_rgb_uk_1_main.jpg?v=1734473869" },
+            { hex: "#0066ff", image: "https://row.hyperx.com/cdn/shop/files/hyperx_alloy_core_rgb_uk_1_main.jpg?v=1734473869" }
+        ]
+    },
     { id: 27,
         title: 'Sony Headphones',
         category: 'Mouse / Keyboard',
@@ -95,6 +135,12 @@ const ProductsData = [
         oldprice:'80',
         Stars:'★★★☆☆',
         Statistiques:442,
+        colors: [
+            { hex: "#000000", image: "https://row.hyperx.com/cdn/shop/files/hyperx_alloy_core_rgb_uk_1_main.jpg?v=1734473869" },
+            { hex: "#ff0000", image: "https://row.hyperx.com/cdn/shop/files/hyperx_alloy_core_rgb_uk_1_main.jpg?v=1734473869" },
+            { hex: "#0066ff", image: "https://row.hyperx.com/cdn/shop/files/hyperx_alloy_core_rgb_uk_1_main.jpg?v=1734473869" }
+        ]
+
     },
     { id: 29,
         title: 'MacBook Air',
@@ -107,6 +153,12 @@ const ProductsData = [
         oldprice:'80',
         Stars:'★★★☆☆',
         Statistiques:442,
+        colors: [
+            { hex: "#000000", image: "https://row.hyperx.com/cdn/shop/files/hyperx_alloy_core_rgb_uk_1_main.jpg?v=1734473869" },
+            { hex: "#ff0000", image: "https://row.hyperx.com/cdn/shop/files/hyperx_alloy_core_rgb_uk_1_main.jpg?v=1734473869" },
+            { hex: "#0066ff", image: "https://row.hyperx.com/cdn/shop/files/hyperx_alloy_core_rgb_uk_1_main.jpg?v=1734473869" }
+        ]
+
     },
     { id: 30,
         title: 'MacBook Air',
@@ -119,6 +171,12 @@ const ProductsData = [
         oldprice:'80',
         Stars:'★★★☆☆',
         Statistiques:442,
+        colors: [
+            { hex: "#000000", image: "https://row.hyperx.com/cdn/shop/files/hyperx_alloy_core_rgb_uk_1_main.jpg?v=1734473869" },
+            { hex: "#ff0000", image: "https://row.hyperx.com/cdn/shop/files/hyperx_alloy_core_rgb_uk_1_main.jpg?v=1734473869" },
+            { hex: "#0066ff", image: "https://row.hyperx.com/cdn/shop/files/hyperx_alloy_core_rgb_uk_1_main.jpg?v=1734473869" }
+        ]
+
     },
     { id: 31,
         title: 'MacBook Air',
@@ -131,6 +189,12 @@ const ProductsData = [
         oldprice:'80',
         Stars:'★★★☆☆',
         Statistiques:442,
+        colors: [
+            { hex: "#000000", image: "https://row.hyperx.com/cdn/shop/files/hyperx_alloy_core_rgb_uk_1_main.jpg?v=1734473869" },
+            { hex: "#ff0000", image: "https://row.hyperx.com/cdn/shop/files/hyperx_alloy_core_rgb_uk_1_main.jpg?v=1734473869" },
+            { hex: "#0066ff", image: "https://row.hyperx.com/cdn/shop/files/hyperx_alloy_core_rgb_uk_1_main.jpg?v=1734473869" }
+        ]
+
     },
     { id: 32,
         title: 'MacBook Air',
@@ -143,6 +207,12 @@ const ProductsData = [
         oldprice:'80',
         Stars:'★★★☆☆',
         Statistiques:442,
+        colors: [
+            { hex: "#000000", image: "https://row.hyperx.com/cdn/shop/files/hyperx_alloy_core_rgb_uk_1_main.jpg?v=1734473869" },
+            { hex: "#ff0000", image: "https://row.hyperx.com/cdn/shop/files/hyperx_alloy_core_rgb_uk_1_main.jpg?v=1734473869" },
+            { hex: "#0066ff", image: "https://row.hyperx.com/cdn/shop/files/hyperx_alloy_core_rgb_uk_1_main.jpg?v=1734473869" }
+        ]
+
     },
     { id: 33,
         title: 'MacBook Air',
@@ -155,6 +225,12 @@ const ProductsData = [
         oldprice:'80',
         Stars:'★★★☆☆',
         Statistiques:442,
+        colors: [
+            { hex: "#000000", image: "https://row.hyperx.com/cdn/shop/files/hyperx_alloy_core_rgb_uk_1_main.jpg?v=1734473869" },
+            { hex: "#ff0000", image: "https://row.hyperx.com/cdn/shop/files/hyperx_alloy_core_rgb_uk_1_main.jpg?v=1734473869" },
+            { hex: "#0066ff", image: "https://row.hyperx.com/cdn/shop/files/hyperx_alloy_core_rgb_uk_1_main.jpg?v=1734473869" }
+        ]
+
     },
     { id: 34,
         title: 'MacBook Air',
@@ -167,6 +243,12 @@ const ProductsData = [
         oldprice:'80',
         Stars:'★★★☆☆',
         Statistiques:442,
+        colors: [
+            { hex: "#000000", image: "https://row.hyperx.com/cdn/shop/files/hyperx_alloy_core_rgb_uk_1_main.jpg?v=1734473869" },
+            { hex: "#ff0000", image: "https://row.hyperx.com/cdn/shop/files/hyperx_alloy_core_rgb_uk_1_main.jpg?v=1734473869" },
+            { hex: "#0066ff", image: "https://row.hyperx.com/cdn/shop/files/hyperx_alloy_core_rgb_uk_1_main.jpg?v=1734473869" }
+        ]
+
     },
     { id: 35,
         title: 'MacBook Air',
@@ -179,6 +261,12 @@ const ProductsData = [
         oldprice:'80',
         Stars:'★★★☆☆',
         Statistiques:442,
+        colors: [
+            { hex: "#000000", image: "https://row.hyperx.com/cdn/shop/files/hyperx_alloy_core_rgb_uk_1_main.jpg?v=1734473869" },
+            { hex: "#ff0000", image: "https://row.hyperx.com/cdn/shop/files/hyperx_alloy_core_rgb_uk_1_main.jpg?v=1734473869" },
+            { hex: "#0066ff", image: "https://row.hyperx.com/cdn/shop/files/hyperx_alloy_core_rgb_uk_1_main.jpg?v=1734473869" }
+        ]
+
     },
     { id: 36,
         title: 'MacBook Air',
@@ -191,6 +279,12 @@ const ProductsData = [
         oldprice:'80',
         Stars:'★★★☆☆',
         Statistiques:442,
+        colors: [
+            { hex: "#000000", image: "https://row.hyperx.com/cdn/shop/files/hyperx_alloy_core_rgb_uk_1_main.jpg?v=1734473869" },
+            { hex: "#ff0000", image: "https://row.hyperx.com/cdn/shop/files/hyperx_alloy_core_rgb_uk_1_main.jpg?v=1734473869" },
+            { hex: "#0066ff", image: "https://row.hyperx.com/cdn/shop/files/hyperx_alloy_core_rgb_uk_1_main.jpg?v=1734473869" }
+        ]
+
     },
     { id: 37,
         title: 'MacBook Air',
@@ -203,6 +297,12 @@ const ProductsData = [
         oldprice:'80',
         Stars:'★★★☆☆',
         Statistiques:442,
+        colors: [
+            { hex: "#000000", image: "https://row.hyperx.com/cdn/shop/files/hyperx_alloy_core_rgb_uk_1_main.jpg?v=1734473869" },
+            { hex: "#ff0000", image: "https://row.hyperx.com/cdn/shop/files/hyperx_alloy_core_rgb_uk_1_main.jpg?v=1734473869" },
+            { hex: "#0066ff", image: "https://row.hyperx.com/cdn/shop/files/hyperx_alloy_core_rgb_uk_1_main.jpg?v=1734473869" }
+        ]
+
     },
     { id: 38,
         title: 'MacBook Air',
@@ -215,6 +315,12 @@ const ProductsData = [
         oldprice:'80',
         Stars:'★★★☆☆',
         Statistiques:442,
+        colors: [
+            { hex: "#000000", image: "https://row.hyperx.com/cdn/shop/files/hyperx_alloy_core_rgb_uk_1_main.jpg?v=1734473869" },
+            { hex: "#ff0000", image: "https://row.hyperx.com/cdn/shop/files/hyperx_alloy_core_rgb_uk_1_main.jpg?v=1734473869" },
+            { hex: "#0066ff", image: "https://row.hyperx.com/cdn/shop/files/hyperx_alloy_core_rgb_uk_1_main.jpg?v=1734473869" }
+        ]
+
     },
     { id: 39,
         title: 'MacBook Air',
@@ -227,6 +333,12 @@ const ProductsData = [
         oldprice:'80',
         Stars:'★★★☆☆',
         Statistiques:442,
+        colors: [
+            { hex: "#000000", image: "https://row.hyperx.com/cdn/shop/files/hyperx_alloy_core_rgb_uk_1_main.jpg?v=1734473869" },
+            { hex: "#ff0000", image: "https://row.hyperx.com/cdn/shop/files/hyperx_alloy_core_rgb_uk_1_main.jpg?v=1734473869" },
+            { hex: "#0066ff", image: "https://row.hyperx.com/cdn/shop/files/hyperx_alloy_core_rgb_uk_1_main.jpg?v=1734473869" }
+        ]
+
     },
 
 

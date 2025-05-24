@@ -3,28 +3,22 @@ import { toast } from 'react-toastify';
 import { useCart } from '../../../Context/CartContext';
 import { useFavorites } from '../../../Context/FavoritesContext';
 import { FaRegHeart, FaHeart } from "react-icons/fa";
+import { useNavigate } from 'react-router-dom';
+import { useLoading } from '../../../Context/LoadingContext'; // j’imagine que c’est là
 
 const RecommendationCard = ({ item }) => {
     const { addToCart } = useCart();
     const { addFavorite, removeFavorite, isFavorite } = useFavorites();
+    const navigate = useNavigate();
+    const { setLoading } = useLoading();
 
     const [isClicked, setIsClicked] = useState(false);
-
-
     const favorited = isFavorite(item.id);
 
-    const handleAddToCart = () => {
-        addToCart(item);
-        toast.success("Item added to cart!", {
-            style: {
-                backgroundImage: 'linear-gradient(140deg, #6b6c6c, #2A2D33)',
-                color: 'white'
-            }
-        });
-    };
-
-    const toggleFavorite = () => {
-        if (isFavorite(item.id)) {
+    // Toggle favoris
+    const toggleFavorite = (e) => {
+        e.stopPropagation(); // IMPORTANT: empêche la redirection quand on clique sur le cœur
+        if (favorited) {
             removeFavorite(item.id);
         } else {
             addFavorite({
@@ -37,6 +31,24 @@ const RecommendationCard = ({ item }) => {
         }
         setIsClicked(true);
         setTimeout(() => setIsClicked(false), 150);
+    };
+
+    // Ajout au panier
+    const handleAddToCart = (e) => {
+        e.stopPropagation(); // empêche la redirection si on clique sur "Add"
+        addToCart(item);
+        toast.success("Item added to cart!", {
+            style: {
+                backgroundImage: 'linear-gradient(140deg, #6b6c6c, #2A2D33)',
+                color: 'white'
+            }
+        });
+    };
+
+    // Navigation vers la page produit avec affichage du loader
+    const handleNavigateToProduct = () => {
+        setLoading(true); // lance le loader global
+        navigate(`/product/${item.id}`);
     };
 
     const heartStyle = {
@@ -53,7 +65,11 @@ const RecommendationCard = ({ item }) => {
 
     return (
         <div className="ContainerCard">
-            <div className='RecommendationCard'>
+            <div
+                className='RecommendationCard'
+                onClick={handleNavigateToProduct}
+                style={{ cursor: 'pointer', position: 'relative' }}
+            >
                 <div>
                     <img src={item.image} alt={item.title} />
                     {favorited ? (

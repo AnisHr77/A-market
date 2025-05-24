@@ -378,6 +378,186 @@ button.checkout-btn:active {
     transform-origin: bottom left;
 }
 
+
+.payment-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    font-family: "Plus Jakarta sans", sans-serif;
+
+}
+
+.payment-modal-box {
+    background: white;
+    border-radius: 1rem;
+    padding: 2rem;
+    width: 600px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+}
+
+.payment-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: black;
+}
+
+.payment-tabs {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.tab {
+    background: none;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-bottom: 2px solid transparent;
+    cursor: pointer;
+    font-weight: 500;
+    color: #333;
+}
+
+.tab.active {
+    border-color: #4F46E5;
+    color: #4F46E5;
+}
+
+.card-list {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.card {
+    background: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSBl4JXh5Ittff7M4DZ5XRwyGJFZgbZwL-hhg&s");
+    background-size: cover;
+    padding: 1rem;
+    border-radius: 1rem;
+    color: white;
+    width: 160px;
+    height: 80px;
+    cursor: pointer;
+    position: relative;
+    top: -2px;
+}
+
+.card.selected {
+    background: url("https://www.mastercard.com/news/media/3hlb52u5/mc_sym_card_debit_mcdc_5bin_lmc.png");
+    background-size: cover;
+    border:1px solid #b1adad
+}
+
+.card.add-card {
+    background: url("https://www.poste.dz/uploads/medias/0f0d0ea60b6f9b66cdcd395747b5182be26d6e27.jpg");
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    position: relative;
+    top: -2px;
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+input[type="number"] {
+    -moz-appearance: textfield; /* Firefox */
+}
+
+
+.payment-form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.payment-form input {
+    padding: 0.75rem;
+    border: 1px solid #E5E7EB;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+}
+
+.payment-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+}
+
+.cancel-btn {
+    background: #E5F4F2;
+    color: #0F766E;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.place-btn {
+    background: #10B981;
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.baridimob-form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    width: 100%;
+
+    justify-content: center;
+}
+
+.baridimob-label {
+    font-weight: bold;
+    font-size: 0.95rem;
+    color: black;
+    position: relative;
+    left: 2%;
+}
+
+.baridimob-form input {
+    width: 100%;
+
+    border: 1px solid #ccc;
+    border-radius: 6px;
+}
+.confirm-btn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.upload-btn {
+    background-color: #eee;
+    border: 1px solid #ccc;
+    padding: 6px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+
 @media (max-width: 1024px) {
     .CartProduct {
         width: 100% !important;
@@ -452,6 +632,28 @@ button.checkout-btn:active {
     }
 
 }
+
+.payment-modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: auto;
+}
+
+.payment-modal-box {
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    max-height: 90vh;
+    overflow-y: auto;
+    width: 95%;
+    max-width: 600px;
+}
+
 
 @media (max-width: 490px) {
     .CartProduct {

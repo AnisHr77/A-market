@@ -6,8 +6,8 @@ const BelowNav = () => {
     return (
         <div className="below-nav">
             <div className="container-BelowNav">
-                <a href="#"> New Items</a>
-                <a href="">Recomendations</a>
+                <a href="#flash"> New Items</a>
+                <a href="#rec">Recomendations</a>
                 <a href="">Supper Offers</a>
                 <a href="">Top Rated</a>
                 <a href="">Most Saved</a>

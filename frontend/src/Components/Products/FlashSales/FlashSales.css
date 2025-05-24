@@ -1,3 +1,25 @@
+.ContainerCard {
+    cursor: pointer;
+}
+
+.RecommendationCard {
+    transition: background-color 0.2s ease, padding 0.2s ease, right 0.2s ease;
+    position: relative;
+}
+
+.ContainerCard:hover .RecommendationCard {
+    background-color: rgba(251, 251, 251, 0.03);
+    scale: 1.019;
+
+
+}
+
+.ContainerCard button {
+    cursor: pointer;
+}
+
+
+
 .slider-btn {
     background-color: #fff;
     border: 1px solid #ccc;
@@ -44,7 +66,7 @@
 .RecommendationCard{
 
     width: 200px;
-    height: 300px;
+    height: 320px;
     gap:5px;
 }
 .RecommendationCard img{
