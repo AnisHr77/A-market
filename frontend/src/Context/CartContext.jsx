@@ -54,7 +54,8 @@ export const CartProvider = ({ children }) => {
     };
 
 
-    const cartCount = cartItems.reduce((sum, item) => sum + item.quantity, 0);
+    const cartCount = cartItems.length;
+    const cartCounter = cartItems.reduce((sum, item) => sum + item.quantity, 0);
 
     return (
         <CartContext.Provider value={{

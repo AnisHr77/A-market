@@ -45,7 +45,7 @@ const BigSaves = () => {
         };
 
         return (
-            <div className="recommendations">
+            <div id={'rec'} className="recommendations">
                 <h2 style={{
                     fontSize: '25px',
                     marginBottom: '1.5rem',

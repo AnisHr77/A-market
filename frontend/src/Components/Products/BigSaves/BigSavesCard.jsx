@@ -1,21 +1,23 @@
-import React, {useState} from 'react';
-import { FaGift } from "react-icons/fa";
+import React, { useState } from 'react';
+import { FaGift, FaRegHeart, FaHeart } from "react-icons/fa";
 import { toast } from 'react-toastify';
 import { useCart } from '../../../Context/CartContext';
 import { useFavorites } from '../../../Context/FavoritesContext';
-import { FaRegHeart, FaHeart } from "react-icons/fa";
+import { useNavigate } from 'react-router-dom';
+import { useLoading } from '../../../Context/LoadingContext'; // 👈 nouveau
 
 const BigSavesCard = ({ item }) => {
-
-
+    const navigate = useNavigate();
+    const { setLoading } = useLoading(); // 👈 appel du loader global
     const { addToCart } = useCart();
     const { addFavorite, removeFavorite, isFavorite } = useFavorites();
     const [isClicked, setIsClicked] = useState(false);
 
-
     const favorited = isFavorite(item.id);
-    const toggleFavorite = () => {
-        if (isFavorite(item.id)) {
+
+    const toggleFavorite = (e) => {
+        e.stopPropagation();
+        if (favorited) {
             removeFavorite(item.id);
         } else {
             addFavorite({
@@ -30,7 +32,8 @@ const BigSavesCard = ({ item }) => {
         setTimeout(() => setIsClicked(false), 150);
     };
 
-    const handleAddToCart = () => {
+    const handleAddToCart = (e) => {
+        e.stopPropagation();
         addToCart(item);
         toast.success("Item added to cart!", {
             style: {
@@ -39,30 +42,37 @@ const BigSavesCard = ({ item }) => {
             }
         });
     };
+
+    const handleNavigateToProduct = () => {
+        setLoading(true); // 👈 déclenche le loader
+        setTimeout(() => navigate(`/product/${item.id}`), 100);
+    };
+
     const heartStyle = {
-        position: 'relative',
+        position: 'absolute',
+        top: '0px',
+        right: '10px',
         width: '20px',
         height: '20px',
-        left: '172px',
-        top: '-180px',
         cursor: 'pointer',
         transition: 'transform 0.2s ease, color 0.2s ease',
         transform: isClicked ? 'scale(1.4)' : 'scale(1)',
-        color: favorited ? 'red' : 'black'
+        color: favorited ? 'red' : 'black',
+        zIndex: 2
     };
 
     return (
         <div className="ContainerCard">
-            <div className='RecommendationCard'>
-                <div>
+            <div className='RecommendationCard' onClick={handleNavigateToProduct} style={{ position: 'relative', cursor: 'pointer' }}>
+                {favorited ? (
+                    <FaHeart onClick={toggleFavorite} style={heartStyle} />
+                ) : (
+                    <FaRegHeart onClick={toggleFavorite} style={heartStyle} />
+                )}
+
                 <img src={item.image} alt={item.title} />
-                    {favorited ? (
-                        <FaHeart onClick={toggleFavorite} style={heartStyle} />
-                    ) : (
-                        <FaRegHeart onClick={toggleFavorite} style={heartStyle} />
-                    )}
-                 </div>
-                <div style={{ display: "flex", position: 'relative', top: '15px', marginBottom: '30px' }}>
+                <div style={{position:'relative',top:'-20px'}}>
+                <div style={{ display: "flex", position: 'relative', top: '25px', marginBottom: '30px' }}>
                     <div style={{
                         position: 'relative',
                         width: `${item.Pourcentage}`,
@@ -90,7 +100,7 @@ const BigSavesCard = ({ item }) => {
                 <p style={{ fontSize: '13px', fontWeight: 'bold' }}>{item.description}</p>
 
                 <div className='Prices'>
-                    <p style={{ position: 'relative', top: '-12px' }}>Now ${item.price}</p>
+                    <p style={{ position: 'relative', top: '-15px' }}>Now ${item.price}</p>
                     <p style={{
                         color: 'grey',
                         textDecoration: 'line-through',
@@ -100,7 +110,6 @@ const BigSavesCard = ({ item }) => {
                         ${item.oldprice}
                     </p>
 
-                    {}
                     <button
                         style={{
                             width: '70px',
@@ -123,6 +132,7 @@ const BigSavesCard = ({ item }) => {
                 <div style={{ display: 'flex' }} className="Statistiques">
                     <div>{item.Stars}</div>
                     <div style={{ position: 'relative', top: '2px' }}>{item.Statistiques}</div>
+                </div>
                 </div>
             </div>
         </div>

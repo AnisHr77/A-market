@@ -13,7 +13,13 @@ const FlashSalesData =[
         Sold: 1.5,
         Comment:'All most sold out',
         Stars:'★★★☆☆',
-        Statistiques:442
+        Statistiques:442,
+        colors: [
+            { hex: "#000000", image: "https://row.hyperx.com/cdn/shop/files/hyperx_alloy_core_rgb_uk_1_main.jpg?v=1734473869" },
+            { hex: "#ff0000", image: "https://row.hyperx.com/cdn/shop/files/hyperx_alloy_core_rgb_uk_1_main.jpg?v=1734473869" },
+            { hex: "#0066ff", image: "https://row.hyperx.com/cdn/shop/files/hyperx_alloy_core_rgb_uk_1_main.jpg?v=1734473869" }
+        ]
+
     },
         {
             id: 9,
@@ -27,7 +33,13 @@ const FlashSalesData =[
             price:'40',
             oldprice:'50',
             Stars:'★★★☆☆',
-            Statistiques:442
+            Statistiques:442,
+            colors: [
+                { hex: "#000000", image: "https://row.hyperx.com/cdn/shop/files/hyperx_alloy_core_rgb_uk_1_main.jpg?v=1734473869" },
+                { hex: "#ff0000", image: "https://row.hyperx.com/cdn/shop/files/hyperx_alloy_core_rgb_uk_1_main.jpg?v=1734473869" },
+                { hex: "#0066ff", image: "https://row.hyperx.com/cdn/shop/files/hyperx_alloy_core_rgb_uk_1_main.jpg?v=1734473869" }
+            ]
+
 
         },
         {
@@ -43,7 +55,13 @@ const FlashSalesData =[
             price:'50',
             oldprice:'60',
             Stars:'★★★☆☆',
-            Statistiques:442
+            Statistiques:442,
+            colors: [
+                { hex: "#000000", image: "https://row.hyperx.com/cdn/shop/files/hyperx_alloy_core_rgb_uk_1_main.jpg?v=1734473869" },
+                { hex: "#ff0000", image: "https://row.hyperx.com/cdn/shop/files/hyperx_alloy_core_rgb_uk_1_main.jpg?v=1734473869" },
+                { hex: "#0066ff", image: "https://row.hyperx.com/cdn/shop/files/hyperx_alloy_core_rgb_uk_1_main.jpg?v=1734473869" }
+            ]
+
 
         },
         {
@@ -60,6 +78,12 @@ const FlashSalesData =[
             oldprice:'70',
             Stars:'★★★☆☆',
             Statistiques:442,
+            colors: [
+                { hex: "#000000", image: "https://row.hyperx.com/cdn/shop/files/hyperx_alloy_core_rgb_uk_1_main.jpg?v=1734473869" },
+                { hex: "#ff0000", image: "https://row.hyperx.com/cdn/shop/files/hyperx_alloy_core_rgb_uk_1_main.jpg?v=1734473869" },
+                { hex: "#0066ff", image: "https://row.hyperx.com/cdn/shop/files/hyperx_alloy_core_rgb_uk_1_main.jpg?v=1734473869" }
+            ]
+
 
         },
         {
@@ -76,6 +100,12 @@ const FlashSalesData =[
             oldprice:'80',
             Stars:'★★★☆☆',
             Statistiques:442,
+            colors: [
+                { hex: "#000000", image: "https://row.hyperx.com/cdn/shop/files/hyperx_alloy_core_rgb_uk_1_main.jpg?v=1734473869" },
+                { hex: "#ff0000", image: "https://row.hyperx.com/cdn/shop/files/hyperx_alloy_core_rgb_uk_1_main.jpg?v=1734473869" },
+                { hex: "#0066ff", image: "https://row.hyperx.com/cdn/shop/files/hyperx_alloy_core_rgb_uk_1_main.jpg?v=1734473869" }
+            ]
+
 
         },
     {
@@ -92,6 +122,12 @@ const FlashSalesData =[
         oldprice:'80',
         Stars:'★★★☆☆',
         Statistiques:442,
+        colors: [
+            { hex: "#000000", image: "https://row.hyperx.com/cdn/shop/files/hyperx_alloy_core_rgb_uk_1_main.jpg?v=1734473869" },
+            { hex: "#ff0000", image: "https://row.hyperx.com/cdn/shop/files/hyperx_alloy_core_rgb_uk_1_main.jpg?v=1734473869" },
+            { hex: "#0066ff", image: "https://row.hyperx.com/cdn/shop/files/hyperx_alloy_core_rgb_uk_1_main.jpg?v=1734473869" }
+        ]
+
 
     },
     {
@@ -108,6 +144,12 @@ const FlashSalesData =[
         oldprice:'80',
         Stars:'★★★☆☆',
         Statistiques:442,
+        colors: [
+            { hex: "#000000", image: "https://row.hyperx.com/cdn/shop/files/hyperx_alloy_core_rgb_uk_1_main.jpg?v=1734473869" },
+            { hex: "#ff0000", image: "https://row.hyperx.com/cdn/shop/files/hyperx_alloy_core_rgb_uk_1_main.jpg?v=1734473869" },
+            { hex: "#0066ff", image: "https://row.hyperx.com/cdn/shop/files/hyperx_alloy_core_rgb_uk_1_main.jpg?v=1734473869" }
+        ]
+
 
     }
 

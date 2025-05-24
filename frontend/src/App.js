@@ -1,8 +1,6 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import './App.css';
-import {
-    Routes, Route, useLocation
-} from 'react-router-dom';
+import { Routes, Route, useLocation } from 'react-router-dom';
 
 import Shop from './pages/Shop';
 import ShopCategory from './pages/ShopCategory';
@@ -20,51 +18,61 @@ import Loader from './Loader.jsx';
 
 import { CartProvider } from './Context/CartContext';
 import { FavoritesProvider } from './Context/FavoritesContext';
+import { LoadingProvider, useLoading } from './Context/LoadingContext';
 
-function App() {
+const AppContent = () => {
     const location = useLocation();
-    const [loading, setLoading] = useState(true);
+    const { loading, setLoading } = useLoading();
 
     useEffect(() => {
+        setLoading(true);
         const timeout = setTimeout(() => {
             setLoading(false);
-        }, 1500);
-
+        }, 1200);
         return () => clearTimeout(timeout);
-    }, [location.pathname]);
+    }, [location.key]);
 
     return (
-        <FavoritesProvider> {/* Add this */}
+        <>
+            <ToastContainer position="top-right" autoClose={1500} pauseOnHover theme="colored" />
+            {loading ? (
+                <div className="loading-screen">
+                    <Loader />
+                </div>
+            ) : (
+                <div className="app-content">
+                    <NavbarLeft />
+                    <Routes>
+                        <Route path="/" element={<Shop />} />
+                        <Route path="/phones" element={<ShopCategory Category="phones" />} />
+                        <Route path="/laptops" element={<ShopCategory Category="laptops" />} />
+                        <Route path="/mens" element={<ShopCategory Category="mens" />} />
+                        <Route path="/womens" element={<ShopCategory Category="womens" />} />
+                        <Route path="/products" element={<Product />} />
+                        <Route path="/product/:productID" element={<Product />} />
+                        <Route path="/Card" element={<CardPage />} />
+                        <Route path="/Login" element={<Login />} />
+                        <Route path="/Chat" element={<Chat />} />
+                        <Route path="/Delivry" element={<DelivryPage />} />
+                        <Route path="/Bookmark" element={<Bookmark />} />
+                        <Route path="/Settings" element={<Settings />} />
+                    </Routes>
+                </div>
+            )}
+        </>
+    );
+};
+
+function App() {
+    return (
+        <FavoritesProvider>
             <CartProvider>
-                <ToastContainer position="top-right" autoClose={1500} pauseOnHover theme="colored" />
-                {loading ? (
-                    <div className="loading-screen">
-                        <Loader />
-                    </div>
-                ) : (
-                    <div className="app-content">
-                        <NavbarLeft />
-                        <Routes>
-                            <Route path="/" element={<Shop />} />
-                            <Route path="/phones" element={<ShopCategory Category="phones" />} />
-                            <Route path="/laptops" element={<ShopCategory Category="laptops" />} />
-                            <Route path="/mens" element={<ShopCategory Category="mens" />} />
-                            <Route path="/womens" element={<ShopCategory Category="womens" />} />
-                            <Route path="/products" element={<Product />} />
-                            <Route path="/:productID" element={<Product />} />
-                            <Route path="/Card" element={<CardPage />} />
-                            <Route path="/Login" element={<Login />} />
-                            <Route path="/Chat" element={<Chat />} />
-                            <Route path="/Delivry" element={<DelivryPage />} />
-                            <Route path="/Bookmark" element={<Bookmark />} />
-                            <Route path="/Settings" element={<Settings />} />
-                        </Routes>
-                    </div>
-                )}
+                <LoadingProvider>
+                    <AppContent />
+                </LoadingProvider>
             </CartProvider>
-        </FavoritesProvider> // <-- Don't forget to close it!
+        </FavoritesProvider>
     );
 }
-
 
 export default App;
