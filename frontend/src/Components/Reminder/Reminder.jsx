@@ -28,7 +28,7 @@ const Reminder = () => {
                         <PiCarBold  style={{position:'relative', top:'2px',left:'-2px',height:'15px',width:'25px'}} />
                         <span >Free Dellivery </span>
 
-                        <span style={{position:'relative', left:'10px'}}> > </span>
+                        <span style={{position:'relative', left:'10px'}}>  </span>
                     </div>
 
                 </div>
@@ -40,7 +40,7 @@ const Reminder = () => {
                         Friendly Reminder: Don’t forget to use AI chat to quickly and easily find your favorite product.
                     </div>
                     <div className="See">
-                        <a href="#">See more<span style={{position:'relative', left:'10px'}}> ></span></a>
+                        <a href="#">See more<span style={{position:'relative', left:'10px'}}> </span></a>
                     </div>
                     </div>
             </div>
