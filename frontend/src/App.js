@@ -15,6 +15,7 @@ import NavbarLeft from './Components/NavbarLeft/NavbarLeft';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Loader from './Loader.jsx';
+import  Help from './pages/Help'
 
 import { CartProvider } from './Context/CartContext';
 import { FavoritesProvider } from './Context/FavoritesContext';
@@ -61,6 +62,7 @@ const AppContent = () => {
                         <Route path="/product/:productID" element={<Product />} />
                         <Route path="/Card" element={<CardPage />} />
                         <Route path="/Login" element={<Login />} />
+                        <Route path="/help" element={<Help />} />
                         <Route path="/Chat" element={<Chat />} />
                         <Route path="/Delivry" element={<DelivryPage />} />
                         <Route path="/Bookmark" element={<Bookmark />} />

@@ -44,7 +44,7 @@ const NavbarLeft = () => {
                     <div id="ligne"></div>
 
                     <a href="#"><IoMoonOutline id="moon" /><span>Toggle</span></a>
-                    <a href="#"><BsQuestionOctagon id="question" /><span>Help</span></a>
+                    <a href="/help"><BsQuestionOctagon id="question" /><span>Help</span></a>
                     <a href="/Settings"><RiSettingsLine id="settings" /><span>Settings</span></a>
                 </div>
             </div>
