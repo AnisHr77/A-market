@@ -1,0 +1,432 @@
+.Line1{
+    display:flex;
+    align-items:center;
+    width:100%;
+    justify-content:space-between;
+
+}
+.h2User1{
+    color: white;
+    font-size: 25px ;
+    margin-top:-45px;
+}
+
+.myTextLine1{
+    font-weight:bold;
+    font-family: "Microsoft PhagsPa";
+    position: absolute;
+    top:14rem
+}
+
+.btnLine1{
+    position: absolute;
+    left:50rem;
+    top:15rem;
+    display: flex;
+    align-items: center;
+    gap:40px;
+
+}
+
+.btnLine1 #btn1 {
+    padding:8.5px 10px 5px 10px ;
+    font-size:20px;
+    font-weight:bold;
+    font-family: "Microsoft PhagsPa";
+    border-radius:30px;
+    border:none;
+    color:#fff;
+    position: absolute;
+    background-color:#25282d;
+    box-shadow: 0 0 1px  1px rgba(255, 255, 255, 0.14);
+    cursor: pointer;
+}
+.btnLine1 #btn1:hover{
+    background-color: #3a3b3b;
+    transition: 0.4s ease;
+}
+.btnLine1 #btn1:active{
+    background-color: #8766d2;
+    transition: 0.4s ease;
+}
+
+.btnLine1 #btn2{
+    background-color: rgba(255, 255, 255, 0.06);
+    max-width: 260px;
+    border-radius: 30px;
+    height: 38px;
+    display: flex;
+    border: none;
+    padding:4px 8px 6px 15px;
+    margin-left: 14px;
+    align-items: center;
+    box-shadow: 0 0 2px  2px rgba(255, 255, 255, 0.2) inset;
+    cursor: pointer;
+    color:#ffffff;
+    font-size:15px;
+    font-family: "Microsoft PhagsPa";
+    font-weight:bold;
+}
+.btnLine1 #btn2:hover{
+    background-color: #3a3b3b;
+    transition: 0.4s ease;
+}
+.btnLine1 #btn2:active{
+    background-color: #8766d2;
+    transition: 0.4s ease;
+}
+
+.hr1l {
+    border-color: rgba(37, 40, 45, 0.37);
+    width:940px;
+    position:absolute;
+    top:19rem;
+    left:12px;
+}
+
+/* Line1 Account */
+.Line2{
+    position:absolute;
+}
+.myTextLine2{
+    font-size: 21px;
+    color:#ffffff;
+    font-weight:bold;
+    font-family: "Microsoft PhagsPa";
+    position: absolute;
+    top:18rem;
+}
+.Line2 .input2 {
+    display:flex;
+    position: relative;
+    align-items:center;
+    height:40px;
+    background: #25282d;
+    border: 0.5px solid white;
+    width: 400px;
+    border-radius: 9px;
+    justify-content:center;
+    left: 270px;
+    top:350px;
+}
+.Line2 .input2 a{
+    text-decoration:none;
+    position: absolute;
+    font-size:19px;
+    color:#fff;
+    left: 0;
+    padding: 7px;
+    background-color:  #25282d;
+    font-family:"Microsoft PhagsPa";
+    font-weight:unset;
+    border: 0.5px solid white;
+    border-bottom-left-radius: 7px ;
+    border-top-left-radius: 7px ;
+
+}
+.Line2 .input2 label input{
+    font-family:"Microsoft PhagsPa";
+    background-color: #25282d;
+    color:#ffffff;
+    align-items: center;
+    width: 292.1px;
+    position: absolute;
+    height: 40px;
+    left: 81.1px;
+    padding-left: 30px;
+    padding-top: 1px;
+    top: -4px;
+    border: none;
+
+    box-sizing: border-box;
+    outline:none;
+    cursor: pointer;
+}
+.hr2l{
+    border-color: rgba(37, 40, 45, 0.37);
+    width:940px;
+    position:absolute;
+    top:28rem;
+    left:12px;
+}
+/** Line3 numero ta3 tlf*/
+.Line3{
+    position: absolute;
+    top:28rem;
+}
+.myTextLine3 label{
+    color:#ffffff;
+    font-weight:bold;
+    font-family: "Microsoft PhagsPa";
+    font-size: 21px;
+    margin-top: 5rem;
+
+}
+.Line3 div {
+    position: relative;
+    width:100%;
+    align-items:center;
+    left:50px;
+    top:100px;
+    bottom:10px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+.hr3l{
+    border-color: rgba(37, 40, 45, 0.37);
+    width:940px;
+    position:absolute;
+    top:38rem;
+    left:12px;
+}
+/*Line4 profile*/
+.Line4{
+
+    position:absolute;
+    top:39rem;
+}
+.myTextLine4{
+    color:#ffffff;
+    font-weight:bold;
+    font-family: "Microsoft PhagsPa";
+    font-size: 21px;
+}
+.Line4  div{
+    align-items: center;
+    display: flex;
+    position: absolute;
+    left:350px;
+    gap: 15px;
+
+}
+.Line4  #label-Edit-Line4{
+    width:60px;
+    font-weight:bold;
+    font-family: "Microsoft PhagsPa";
+    background-color: #5980ff;
+    color: white;
+    position: relative;
+
+    left:5px;
+    align-items: center;
+    font-size: 15px;
+    border-radius: 30px;
+    padding:10px 5px ;
+
+    border:none;
+    cursor: pointer;
+}
+
+.Line4  #label-Edit-Line4:active{
+    background-color: rgba(38, 88, 255, 0.68);
+    transition: 0.4s ease;
+}
+
+.Line4  #Btn-Delete-Line4{
+    width:70px;
+    font-weight:bold;
+    font-family: "Microsoft PhagsPa";
+    background-color: #f93f62;
+    color: #ffffff;
+    font-size: 15px;
+    border-radius: 30px;
+    padding:10px ;
+    border:none;
+    cursor: pointer;
+}
+.Line4   #Btn-Delete-Line4:active{
+    background-color: #fc1d48;
+    transition: 0.4s ease;
+}
+#ImgAccount{
+    border-radius: 30px;
+
+}
+/***/
+.toastContainer{
+    font-size: 11px;
+    font-weight: bold;
+    border-radius: 30px;
+    width: 100%;
+    transition: 20s;
+}
+.toastContainer :hover{
+    cursor: pointer;
+    background: #25282d;
+    color: white;
+}
+.pp{
+    color: rgba(255, 255, 255, 0.71);
+    background:linear-gradient(to right ,#1e293b ,#1e293b,#25282d );
+    background-size: cover;
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+}/***/
+
+#phoneNumber{
+    font-family:"Microsoft PhagsPa";
+    background-color:#25282d;
+    color:#ffffff;
+    align-items: center;
+    position: absolute;
+    height:40px;
+    padding-left: 10px;
+    box-sizing: border-box;
+    outline:none;
+    display:flex;
+    border: 0.5px solid white;
+    width: 250px;
+    border-radius: 9px;
+    justify-content:center;
+    top:-91px;
+    cursor: pointer;
+}
+.line3-Gmail{
+    margin-top:4rem;
+    margin-left:-2rem;
+}
+.line3-Gmail .myTextLine3{
+    display:flex;
+    flex-direction: row;
+    position: relative;
+    gap: 16px;
+    top:-270px;
+    left:35rem;
+
+
+}
+
+
+#gmail{
+
+    font-family:"Microsoft PhagsPa";
+    background-color:#25282d;
+    color:#ffffff;
+    align-items: center;
+    position: absolute;
+    height:40px;
+    padding-left: 10px;
+    box-sizing: border-box;
+    outline:none;
+    display:flex;
+    border: 0.5px solid white;
+    width: 250px;
+    border-radius: 9px;
+    justify-content:center;
+    top:-135px;
+    left:37rem;
+    cursor: pointer;
+}
+
+.hr4l{
+    border-color: rgba(37, 40, 45, 0.37);
+    width:940px;
+    position:absolute;
+    top:150px;
+    left:-14px;
+}
+
+/*******/
+
+.Line5 .text-line5{
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    margin-left:-700px;
+    margin-top:260px;
+}
+
+.line5-textarea{
+    font-family:"Microsoft PhagsPa";
+    background-color:#2c2f36;
+    color:#ffffff;
+    align-items: center;
+    position: absolute;
+    height:150px;
+
+    box-sizing: border-box;
+    outline:none;
+    display:flex;
+    border: 0.5px solid #212020;
+    width: 500px;
+    border-radius: 9px;
+    justify-content:center;
+    top:450px;
+left: -450px;
+    cursor: pointer;
+
+
+}
+.line5-textarea:focus {
+    border-color: #5980ff;
+    background-color: #2c2f36;
+}
+.hr5l{
+    border-color: rgba(37, 40, 45, 0.37);
+    width:940px;
+    position:absolute;
+    top:380px;
+    left:-14px;
+
+}
+.textArea-conter{
+    color: #B7B9C1 ;
+    margin-top:570px;
+    margin-left:21px;
+    z-index:10;
+    font-family:Plus Jakarta Sans;
+}
+
+@media screen and (min-width: 1300px){
+
+    .hr1l{
+        width:1095px;
+    }
+    .hr2l{
+        width:1095px;
+    }
+    .hr3l{
+        width:1095px;
+    }
+    .hr4l{
+        width:1095px;
+    }
+    .hr5l{
+        width:1095px;
+    }
+    .profile-edit-delete{
+        margin-left:80px;
+    }
+
+.line5-textarea{
+    margin-left:85px;
+}
+.line3-Gmail{
+    margin-left:140px;
+}
+    .textArea-conter{
+        margin-left:110px;
+    }
+.input2{
+    margin-left:90px;
+}
+
+    .btnLine1{
+        left:59rem;
+    }
+
+
+}
