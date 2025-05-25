@@ -95,7 +95,7 @@ export function OffersCard(props) {
                                         color: 'grey',
                                         fontSize: '13px'
                                     }}>
-                                        ${String(oldprice[i])} 
+                                        ${String(oldprice[i])}
                                     </div>
                                 </div>
                             ))}
@@ -215,16 +215,16 @@ export function OffersCard(props) {
                                 <button
                                     onClick={() => handleAddToCart(i)}
 
-                                        style={{
-                                    borderRadius: '15px',
-                                    height: '30px',
-                                    width: '70px',
-                                    border: 'none',
-                                    cursor: 'pointer',
-                                    backgroundColor: '#fff',
-                                    color: '#000',
-                                    marginTop: '10px'
-                                }}>
+                                    style={{
+                                        borderRadius: '15px',
+                                        height: '30px',
+                                        width: '70px',
+                                        border: 'none',
+                                        cursor: 'pointer',
+                                        backgroundColor: '#fff',
+                                        color: '#000',
+                                        marginTop: '10px'
+                                    }}>
                                     <svg width="16" height="8" viewBox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M1.00002 4H4.00002M4.00002 4H7.00002M4.00002 4V7M4.00002 4V1" stroke="#1B1A1A"
                                               strokeWidth="1.5" strokeLinecap="round" style={{ position: 'relative', left: '200px' }} />
@@ -240,4 +240,4 @@ export function OffersCard(props) {
     )
 }
 
-    export default OffersCard
+export default OffersCard

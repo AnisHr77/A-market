@@ -46,86 +46,86 @@ const FlashSales = () => {
     return (
 
         <div id={'NewItems'} style={{webkitTransform: 'none',height: 'auto',overflow: 'hidden'}} >
-        <div id={'flash'} className="recommendations">
-            <h2 style={{
-                fontSize: '25px',
-                marginBottom: '1.5rem',
-                marginTop: '1.5rem',
-                marginLeft: '1rem'
-            }}>
-                <IoIosFlash style={{
-                    fontWeight: 'bold',
-                    position: 'relative',
-                    top: '3px'
-                }} /> Flash Sales
-            </h2>
-
-            <div
-                style={{
-                    position: 'relative',
-                    width: isSmallScreen ? '100%' : `${sliderWidth}px`,
-                    margin: '0 auto'
-                }}
-            >
-                {!isSmallScreen && (
-                    <button
-                        className="slider-btn"
-                        onClick={handlePrev}
-                        disabled={currentIndex === 0}
-                        style={{
-                            position: 'absolute',
-                            top: '25%',
-                            left: '-22px',
-                            transform: 'translateY(-50%)',
-                            zIndex: 2,
-                        }}
-                    >
-                        <FaChevronLeft style={{ color: '#303030', fontSize: '15px', fontWeight: 'bold' }} />
-                    </button>
-                )}
+            <div id={'flash'} className="recommendations">
+                <h2 style={{
+                    fontSize: '25px',
+                    marginBottom: '1.5rem',
+                    marginTop: '1.5rem',
+                    marginLeft: '1rem'
+                }}>
+                    <IoIosFlash style={{
+                        fontWeight: 'bold',
+                        position: 'relative',
+                        top: '3px'
+                    }} /> Flash Sales
+                </h2>
 
                 <div
-                    className="flexing"
                     style={{
-                        overflowX: isSmallScreen ? 'auto' : 'hidden',
-                        overflowY: 'hidden',
-                        width: '100%',
-                        justifyContent: 'flex-start',
+                        position: 'relative',
+                        width: isSmallScreen ? '100%' : `${sliderWidth}px`,
+                        margin: '0 auto'
                     }}
                 >
-                    <div
-                        style={{
-                            display: 'flex',
-                            gap: `${gap}px`,
-                            transform: isSmallScreen ? 'none' : `translateX(-${currentIndex * (cardWidth + gap)}px)`,
-                            transition: isSmallScreen ? 'none' : 'transform 0.5s ease',
-                            minWidth: isSmallScreen ? 'max-content' : 'auto',
-                        }}
-                    >
-                        {FlashSalesData.map((item) => (
-                            <FlashSalesCard key={item.id} item={item} />
-                        ))}
-                    </div>
-                </div>
+                    {!isSmallScreen && (
+                        <button
+                            className="slider-btn"
+                            onClick={handlePrev}
+                            disabled={currentIndex === 0}
+                            style={{
+                                position: 'absolute',
+                                top: '25%',
+                                left: '-22px',
+                                transform: 'translateY(-50%)',
+                                zIndex: 2,
+                            }}
+                        >
+                            <FaChevronLeft style={{ color: '#303030', fontSize: '15px', fontWeight: 'bold' }} />
+                        </button>
+                    )}
 
-                {!isSmallScreen && (
-                    <button
-                        className="slider-btn"
-                        onClick={handleNext}
-                        disabled={currentIndex >= maxIndex}
+                    <div
+                        className="flexing"
                         style={{
-                            position: 'absolute',
-                            right: '-20px',
-                            top: '25%',
-                            transform: 'translateY(-50%)',
-                            zIndex: 2,
+                            overflowX: isSmallScreen ? 'auto' : 'hidden',
+                            overflowY: 'hidden',
+                            width: '100%',
+                            justifyContent: 'flex-start',
                         }}
                     >
-                        <FaChevronRight style={{ color: '#303030', fontSize: '15px', fontWeight: 'bold' }} />
-                    </button>
-                )}
+                        <div
+                            style={{
+                                display: 'flex',
+                                gap: `${gap}px`,
+                                transform: isSmallScreen ? 'none' : `translateX(-${currentIndex * (cardWidth + gap)}px)`,
+                                transition: isSmallScreen ? 'none' : 'transform 0.5s ease',
+                                minWidth: isSmallScreen ? 'max-content' : 'auto',
+                            }}
+                        >
+                            {FlashSalesData.map((item) => (
+                                <FlashSalesCard key={item.id} item={item} />
+                            ))}
+                        </div>
+                    </div>
+
+                    {!isSmallScreen && (
+                        <button
+                            className="slider-btn"
+                            onClick={handleNext}
+                            disabled={currentIndex >= maxIndex}
+                            style={{
+                                position: 'absolute',
+                                right: '-20px',
+                                top: '25%',
+                                transform: 'translateY(-50%)',
+                                zIndex: 2,
+                            }}
+                        >
+                            <FaChevronRight style={{ color: '#303030', fontSize: '15px', fontWeight: 'bold' }} />
+                        </button>
+                    )}
+                </div>
             </div>
-        </div>
         </div>
     );
 };

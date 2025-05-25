@@ -1,0 +1,114 @@
+.exchangeContainer5{
+    width: 400px;
+    height: 500px;
+    position: absolute;
+    font-weight: bold;
+    font-family: "Microsoft PhagsPa";
+    top: 10rem;
+    left: 2rem;
+    padding: 100px 250px 100px 250px;
+    background: #1f1f1f;
+    border-radius: 16px;
+    box-shadow: 0 0 10px #910490;
+    text-align: center;
+}
+.skrillContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background:linear-gradient(60deg , rgba(96, 33, 84, 0.55), rgba(145, 4, 144, 0.56));
+    height: 350px;
+    border-radius: 16px;
+    padding: 60px 25px 0 25px;
+    width: 390px;
+    position: absolute;
+    top: -10px;
+    margin: 50px auto;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+    font-family: "Segoe UI", sans-serif;
+}
+.exchangeContainer5 .Skrill-text .Skrill-h1{
+    font-size: 70px;
+    color: #be0478;
+    font-family: "microsoft yahei";
+    font-weight:bolder;
+
+}.exchangeContainer5 .Skrill-text .Skrill-h2{
+     color: rgba(255, 255, 255, 0.77);
+     font-family: "havertica";
+     font-weight:bold;
+     margin-top: -110px;
+     font-size: 24px;
+
+ }
+.exchangeContainer5 .Skrill-text {
+    display:flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 4rem;
+    margin-top: -130px ;
+}
+.Skrill-form{
+    display: flex;
+    flex-direction: column;
+    margin-top:0px;
+
+}
+
+.Skrill-form label {
+    margin-bottom: 5px;
+    margin-top: 0;
+    margin-left: -318px;
+    font-weight: 600;
+    color: rgba(252, 247, 247, 0.8);
+
+}
+
+.Skrill-form input {
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    width: 380px;
+    background-color: #2c2c2c;
+    color: white;
+    font-size: 1rem;
+    font-family: "Microsoft PhagsPa";
+    cursor: pointer;
+    margin-left: 0px;
+    outline: none;
+    border: none;
+}
+
+.Skrill-form button {
+    background-color: #910490;
+    color: white;
+    padding: 5px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    font-family: "Microsoft PhagsPa";
+    transition: background 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    gap: 10px;
+}
+
+.Skrill-form button:hover {
+    background-color: rgba(134, 14, 133, 0.91);
+}
+
+@media screen and (min-width: 1300px) {
+
+    .exchangeContainer5{
+        width: 560px;
+    }
+    .skrillContainer{
+        left:335px
+    }
+
+
+}

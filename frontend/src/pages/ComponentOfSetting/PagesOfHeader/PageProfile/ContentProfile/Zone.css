@@ -1,0 +1,89 @@
+.ZoneContent{
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    position: absolute;
+    top: 14.5rem;
+    left:2.5rem;
+
+}
+.ZoneContent .my-H1-ofZone{
+    font-size: 30px;
+    font-weight: bold;
+    font-family:"Microsoft PhagsPa";
+    color: rgba(255, 255, 255, 0.53);
+
+   margin-top: -70px;
+
+
+
+}
+
+.ZoneContent input{
+    align-items: center;
+    font-family:"Microsoft PhagsPa";
+    background-color:#25282d;
+    color:#ffffff;
+    height:40px;
+    position: relative;
+    left: -3.5px;
+
+    padding-left: 16px;
+    box-sizing: border-box;
+    outline:none;
+    border: 0.5px solid white;
+    width: 359px;
+    border-radius: 15px;
+    cursor: pointer;
+}
+#CodePostal{
+    width:260px;
+
+}
+.ZoneContent select{
+    font-family:"Microsoft PhagsPa";
+    background-color:#25282d;
+    color:#ffffff;
+    height:40px;
+    padding-left: 10px;
+    box-sizing: border-box;
+    outline:none;
+    border: 0.5px solid white;
+    width: 359px;
+    border-radius: 15px;
+    cursor: pointer;
+}
+#BtnZone{
+    font-family:"Microsoft PhagsPa";
+    background-color: #FFCB2D;
+    color: #272A2E;
+
+    font-size: 18px;
+    border: none;
+    height:40px;
+    padding-left: 10px;
+    box-sizing: border-box;
+    outline:none;
+
+    width: 100px;
+    border-radius: 5px;
+    top:-85px;
+    left:50rem;
+    cursor: pointer;
+}
+#BtnZone:hover{
+
+}
+.ZoneContent  :focus{
+    background-color: rgb(38, 38, 42);
+    color:#ffffff;
+}
+.ZoneContent input:focus{
+    background-color: rgba(89, 95, 105, 0.27);
+}
+@media screen and (min-width: 1300px){
+
+    .mapZone-css{
+        width:650px
+    }
+}

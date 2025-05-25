@@ -10,43 +10,43 @@ import {FaGift, FaRegHeart} from "react-icons/fa";
 
 const BigSaves = () => {
 
-        const cardWidth = 200;
-        const gap = 48;
+    const cardWidth = 200;
+    const gap = 48;
 
-        const [currentIndex, setCurrentIndex] = useState(0);
-        const [cardsToShow, setCardsToShow] = useState(5);
-        const [isSmallScreen, setIsSmallScreen] = useState(false);
+    const [currentIndex, setCurrentIndex] = useState(0);
+    const [cardsToShow, setCardsToShow] = useState(5);
+    const [isSmallScreen, setIsSmallScreen] = useState(false);
 
-        useEffect(() => {
-            const handleResize = () => {
-                const width = window.innerWidth;
-                setIsSmallScreen(width < 768);
+    useEffect(() => {
+        const handleResize = () => {
+            const width = window.innerWidth;
+            setIsSmallScreen(width < 768);
 
-                if (width < 500) setCardsToShow(3);
-                else if (width < 1124) setCardsToShow(3);
-                else if (width < 1300) setCardsToShow(4);
-                else setCardsToShow(5);
-            };
-
-            handleResize();
-            window.addEventListener('resize', handleResize);
-            return () => window.removeEventListener('resize', handleResize);
-        }, []);
-
-        const maxIndex = BigSavesData.length - cardsToShow;
-        const sliderWidth = cardWidth * cardsToShow + gap * (cardsToShow - 1);
-
-        const handleNext = () => {
-            if (currentIndex < maxIndex) setCurrentIndex(prev => prev + 1);
+            if (width < 500) setCardsToShow(3);
+            else if (width < 1124) setCardsToShow(3);
+            else if (width < 1300) setCardsToShow(4);
+            else setCardsToShow(5);
         };
 
-        const handlePrev = () => {
-            if (currentIndex > 0) setCurrentIndex(prev => prev - 1);
-        };
+        handleResize();
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
 
-        return (
+    const maxIndex = BigSavesData.length - cardsToShow;
+    const sliderWidth = cardWidth * cardsToShow + gap * (cardsToShow - 1);
 
-            <div id={'BigSaves'} style={{overflow: 'hidden'}}>
+    const handleNext = () => {
+        if (currentIndex < maxIndex) setCurrentIndex(prev => prev + 1);
+    };
+
+    const handlePrev = () => {
+        if (currentIndex > 0) setCurrentIndex(prev => prev - 1);
+    };
+
+    return (
+
+        <div id={'BigSaves'} style={{overflow: 'hidden'}}>
             <div id={'rec'} className="recommendations">
                 <h2 style={{
                     fontSize: '25px',
@@ -127,8 +127,8 @@ const BigSaves = () => {
                     )}
                 </div>
             </div>
-            </div>
-        );
+        </div>
+    );
 };
 
 export default BigSaves;

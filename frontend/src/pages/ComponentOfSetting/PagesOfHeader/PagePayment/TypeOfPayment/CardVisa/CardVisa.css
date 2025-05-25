@@ -1,0 +1,84 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f5f7fa;
+    margin: 0;
+    padding: 0 ;
+    color: #ffffff;
+}
+.exchangeContainer2CA{
+    width: 400px;
+    height: 500px;
+    position: absolute;
+    font-weight: bold;
+    font-family: "Microsoft PhagsPa";
+    top: 10rem;
+    left: 2rem;
+    padding: 100px 250px 100px 250px;
+    background: #1f1f1f;
+    border-radius: 16px;
+    box-shadow: 0 0 10px #0D2F62;
+    text-align: center;
+}
+
+.exchangeContainer2 {
+    width: 450px;
+    padding: 3rem 2rem 2rem 2rem;
+    margin-left: -3rem;
+    margin-top: -5rem;
+    background-color: #0d2f62;
+    border-radius: 16px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    font-family: "Microsoft PhagsPa";
+    color: #1f1f1f;
+    position: relative;
+    text-align: center;
+}
+
+.space {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 140px;
+}
+
+.space1 {
+    width: 100%;
+    padding: 10px;
+    border-radius: 8px;
+    background-color: #ffffff;
+    border: 1px solid #ccc;
+    color: #1f1f1f;
+    font-size: 1rem;
+    outline: none;
+    font-family: "Microsoft PhagsPa";
+}
+
+#BtnApplyCardVisa {
+    width: 100%;
+    padding: 10px;
+    border-radius: 8px;
+    background-color: #4361ee;
+    color: white;
+    font-weight: bold;
+    font-size: 1rem;
+    font-family: "Microsoft PhagsPa";
+    cursor: pointer;
+    border: none;
+    margin-left:-5px;
+    transition: background 0.3s ease;
+}
+
+#BtnApplyCardVisa:hover {
+    background-color: #3a4cc0;
+}
+@media screen and (min-width: 1300px) {
+
+    .exchangeContainer2CA{
+        width: 560px;
+    }
+    .exchangeContainer2{
+        left:100px
+    }
+
+
+}

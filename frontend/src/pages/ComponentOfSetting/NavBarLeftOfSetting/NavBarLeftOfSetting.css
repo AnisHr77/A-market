@@ -1,0 +1,311 @@
+@import url('https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Mono:ital,wght@0,200..800;1,200..800&family=Monomakh&family=Poetsen+One&display=swap');
+.Menu {
+    display: flex;
+    flex-direction: column;
+    gap: 2.3rem;
+    height: 96vh;
+    width: 19rem;
+    position: fixed;
+    top: 0;
+    left: 0;
+    overflow-y: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+.Menu::-webkit-scrollbar {
+    display: none;
+}
+.content-area {
+    margin-left: 19rem;
+    height: 100vh;
+    overflow-y: auto;
+    padding: 1rem;
+}
+
+.A-text{
+    position:absolute;
+    font-size:2.2rem;
+    top:2px;
+    left:65px;
+
+    color: rgb(255, 255, 255);
+    font-family: "Plus Jakarta Sans";
+    cursor:pointer;
+
+}
+.Logo{
+    font-family: sans-serif;
+    width: 15px;
+    position: absolute;
+    top: -1rem;
+    left: -1.5rem;
+    cursor: pointer;
+
+}
+.Logo a{
+    position: absolute;
+    top: 40px;
+    left: 45px;
+}
+.Logo a img{
+    position: absolute;
+    width: 50px;
+    height: 50px !important;
+    top: -4px;
+    left: 10px;
+}
+/* SideBar*/
+.NavMenu{
+    display:flex;
+    flex-direction:column;
+    gap:2rem;
+    position:absolute;
+    top:100px;
+
+}
+/* input1 ta3 search*/
+.Menu .Search-Menu1 .input--1{
+    width: 230px;
+    height: 40px;
+    margin-left: -6px;
+    border-radius: 30px;
+    border: none;
+    background-color: rgba(255, 255, 255, 0);
+    outline:none;
+    font-size: 15px;
+    padding-left: 18px ;
+    padding-top: 3px ;
+    align-items: center;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+
+.Menu .Search-Menu1 .input--1::placeholder{
+    color: rgba(255, 255, 255, 0.58);
+    font-weight: bold;
+    font-size: 15px;
+    font-family:   sans-serif !important;
+
+}
+.Menu .Search-Menu1 .input--1:hover{
+    background-color: rgba(0, 0, 0, 0.025);
+    transition-duration: 0.2s ;
+}
+
+
+.Menu .Search-Menu1 {
+    background-color: rgba(255, 255, 255, 0.06);
+    max-width: 260px;
+    border-radius: 30px;
+    height: 35px;
+    display: flex;
+    padding:4px 0 4px 10px;
+    margin-left: 2px;
+    border: none;
+    cursor: pointer;
+}
+
+.Search-Menu1 {
+    position:relative;
+    left: 12px;
+    display: inline-block;
+    align-items: center;
+    border:none;
+    box-shadow: 0 0 2px  2px rgba(255, 255, 255, 0.2) inset;
+}
+
+/* list fiha :Home,Tasks,Users,APIs,Subscription,Helpp */
+.Menu .Menu-List{
+    display:flex;
+    flex-direction:column;
+    gap:2rem;
+    position:relative;
+    left: 35px;
+    cursor: pointer;
+
+
+}
+.Menu .Menu-List .item{
+    align-items: center;
+    display: flex;
+    font-size: 1.1rem;
+    text-decoration:none;
+    gap:10px;
+    max-width:245px;
+    font-weight: bold;
+    font-family: "Microsoft PhagsPa";
+    color: rgba(162, 165, 169, 0.76);
+    transition: 0.3s;
+    animation: animaionNav 1s forwards ease;
+    opacity: 2;
+
+
+}
+@keyframes animaionNav {
+    from{
+        width: 0;
+        opacity: 0;
+        transform: translateX(-190px);
+
+    }to{ width: 100%;
+         opacity: 1;
+     }
+}
+.Menu .Menu-List .item:hover {
+
+    background-color: rgba(255, 255, 255, 0.05);
+    color: white;
+    transition: all 0.3s ease;
+    padding: 0.5rem 0.3rem;
+    margin-left: -10px;
+    border-radius: 0.6rem;
+
+}
+
+
+
+
+/* Go Pro input2 */
+.Menu .Search-Menu2 {
+    background-color: rgba(255, 255, 255, 0.06);
+    width: 256px;
+    border-radius: 30px;
+    height: 35px;
+    display: flex;
+    border: none;
+    padding:4px 2px 4px 10px;
+    margin-left: 15px;
+    align-items: center;
+    box-shadow: 0 0 2px  2px rgba(255, 255, 255, 0.2) inset;
+    cursor: pointer;
+}
+
+.Menu .Search-Menu2 a:hover{
+    background-color: rgba(0, 0, 0, 0.11);
+    height: 35px;
+    display: flex;
+    padding-top: 7px ;
+    border-radius: 25px;
+    transition-duration: 0.3s;
+}
+
+.Menu .Search-Menu2  a{
+    width: 235px;
+    height: 40px;
+    margin-left: -4px;
+    background-color: rgba(255, 255, 255, 0);
+    font-size: 20px;
+    padding-left: 18px ;
+    padding-top: 12px ;
+    color: white;
+
+    text-decoration: none;
+    font-family: "Microsoft PhagsPa";
+    font-weight: bold;
+    cursor: pointer;
+
+}
+
+
+.Menu .Search-Menu2 .StarIcon{
+    width:28px;
+    height:22px;
+    position: absolute;
+    left: 245px;
+    z-index: 10;
+    color:yellow;
+}
+
+
+.Menu .hrNav{
+    border-color: rgb(39, 43, 44);
+    box-shadow: 0 0 4px  0.2px rgba(255, 255, 255, 0.21);
+    width:280px;
+    position: absolute;
+    top:360px;
+    left:10px
+}
+
+
+/* img and name */
+.Menu .MyProfile{
+    display:flex;
+    flex-direction:row;
+    align-items:center;
+    gap:45px;
+    top: -215px;
+    left: 5px;
+    position: absolute;
+    color:white;
+    font-weight: bold;
+    font-size:16px;
+    font-family:"Microsoft PhagsPa";
+    cursor: pointer;
+    margin-left: -20px;
+}
+
+.Menu .MyProfile .ImgProfile a{
+    border: solid ;
+    display: block;
+
+
+}
+.ImgProfile{
+    position:absolute;
+    top:36.8rem;
+}
+.Menu .MyProfile .ImgProfile{
+    margin-top: 20px;
+}
+.Menu .MyProfile .USERNAME{
+    margin-top: 20px;
+}
+
+.Menu .MyProfile .USERNAME a{
+    text-decoration: none;
+    color:rgba(255, 255, 255, 0.72);
+    display: block;
+    position: absolute;
+    top: 38rem;
+    left:5rem;
+}
+.Menu .MyProfile .USERNAME  .profile{
+    position: absolute;
+    top:39.5rem;
+    font-size: 13px;
+    color: rgba(169, 169, 169, 0.62);
+}
+
+#BtnSortie {
+    display:flex;
+    background-color: #25282d;
+    font-family:"Microsoft PhagsPa";
+    font-size: 21px;
+    padding: 10px 10px;
+    font-weight: bold;
+    color: rgba(255, 255, 255, 0.5);
+    border: none;
+    cursor: pointer;
+    margin-right:3px ;
+    position: absolute;
+    left:16rem;
+    top:38rem;
+
+}
+
+#BtnSortie:hover{
+    color: #ffffff;
+    transition-duration: 0.2s;
+}
+/*****/
+.Menu .Menu-List .item.active {
+    color: #ffffff;
+    font-weight: bold;
+    border-left: 4px solid #832bd9;
+
+    transition: 0.1s;
+}
+
+/******/

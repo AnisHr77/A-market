@@ -13,7 +13,7 @@ const offersData = [
         description: "4pcs Universal Algerian Vintage",
         oldprice: [520,70],
         image: ['https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSr7xHizqigmBy3ywa2DfSrMefGj_hYSQdKfQ&s',
-        'https://wakcomputer.dz/wp-content/uploads/2025/01/L4YUa7mOZgsC6KPAt3cQzLWxLIqPs0OUmAbBTlzT.jpg'],
+            'https://wakcomputer.dz/wp-content/uploads/2025/01/L4YUa7mOZgsC6KPAt3cQzLWxLIqPs0OUmAbBTlzT.jpg'],
     },
     {
         id: "2",
