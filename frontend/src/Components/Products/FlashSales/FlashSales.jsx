@@ -44,6 +44,8 @@ const FlashSales = () => {
     };
 
     return (
+
+        <div id={'NewItems'} style={{webkitTransform: 'none',height: 'auto',overflow: 'hidden'}} >
         <div id={'flash'} className="recommendations">
             <h2 style={{
                 fontSize: '25px',
@@ -123,6 +125,7 @@ const FlashSales = () => {
                     </button>
                 )}
             </div>
+        </div>
         </div>
     );
 };

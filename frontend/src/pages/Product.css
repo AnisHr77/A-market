@@ -1,6 +1,6 @@
 
 .asket-product-page{
-    background-color: rgb(38, 40, 46) !important;
+    background-color: rgb(44, 47, 53) !important;
 }
 .image-section {
     width: 480px;
@@ -13,7 +13,7 @@
     gap: 0.5rem;
     background-color: #f3f3f3;
     padding: 2rem;
-    border-radius: 0.2rem;
+    border-radius: 0.3rem;
 }
 .main-image {
     width: 100%;
@@ -159,6 +159,7 @@
 
 .image-section {
     width: 480px;
+    height: auto;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -166,7 +167,7 @@
 
 .main-image {
     width: 100%;
-    height: auto;
+    height: 100%;
     object-fit: contain;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
@@ -174,30 +175,11 @@
     image-rendering: auto;
 }
 
-.image-dots {
-    margin-top: 15px;
-    display: flex;
-    gap: 8px;
-}
 
-.image-dots button {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    border: none;
-    background-color: #7a7979;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
 
-.image-dots button.active {
-    background-color: #000;
-}
-
-/* INFO SECTION BOX */
 .info-section {
     width: 480px;
-    background-color: #fff; /* White box */
+    background-color: #fff;
     padding: 2rem;
     border-radius: 8px; /* Rounded corners */
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Soft shadow */

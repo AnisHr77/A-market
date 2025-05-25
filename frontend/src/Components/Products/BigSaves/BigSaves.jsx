@@ -45,6 +45,8 @@ const BigSaves = () => {
         };
 
         return (
+
+            <div id={'BigSaves'} style={{overflow: 'hidden'}}>
             <div id={'rec'} className="recommendations">
                 <h2 style={{
                     fontSize: '25px',
@@ -124,6 +126,7 @@ const BigSaves = () => {
                         </button>
                     )}
                 </div>
+            </div>
             </div>
         );
 };

@@ -5,7 +5,9 @@ import './Bookmark.css';
 const Bookmark = () => {
     const { favorites, removeFavorite } = useFavorites();
 
-    if (favorites.length === 0) return <p>No favorites saved.</p>;
+    if (favorites.length === 0) {
+        return <div className="bookmark-empty">You haven't saved any favorites yet.</div>;
+    }
 
     return (
         <div className="bookmark">
