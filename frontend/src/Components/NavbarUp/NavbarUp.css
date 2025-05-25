@@ -355,39 +355,28 @@ input:focus{
     }
     .category-container {
         display: none;
-        font-family: "Plus Jakarta sans";
-        position: relative;
-        font-size: 14px;
-
     }
     #categoryText {
         display: none;
-        font-size: 14px;
-
-
     }
     #SearchIA{
         display: none;
     }
     #searchIA  {
-
-        font-size: 14px;
+        display: none;
 
     }
     #reorder{
         display: none;
-        font-size: 14px;
-
 
     }
-    #IA{
-        right: 10px;
-    }
+
     .input-wrapper{
 
 
 
-        width: 8rem;
+        width: 50%;
+        font-size: 13px;
 
 
     }
