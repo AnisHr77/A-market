@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>🛒 Product Management Dashboard</h1>
+    
+    <div class="main-nav">
+      <button class="nav-btn active" onclick="showAddProducts()">Add Product</button>
+      <button class="nav-btn" onclick="showViewProducts()">View Products</button>
+    </div>
+
+    <div id="add-products-section">
+      <div class="form-card">
+        <h2>Add New Product</h2>
+        <form id="product-form">
+          <input type="text" id="name" placeholder="Product Name" required>
+          <textarea id="description" placeholder="Product Description" required></textarea>
+          <input type="number" id="price" placeholder="Price" required>
+          <input type="number" id="quantity" placeholder="Quantity" required>
+          <input type="text" id="image_url" placeholder="Image URL">
+          <input type="text" id="category_id" placeholder="Category ID">
+          <div class="row">
+            <input type="number" id="old_price" placeholder="Old Price">
+            <input type="number" id="discount_percent" placeholder="Discount %">
+          </div>
+          <button type="submit">Add Product</button>
+        </form>
+      </div>
+
+      <div class="preview-card">
+        <div class="image-preview">
+          <img id="preview-image" src="https://via.placeholder.com/200x200?text=No+Image" alt="Product Preview">
+        </div>
+        <h3 id="preview-name">Product Name</h3>
+        <p id="preview-description">Product description will appear here</p>
+        <p><strong>Price:</strong> <span id="preview-price">0.00</span> DZD</p>
+        <p><strong>Quantity:</strong> <span id="preview-quantity">0</span></p>
+      </div>
+    </div>
+
+    <div id="view-products-section" style="display: none;">
+      <h2>📦 Products List</h2>
+      <div class="product-grid" id="products-container">
+        <!-- Products will be added here dynamically -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal for editing products -->
+  <div id="edit-modal" class="modal">
+    <div class="modal-content">
+      <span class="close-modal">&times;</span>
+      <div class="form-card">
+        <h2>Edit Product</h2>
+        <form id="edit-product-form">
+          <input type="hidden" id="edit-product-id">
+          <input type="text" id="edit-name" placeholder="Product Name" required>
+          <textarea id="edit-description" placeholder="Product Description" required></textarea>
+          <input type="number" id="edit-price" placeholder="Price" required>
+          <input type="number" id="edit-quantity" placeholder="Quantity" required>
+          <input type="text" id="edit-image_url" placeholder="Image URL">
+          <input type="text" id="edit-category_id" placeholder="Category ID">
+          <div class="row">
+            <input type="number" id="edit-old_price" placeholder="Old Price">
+            <input type="number" id="edit-discount_percent" placeholder="Discount %">
+          </div>
+          <button type="submit">Save Changes</button>
+        </form>
+      </div>
+
+      <div class="preview-card">
+        <div class="image-preview">
+          <img id="edit-preview-image" src="https://via.placeholder.com/200x200?text=No+Image" alt="Product Preview">
+        </div>
+        <h3 id="edit-preview-name">Product Name</h3>
+        <p id="edit-preview-description">Product description will appear here</p>
+        <p><strong>Price:</strong> <span id="edit-preview-price">0.00</span> DZD</p>
+        <p><strong>Quantity:</strong> <span id="edit-preview-quantity">0</span></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal for product details -->
+  <div id="details-modal" class="modal">
+    <div class="modal-content details-content">
+      <span class="close-modal">&times;</span>
+      <div class="product-details">
+        <div class="details-image">
+          <img id="details-preview-image" src="https://via.placeholder.com/300x300?text=No+Image" alt="Product Image">
+        </div>
+        <div class="details-info">
+          <h2 id="details-name">Product Name</h2>
+          <p id="details-description">Product description will appear here</p>
+          <div class="details-stats">
+            <div class="stat-item">
+              <span class="stat-label">Price:</span>
+              <span id="details-price" class="stat-value">0.00 DZD</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label">Quantity:</span>
+              <span id="details-quantity" class="stat-value">0</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label">Visits:</span>
+              <span id="details-visits" class="stat-value">100</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label">Category ID:</span>
+              <span id="details-category" class="stat-value">-</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label">Old Price:</span>
+              <span id="details-old-price" class="stat-value">-</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label">Discount:</span>
+              <span id="details-discount" class="stat-value">-</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

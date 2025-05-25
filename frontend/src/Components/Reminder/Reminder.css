@@ -1,167 +1,167 @@
 .Reminder {
-        width: 83%;
-        text-align: center;
-        display: inline-block;
-        margin-left: 12%;
-        justify-content: center;
-        background-color: #ffffff;
-        height: 73px;
-        border: 2px solid #ffffff;
-        border-radius: 5px;
-        margin-bottom: 40px;
-        font-size: 13px;
-        font-family: "Plus Jakarta sans";
-        font-weight: bold;
+    width: 83%;
+    text-align: center;
+    display: inline-block;
+    margin-left: 12%;
+    justify-content: center;
+    background-color: #ffffff;
+    height: 73px;
+    border: 2px solid #ffffff;
+    border-radius: 5px;
+    margin-bottom: 40px;
+    font-size: 13px;
+    font-family: "Plus Jakarta sans";
+    font-weight: bold;
 }
 
 .Choosing {
-        width: 100%;
-        border-radius: 4px;
-        height: 55%;
-        background-color: #25282d;
+    width: 100%;
+    border-radius: 4px;
+    height: 55%;
+    background-color: #25282d;
 
 }
 
 .Choosingcont {
-        width: 100%;
-        text-align: center;
-        height: 100%;
-        display: flex;
-        padding: 0 15px ;
-        justify-content: space-between;
-        align-items: center;
+    width: 100%;
+    text-align: center;
+    height: 100%;
+    display: flex;
+    padding: 0 15px ;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .Security {
-        display: flex;
-        gap: 25px;
-        justify-content: space-between;
-        width: 66%;
+    display: flex;
+    gap: 25px;
+    justify-content: space-between;
+    width: 66%;
 }
 
 .Security div {
-        border-right: 1px solid white;
-        width: 30%;
-        cursor: pointer;
-        height: 20px;
-        align-items: center;
+    border-right: 1px solid white;
+    width: 30%;
+    cursor: pointer;
+    height: 20px;
+    align-items: center;
 
 
 }
 
 .More {
 
-        color: #25282d;
-        height: 45%;
+    color: #25282d;
+    height: 45%;
 
 }
 
 .Friendlycont {
-        width: 95.5%;
-        margin-left: 25px;
-        margin-right: 45px;
-        text-align: center;
-        height: 100%;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
+    width: 95.5%;
+    margin-left: 25px;
+    margin-right: 45px;
+    text-align: center;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .Friendlycont a {
-        text-decoration: none;
-        color: #25282d;
-        font-weight: bold;
-        font-size: 14px;
+    text-decoration: none;
+    color: #25282d;
+    font-weight: bold;
+    font-size: 14px;
 }
 .flexing {
-        scrollbar-width: none; /* Firefox */
-        -ms-overflow-style: none; /* IE/Edge */
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE/Edge */
 }
 
 .flexing::-webkit-scrollbar {
-        display: none;
+    display: none;
 }
 
 
 @media screen and (max-width: 600px) {
 
-        .Reminder {
-                display: block;
-                margin-top: 3rem;
-                justify-content: center;
-                margin-left: auto;
-                margin-right: auto;
-                width: 90%;
-                font-size: 13px;
-                height: auto;
-                text-align: center;
-                border-radius: 5px;
-        }
+    .Reminder {
+        display: block;
+        margin-top: 3rem;
+        justify-content: center;
+        margin-left: auto;
+        margin-right: auto;
+        width: 90%;
+        font-size: 13px;
+        height: auto;
+        text-align: center;
+        border-radius: 5px;
+    }
 
-        .Choosing {
-                height: auto;
-                padding-top: 10px;
-                margin: 0 auto;
-                background-color: #25282d;
-        }
+    .Choosing {
+        height: auto;
+        padding-top: 10px;
+        margin: 0 auto;
+        background-color: #25282d;
+    }
 
-        .Choosingcont {
-                flex-direction: column;
-                align-items: center;
-                justify-content: center;
-                width: 100%;
-                gap: 20px;
-                padding: 10px 0px ;
-        }
+    .Choosingcont {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        gap: 20px;
+        padding: 10px 0px ;
+    }
 
-        .Security {
-                width: 100%;
-                flex-direction: column;
-                align-items: center;
-                gap: 15px;
-        }
+    .Security {
+        width: 100%;
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+    }
 
-        .Security div {
-                width: 100%;
-                border: none;
-                border-bottom: 1px solid white;
-                padding: 10px 0;
-                text-align: center;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-        }
+    .Security div {
+        width: 100%;
+        border: none;
+        border-bottom: 1px solid white;
+        padding: 10px 0;
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 
-        .More {
+    .More {
 
-                margin: auto;
-                padding: 10px 7px;
-                font-size: 13px;
-                text-align: center;
-        }
+        margin: auto;
+        padding: 10px 7px;
+        font-size: 13px;
+        text-align: center;
+    }
 
-        .Friendlycont {
-                margin: auto;
-                padding: 10px;
-                gap: 15px;
-                text-align: center;
-        }
+    .Friendlycont {
+        margin: auto;
+        padding: 10px;
+        gap: 15px;
+        text-align: center;
+    }
 
-        .Friendlycont a {
-                font-size: 13px;
-                display: block;
-        }
+    .Friendlycont a {
+        font-size: 13px;
+        display: block;
+    }
 }
 
 
 @media screen and (max-width: 992px) {
-        .Security {
-                width: 80%;
-                gap: 20px;
-        }
+    .Security {
+        width: 80%;
+        gap: 20px;
+    }
 
-        .Choosingcont, .Friendlycont {
-                flex-wrap: wrap;
-                justify-content: center;
-        }
+    .Choosingcont, .Friendlycont {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
 }

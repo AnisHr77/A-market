@@ -534,7 +534,7 @@ input:focus{
     color: #00f7ff;
 }
 .suggestion-item.highlighted {
-    background-color: #d3d3d3;
+    background-color: #d3d3d3; 
     color: black;
 }
 

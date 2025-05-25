@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customize Website Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <h1>Customize Your Website</h1>
+
+        <div class="image-customization-area">
+            <section class="section">
+                <h2><!-- Insert Banner SVG here --></h2>
+                <div class="banner-image-placeholder" data-banner-id="banner-inputs">
+                    Banner Images<br>1024/1980
+                </div>
+                 <!-- Hidden input fields for banner data storage -->
+                <input type="hidden" id="banner1">
+                <input type="hidden" id="banner2">
+                <input type="hidden" id="banner3">
+            </section>
+
+            <section class="section">
+                <h2><!-- Insert Product SVG here --><br></h2>
+                <div class="image-inputs-grid">
+                    <div class="product-image-placeholder" data-product-id="prd1">
+                        <!-- Insert Recommendation SVG here --> Recommendations<br>Product 1
+                    </div>
+                    <div class="product-image-placeholder" data-product-id="prd2">
+                        <!-- Insert Recommendation SVG here --> Recommendations<br>Product 2
+                    </div>
+                    <div class="product-image-placeholder" data-product-id="prd3">
+                        <!-- Insert Flash Sale SVG here --> Flash Sales<br>Product 1
+                    </div>
+                    <div class="product-image-placeholder" data-product-id="prd4">
+                        <!-- Insert Flash Sale SVG here --> Flash Sales<br>Product 2
+                    </div>
+                    <div class="product-image-placeholder" data-product-id="prd5">
+                        <!-- Insert Big Save SVG here --> Big Saves<br>Product 1
+                    </div>
+                    <div class="product-image-placeholder" data-product-id="prd6">
+                        <!-- Insert Big Save SVG here --> Big Saves<br>Product 2
+                    </div>
+                </div>
+
+                <!-- Hidden input fields for data storage -->
+                <input type="hidden" id="prd1">
+                <input type="hidden" id="prd2">
+                <input type="hidden" id="prd3">
+                <input type="hidden" id="prd4">
+                <input type="hidden" id="prd5">
+                <input type="hidden" id="prd6">
+
+            </section>
+        </div>
+
+
+        <section class="section">
+            <h2>Product Categories</h2>
+            <div class="add-category-input">
+                <div class="category-input-wrapper">
+                    <input type="text" id="new-category-name" placeholder="Enter new category name">
+                    <button class="add-category-icon" type="button">+</button>
+                </div>
+            </div>
+            <div id="categories-list">
+                <!-- Categories will be loaded here -->
+            </div>
+        </section>
+    </div>
+
+    <!-- URL Input Modal (for Products) -->
+    <div id="url-modal" class="modal-overlay">
+        <div class="modal-content">
+            <h3>Enter Image URL</h3>
+            <input type="text" id="modal-url-input" placeholder="Paste image URL here">
+            <button id="save-url">Save URL</button>
+            <button id="cancel-modal">Cancel</button>
+        </div>
+    </div>
+
+    <!-- Banner Input Modal -->
+    <div id="banner-modal" class="modal-overlay">
+        <div class="modal-content">
+            <h3>Enter Banner Image URLs</h3>
+            <div>
+                <label for="modal-banner1-input">Banner 1 URL:</label>
+                <input type="text" id="modal-banner1-input">
+            </div>
+            <div>
+                <label for="modal-banner2-input">Banner 2 URL:</label>
+                <input type="text" id="modal-banner2-input">
+            </div>
+            <div>
+                <label for="modal-banner3-input">Banner 3 URL:</label>
+                <input type="text" id="modal-banner3-input">
+            </div>
+            <button id="save-banner-urls">Save Banner URLs</button>
+            <button id="cancel-banner-modal">Cancel</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html> 

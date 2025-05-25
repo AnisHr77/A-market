@@ -1,10 +1,12 @@
 import React, { useState, useRef } from 'react';
 import { RiAccountCircleLine, RiLogoutCircleRLine } from "react-icons/ri";
+import { useNavigate } from 'react-router-dom';
 import './NavbarUp.css';
 
 const Login = () => {
     const [isHovered, setIsHovered] = useState(false);
     const timeoutRef = useRef(null);
+    const navigate = useNavigate();
 
     const handleMouseEnter = () => {
         if (timeoutRef.current) {
@@ -24,6 +26,10 @@ const Login = () => {
         window.location.reload();
     };
 
+    const handleLoginClick = () => {
+        navigate('/login');
+    };
+
     return (
         <div
             className="login-wrapper"
@@ -31,7 +37,7 @@ const Login = () => {
             onMouseLeave={handleMouseLeave}
         >
             <div className="login-container">
-                <div id="loginText" className="nav-hover-effect">
+                <div id="loginText" className="nav-hover-effect" onClick={handleLoginClick}>
                     <RiAccountCircleLine id="account-icon" />
                 </div>
             </div>

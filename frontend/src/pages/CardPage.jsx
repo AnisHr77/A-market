@@ -392,18 +392,18 @@ const CardPage = () => {
                                     <>
 
 
-                                        <input
-                                            type="number"
-                                            inputMode="numeric"
-                                            style={{ position:'relative' ,height: '30%',top:'6%',right:'2%',width:'95%' }}
-                                            placeholder={cardNumberError || "Card Number"}
-                                            value={cardNumberError ? "" : cardNumber}
-                                            onChange={(e) => {
-                                                setCardNumber(e.target.value);
-                                                setCardNumberError('');
+                                            <input
+                                                type="number"
+                                                inputMode="numeric"
+                                                style={{ position:'relative' ,height: '30%',top:'6%',right:'2%',width:'95%' }}
+                                                placeholder={cardNumberError || "Card Number"}
+                                                value={cardNumberError ? "" : cardNumber}
+                                                onChange={(e) => {
+                                                    setCardNumber(e.target.value);
+                                                    setCardNumberError('');
 
-                                            }}
-                                        />
+                                                }}
+                                            />
 
 
 

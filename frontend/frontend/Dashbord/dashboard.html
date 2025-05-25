@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A+ MARKET Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="logo-container">
+                <i class="fas fa-store logo-icon"></i>
+                <h1 class="logo-text">A+ MARKET</h1>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <ul>
+                    <li class="nav-item active" data-section="analytics">
+                        <i class="fas fa-chart-line"></i>
+                        <span>Analytics</span>
+                    </li>
+                    <li class="nav-item" data-section="login">
+                        <i class="fas fa-sign-in-alt"></i>
+                        <span>Login</span>
+                    </li>
+                    <li class="nav-item" data-section="products">
+                        <i class="fas fa-box-open"></i>
+                        <span>Products</span>
+                    </li>
+                    <li class="nav-item" data-section="orders">
+                        <i class="fas fa-truck"></i>
+                        <span>Orders</span>
+                    </li>
+                    <li class="nav-item" data-section="customize">
+                        <i class="fas fa-paint-brush"></i>
+                        <span>Customize</span>
+                    </li>
+                    <li class="nav-item" data-section="chat">
+                        <i class="fas fa-comments"></i>
+                        <span>Chat</span>
+                    </li>
+                    <li class="nav-item" data-section="staff">
+                        <i class="fas fa-users"></i>
+                        <span>Staff</span>
+                    </li>
+                </ul>
+            </nav>
+
+            <div class="user-profile">
+                <div class="user-avatar-gradient"></div>
+                <div class="user-info">
+                    <span class="user-name">Lafdal</span>
+                    <span class="user-role">Admin</span>
+                </div>
+                <i class="fas fa-cog"></i>
+            </div>
+        </aside>
+        
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <header class="top-bar">
+                <div class="search-bar">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Search here...">
+                </div>
+                <div class="notifications">
+                    <i class="fas fa-bell"></i>
+                    <span class="notification-badge">3</span>
+                </div>
+            </header>
+            
+            <div class="content-area">
+                <!-- Analytics Section -->
+                <div id="analytics" class="section active">
+                    <div id="analyticsLoading" class="loading-container">
+                        <div class="loading-spinner"></div>
+                        <p>Loading Analytics...</p>
+                    </div>
+                    <iframe id="analyticsFrame" src="http://localhost:3000" style="width: 100%; height: calc(100vh - 80px); border: none; display: none;" onload="handleIframeLoad('analytics')" onerror="handleIframeError('analytics')"></iframe>
+                </div>
+                
+                <!-- Login Section -->
+                <div id="login" class="section">
+                    <div id="loginLoading" class="loading-container">
+                        <div class="loading-spinner"></div>
+                        <p>Loading Login...</p>
+                    </div>
+                    <iframe id="loginFrame" src="http://localhost:3006" style="width: 100%; height: calc(100vh - 80px); border: none; display: none;" onload="handleIframeLoad('login')" onerror="handleIframeError('login')"></iframe>
+                </div>
+                
+                <!-- Products Section -->
+                <div id="products" class="section">
+                    <div id="productsLoading" class="loading-container">
+                        <div class="loading-spinner"></div>
+                        <p>Loading Products...</p>
+                    </div>
+                    <iframe id="productsFrame" src="http://localhost:3003"
+                        sandbox="allow-scripts allow-same-origin"
+                        style="width: 100%; height: calc(100vh - 80px); border: none; display: none;"
+                        onload="handleIframeLoad('products')" onerror="handleIframeError('products')">
+                    </iframe>
+                </div>
+                
+                <!-- Orders Section -->
+                <div id="orders" class="section">
+                    <div id="ordersLoading" class="loading-container">
+                        <div class="loading-spinner"></div>
+                        <p>Loading Orders...</p>
+                    </div>
+                    <iframe id="ordersFrame" src="http://localhost:3005/dashboard.html" style="width: 100%; height: calc(100vh - 80px); border: none; display: none;" onload="handleIframeLoad('orders')" onerror="handleIframeError('orders')"></iframe>
+                </div>
+                
+                <!-- Customize Section -->
+                <div id="customize" class="section">
+                    <div id="customizeLoading" class="loading-container">
+                        <div class="loading-spinner"></div>
+                        <p>Loading Customize...</p>
+                    </div>
+                    <iframe id="customizeFrame" src="http://localhost:3001" style="width: 100%; height: calc(100vh - 80px); border: none; display: none;" onload="handleIframeLoad('customize')" onerror="handleIframeError('customize')"></iframe>
+                </div>
+                
+                <!-- Chat Section -->
+                <div id="chat" class="section">
+                    <div id="chatLoading" class="loading-container">
+                        <div class="loading-spinner"></div>
+                        <p>Loading Chat...</p>
+                    </div>
+                    <iframe id="chatFrame" src="http://localhost:3004" style="width: 100%; height: calc(100vh - 80px); border: none; display: none;" onload="handleIframeLoad('chat')" onerror="handleIframeError('chat')"></iframe>
+                </div>
+                
+                <!-- Staff Section -->
+                <div id="staff" class="section">
+                    <div id="staffLoading" class="loading-container">
+                        <div class="loading-spinner"></div>
+                        <p>Loading Staff...</p>
+                    </div>
+                    <iframe id="staffFrame" src="http://localhost:3002" style="width: 100%; height: calc(100vh - 80px); border: none; display: none;" onload="handleIframeLoad('staff')" onerror="handleIframeError('staff')"></iframe>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

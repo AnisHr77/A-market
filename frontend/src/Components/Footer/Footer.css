@@ -84,33 +84,6 @@ li{
 li:hover{
      color: #abb1b3;
  }
-.FooterContainer .aFooter{
-    text-decoration: none !important;
-    color: grey;
-
-}
-.FooterContainer .aFooter:hover{
-    color: #abb1b3;
-}
-
-.listefooter-OurFeatures{
-    display:flex;
-    gap: 1rem;
-    align-items: center;
-    justify-content: space-between;
-
-}
-.listefooter-OurFeatures .aFooter4{
-    display: flex;
-    align-items: center;
-    text-decoration: none;
-    color: white;
-
-    gap: 0.3rem;
-}
-.listefooter-OurFeatures  li {
-    display: flex;
-    text-decoration: none;
-
-
+@media screen and (max-width: 490px){
+    .Footer{display: none;}
 }

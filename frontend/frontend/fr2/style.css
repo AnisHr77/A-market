@@ -1,0 +1,392 @@
+body {
+    font-family: sans-serif;
+    background: #f8f9fa; /* Very light grey background */
+    color: #343a40; /* Dark grey text for readability */
+    margin: 0;
+    padding: 0 15px; /* Add horizontal padding */
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Align items to the top */
+}
+
+.dashboard-container {
+    max-width: 1100px; /* Set a max-width */
+    width: 100%; /* Make it responsive */
+    background-color: #ffffff; /* White background */
+    padding: 30px; /* Keep internal padding */
+    border-radius: 8px; /* Add back border-radius */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add back box shadow */
+    margin: 20px auto; /* Center with auto margins and add vertical margin */
+}
+
+h1 {
+    color: #007bff; /* Moderate blue for main heading */
+    text-align: center; /* Center headings */
+    margin-bottom: 30px; /* More space below main heading */
+    text-shadow: none; /* Remove text shadow */
+}
+
+h2 {
+    color: #007bff; /* Moderate blue for section titles */
+    text-align: center; /* Center section titles */
+    margin-bottom: 20px; /* Add space below headings */
+}
+
+h3 {
+    color: #007bff; /* Moderate blue for section titles */
+    text-align: left; /* Keep h3 aligned left */
+    margin-bottom: 20px; /* Add space below headings */
+}
+
+.section {
+    margin-bottom: 25px; /* Keep margin for sections outside the custom area */
+    padding: 20px; /* Keep padding for sections outside the custom area */
+    background-color: #e9ecef; /* Very light grey background */
+    border-radius: 8px; /* Keep border-radius for sections outside the custom area */
+    border: 1px solid #ced4da; /* Light grey border */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05); /* Subtle shadow */
+}
+
+.image-customization-area {
+    display: flex; /* Use flexbox to arrange banner and product sections */
+    flex-direction: column; /* Stack sections vertically */
+    gap: 20px; /* Space between sections */
+    margin-bottom: 25px; /* Space below this area */
+    background-color: #ffffff; /* White background */
+    padding: 20px; /* Keep padding to content inside */
+    border-radius: 8px; /* Match section border radius */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Add subtle shadow */
+}
+
+.image-customization-area .section {
+    flex: none; /* Prevent sections from growing/shrinking */
+    margin-bottom: 0; /* Remove bottom margin from sections within this area */
+    background-color: transparent; /* Remove individual section background */
+    padding: 0; /* Remove padding from sections within this area */
+    border: none; /* Remove border from sections within this area */
+}
+
+.banner-image-placeholder {
+    background: #e9ecef; /* Very light grey */
+    padding: 20px;
+    border-radius: 6px;
+    text-align: center;
+    cursor: pointer;
+    height: 150px; /* Increased height */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    color: #343a40; /* Dark grey text */
+    font-size: 1.2em;
+    margin-bottom: 20px; /* Space below banner placeholder */
+}
+
+.banner-image-placeholder:hover {
+     transform: translateY(-5px); /* Lift effect on hover */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); /* Hover shadow */
+}
+
+.image-inputs-grid {
+    display: flex; /* Use flexbox to arrange banner and product sections */
+    flex-wrap: nowrap; /* Prevent wrapping */
+    overflow-x: auto; /* Add horizontal scrolling if needed */
+    gap: 15px; /* Space between grid items */
+    margin-bottom: 20px;
+    padding-bottom: 10px; /* Add padding for scrollbar */
+    justify-content: center; /* Center flex items horizontally */
+}
+
+.product-image-placeholder {
+    background: #e9ecef; /* Very light grey */
+    padding: 20px;
+    border-radius: 6px;
+    text-align: center;
+    cursor: pointer;
+    width: 130px; /* Decreased width */
+    height: 120px; /* Increased height */
+    flex-shrink: 0; /* Prevent shrinking */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    color: #343a40; /* Dark grey text */
+}
+
+/* Specific styles for each product type */
+[data-product-id="prd1"],
+[data-product-id="prd2"] { /* Recommendations */
+    background-color: #e0f2f7; /* Very light cyan/blue */
+}
+
+[data-product-id="prd3"],
+[data-product-id="prd4"] { /* Flash Sales */
+     background: linear-gradient(to bottom right, #a0c4ff, #b2d4ff); /* Light blue gradient */
+     color: #1a1a1a; /* Darker text for contrast */
+}
+
+[data-product-id="prd5"],
+[data-product-id="prd6"] { /* Big Saves */
+    background-color: #ced4da; /* Light grey */
+}
+
+.product-image-placeholder:hover {
+    transform: translateY(-5px); /* Lift effect on hover */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); /* Hover shadow */
+}
+
+.image-inputs input[type="text"] { /* Targeting banner modal inputs */
+    width: calc(100% - 22px); /* Adjust for padding and border */
+    padding: 10px;
+    margin-bottom: 15px; /* Adjusted margin */
+    border: 1px solid #ced4da; /* Light grey border */
+    border-radius: 4px;
+    background-color: #ffffff; /* White background */
+    color: #343a40; /* Dark grey text */
+    box-sizing: border-box;
+}
+
+button {
+    display: block; /* Make button block level */
+    width: 100%; /* Full width button */
+    padding: 12px 15px; /* Increased padding */
+    background-color: #007bff; /* Moderate blue */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 18px; /* Larger font size */
+    margin-top: 20px; /* Add space above button */
+    transition: background-color 0.3s ease; /* Smooth hover effect */
+}
+
+button:hover {
+    background-color: #0056b3; /* Slightly darker blue on hover */
+}
+
+#categories-list {
+    margin-top: 15px;
+}
+
+#categories-list div {
+    background-color: #ffffff; /* White background */
+    padding: 10px; /* Increased padding */
+    margin-bottom: 8px; /* Increased margin */
+    border-radius: 4px;
+    border-left: 4px solid #007bff; /* Moderate blue left border */
+    color: #343a40; /* Dark grey text */
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05); /* Subtle shadow */
+}
+
+.add-category-input {
+    margin-bottom: 20px;
+}
+
+.category-input-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background-color: #ffffff;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    padding: 4px 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    height: 32px;
+}
+
+#new-category-name {
+    flex: 1;
+    border: none;
+    padding: 0;
+    font-size: 14px;
+    outline: none;
+    background-color: transparent;
+    height: 100%;
+    line-height: 24px;
+}
+
+#new-category-name::placeholder {
+    color: #adb5bd;
+}
+
+.add-category-icon {
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    width: 24px;
+    height: 24px;
+    font-size: 16px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s;
+    padding: 0;
+    margin: 0;
+    line-height: 1;
+    position: relative;
+    top: 0;
+}
+
+.add-category-icon:hover {
+    background: #0056b3;
+}
+
+/* Added styles for better layout and icons */
+.section h3 {
+    margin-top: 0;
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.section > button {
+    margin-top: 15px;
+}
+
+/* Modal Styles */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(233, 240, 255, 0.8); /* Semi-transparent light blue for blur */
+    backdrop-filter: blur(5px); /* Blur effect */
+    display: none; /* Hidden by default */
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* Ensure it's on top */
+}
+
+.modal-content {
+    background-color: #ffffff; /* White background */
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+    text-align: center;
+    max-width: 400px;
+    width: 90%;
+}
+
+.modal-content h3 {
+    margin-top: 0;
+    color: #007bff; /* Moderate blue heading */
+    margin-bottom: 20px;
+}
+
+.modal-content input[type="text"] {
+    width: calc(100% - 22px); /* Adjust for padding and border */
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ced4da; /* Light grey border */
+    border-radius: 4px;
+    background-color: #ffffff; /* White background */
+    color: #343a40; /* Dark grey text */
+    box-sizing: border-box;
+}
+
+.modal-content button {
+    width: auto; /* Auto width for modal buttons */
+    display: inline-block; /* Display buttons in a row */
+    margin: 0 10px; /* Space between buttons */
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #007bff; /* Moderate blue */
+    color: white;
+}
+
+.modal-content button:hover {
+    background-color: #0056b3; /* Slightly darker blue on hover */
+}
+
+.modal-content button#cancel-modal,
+.modal-content button#cancel-banner-modal {
+    background-color: #e9ecef; /* Very light grey */
+    color: #343a40; /* Dark grey text */
+}
+
+.modal-content button#cancel-modal:hover,
+.modal-content button#cancel-banner-modal:hover {
+     background-color: #ced4da; /* Slightly darker grey on hover */
+}
+
+/* Styles for the banner input modal specific layout */
+#banner-modal .modal-content div {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+#banner-modal .modal-content label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #343a40; /* Dark grey label color */
+}
+
+#banner-modal .modal-content input[type="text"] {
+     width: calc(100% - 22px); /* Adjust for padding and border */
+     background-color: #ffffff; /* White background */
+     color: #343a40; /* Dark grey text */
+     border: 1px solid #ced4da; /* Light grey border */
+}
+
+#banner-modal .modal-content button {
+    margin-top: 15px; /* Space above buttons */
+    background-color: #007bff; /* Moderate blue */
+    color: white;
+}
+
+#banner-modal .modal-content button:hover {
+     background-color: #0056b3; /* Slightly darker blue on hover */
+}
+
+.image-inputs-grid {
+    overflow-x: hidden; /* Hide overflow instead of showing scrollbar */
+    gap: 15px; /* Space between grid items */
+    margin-bottom: 20px;
+    justify-content: center; /* Center flex items horizontally */
+}
+
+.category-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 12px;
+    margin: 4px 0;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    color: #fff;
+}
+
+.category-id {
+    font-size: 0.8em;
+    opacity: 0.7;
+}
+.error-message {
+    color: #dc3545;
+    background-color: #f8d7da;
+    border: 1px solid #f5c6cb;
+    border-radius: 4px;
+    padding: 10px;
+    margin: 10px 0;
+    text-align: center;
+}
+.no-categories {
+    color: #6c757d;
+    background-color: #f8f9fa;
+    border: 1px solid #dee2e6;
+    border-radius: 4px;
+    padding: 15px;
+    text-align: center;
+    margin: 10px 0;
+}
+.category-name {
+    font-weight: 500;
+    color: #343a40;
+} 

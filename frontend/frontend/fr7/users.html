@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Users Management</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .users-container {
+            padding: 10px;
+            width: 100%;
+            max-width: 100%;
+            margin: 0 auto;
+            overflow-x: hidden;
+        }
+
+        .users-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .users-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: #333;
+            margin: 0;
+        }
+
+        .users-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 8px;
+            overflow: visible;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            table-layout: fixed;
+            font-size: 13px;
+        }
+
+        .users-table th,
+        .users-table td {
+            padding: 8px 4px;
+            text-align: right;
+            border-bottom: 1px solid #eee;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .users-table th:nth-child(1) { width: 4%; }  /* الصورة */
+        .users-table th:nth-child(2) { width: 8%; }  /* اسم المستخدم */
+        .users-table th:nth-child(3) { width: 12%; } /* البريد الإلكتروني */
+        .users-table th:nth-child(4) { width: 4%; }  /* العمر */
+        .users-table th:nth-child(5) { width: 8%; }  /* الولاية */
+        .users-table th:nth-child(6) { width: 8%; }  /* البلدية */
+        .users-table th:nth-child(7) { width: 4%; }  /* الجنس */
+        .users-table th:nth-child(8) { width: 8%; }  /* رقم الهاتف */
+        .users-table th:nth-child(9) { width: 8%; }  /* نوع المستخدم */
+        .users-table th:nth-child(10) { width: 12%; } /* الإجراءات */
+
+        .users-table th {
+            background-color: #f8f9fa;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .users-table tr:hover {
+            background-color: #f8f9fa;
+        }
+
+        .user-image {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .action-btn {
+            padding: 3px 6px;
+            font-size: 11px;
+            margin: 0 2px;
+        }
+
+        .user-type {
+            padding: 2px 4px;
+            font-size: 10px;
+        }
+
+        .user-type.admin {
+            background-color: #dc3545;
+            color: white;
+        }
+
+        .user-type.user {
+            background-color: #28a745;
+            color: white;
+        }
+
+        .search-box {
+            padding: 6px 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            width: 200px;
+            font-size: 13px;
+        }
+
+        .search-box:focus {
+            outline: none;
+            border-color: #007bff;
+        }
+
+        .pagination {
+            margin-top: 15px;
+        }
+
+        .pagination button {
+            padding: 6px 12px;
+            font-size: 12px;
+        }
+
+        .pagination button:hover {
+            background: #f8f9fa;
+        }
+
+        .pagination button.active {
+            background: #007bff;
+            color: white;
+            border-color: #007bff;
+        }
+
+        .pagination button:disabled {
+            background: #f8f9fa;
+            color: #999;
+            cursor: not-allowed;
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .confirm-dialog {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            width: 90%;
+            max-width: 400px;
+            text-align: center;
+        }
+
+        .confirm-dialog h3 {
+            margin: 0 0 15px 0;
+            color: #333;
+        }
+
+        .confirm-dialog p {
+            margin: 0 0 20px 0;
+            color: #666;
+        }
+
+        .confirm-dialog .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .confirm-dialog button {
+            padding: 8px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .confirm-dialog .confirm-btn {
+            background: #dc3545;
+            color: white;
+        }
+
+        .confirm-dialog .cancel-btn {
+            background: #6c757d;
+            color: white;
+        }
+
+        .confirm-dialog button:hover {
+            opacity: 0.9;
+        }
+
+        .success-message {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #28a745;
+            color: white;
+            padding: 15px 25px;
+            border-radius: 4px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            z-index: 1000;
+            animation: slideIn 0.3s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        .edit-form {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            width: 90%;
+            max-width: 500px;
+        }
+
+        .edit-form h3 {
+            margin: 0 0 20px 0;
+            color: #333;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #666;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #007bff;
+        }
+
+        .form-buttons {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .form-buttons button {
+            padding: 8px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 500;
+        }
+
+        .save-btn {
+            background: #28a745;
+            color: white;
+        }
+
+        .cancel-btn {
+            background: #6c757d;
+            color: white;
+        }
+
+        .form-buttons button:hover {
+            opacity: 0.9;
+        }
+
+        /* تعديلات للشاشات الصغيرة */
+        @media screen and (max-width: 1200px) {
+            .users-table {
+                font-size: 12px;
+            }
+
+            .users-table th,
+            .users-table td {
+                padding: 6px 3px;
+            }
+
+            .user-image {
+                width: 25px;
+                height: 25px;
+            }
+
+            .action-btn {
+                padding: 2px 4px;
+                font-size: 10px;
+            }
+
+            .user-type {
+                padding: 1px 3px;
+                font-size: 9px;
+            }
+        }
+
+        /* تعديلات للشاشات المتوسطة */
+        @media screen and (max-width: 992px) {
+            .users-container {
+                padding: 5px;
+            }
+
+            .users-header {
+                margin-bottom: 10px;
+            }
+
+            .users-title {
+                font-size: 18px;
+            }
+
+            .search-box {
+                width: 180px;
+                font-size: 12px;
+            }
+        }
+
+        /* تعديلات للشاشات الكبيرة */
+        @media screen and (min-width: 1400px) {
+            .users-table {
+                font-size: 14px;
+            }
+
+            .users-table th,
+            .users-table td {
+                padding: 10px 6px;
+            }
+
+            .user-image {
+                width: 35px;
+                height: 35px;
+            }
+
+            .action-btn {
+                padding: 4px 8px;
+                font-size: 12px;
+            }
+
+            .user-type {
+                padding: 3px 6px;
+                font-size: 11px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="users-container">
+        <div class="users-header">
+            <h1 class="users-title">إدارة المستخدمين</h1>
+            <input type="text" class="search-box" placeholder="بحث عن مستخدم...">
+        </div>
+        <table class="users-table">
+            <thead>
+                <tr>
+                    <th>الصورة</th>
+                    <th>اسم المستخدم</th>
+                    <th>البريد الإلكتروني</th>
+                    <th>العمر</th>
+                    <th>الولاية</th>
+                    <th>البلدية</th>
+                    <th>الجنس</th>
+                    <th>رقم الهاتف</th>
+                    <th>نوع المستخدم</th>
+                    <th>الإجراءات</th>
+                </tr>
+            </thead>
+            <tbody id="usersTableBody">
+                <!-- سيتم إضافة المستخدمين هنا عبر JavaScript -->
+            </tbody>
+        </table>
+        <div class="pagination" id="pagination">
+            <!-- سيتم إضافة أزرار الصفحات هنا عبر JavaScript -->
+        </div>
+    </div>
+
+    <script>
+        let currentPage = 1;
+        const usersPerPage = 10;
+        let allUsers = [];
+
+        // دالة لجلب المستخدمين
+        async function fetchUsers() {
+            try {
+                const response = await fetch('/api/users');
+                const data = await response.json();
+                if (data.success) {
+                    allUsers = data.users;
+                    displayUsers();
+                }
+            } catch (error) {
+                console.error('Error fetching users:', error);
+            }
+        }
+
+        // دالة لعرض المستخدمين
+        function displayUsers() {
+            const startIndex = (currentPage - 1) * usersPerPage;
+            const endIndex = startIndex + usersPerPage;
+            const usersToShow = allUsers.slice(startIndex, endIndex);
+
+            const tbody = document.getElementById('usersTableBody');
+            tbody.innerHTML = '';
+
+            usersToShow.forEach(user => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td><img src="${user.profileImage || 'default-avatar.png'}" alt="Profile" class="user-image"></td>
+                    <td>${user.username}</td>
+                    <td>${user.email}</td>
+                    <td>${user.age}</td>
+                    <td>${user.wilaya}</td>
+                    <td>${user.commune}</td>
+                    <td>${user.gender}</td>
+                    <td>${user.phoneNumber}</td>
+                    <td><span class="user-type ${user.userType}">${user.userType}</span></td>
+                    <td>
+                        <div class="user-actions">
+                            <button class="action-btn edit-btn" onclick="editUser('${user._id}')">
+                                <i class="fas fa-edit"></i> تعديل
+                            </button>
+                            <button class="action-btn delete-btn" onclick="deleteUser('${user._id}')">
+                                <i class="fas fa-trash"></i> حذف
+                            </button>
+                        </div>
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
+
+            updatePagination();
+        }
+
+        // دالة لتحديث أزرار الصفحات
+        function updatePagination() {
+            const totalPages = Math.ceil(allUsers.length / usersPerPage);
+            const pagination = document.getElementById('pagination');
+            pagination.innerHTML = '';
+
+            // زر الصفحة السابقة
+            const prevButton = document.createElement('button');
+            prevButton.innerHTML = '<i class="fas fa-chevron-right"></i>';
+            prevButton.disabled = currentPage === 1;
+            prevButton.onclick = () => {
+                if (currentPage > 1) {
+                    currentPage--;
+                    displayUsers();
+                }
+            };
+            pagination.appendChild(prevButton);
+
+            // أزرار الصفحات
+            for (let i = 1; i <= totalPages; i++) {
+                const pageButton = document.createElement('button');
+                pageButton.textContent = i;
+                pageButton.className = currentPage === i ? 'active' : '';
+                pageButton.onclick = () => {
+                    currentPage = i;
+                    displayUsers();
+                };
+                pagination.appendChild(pageButton);
+            }
+
+            // زر الصفحة التالية
+            const nextButton = document.createElement('button');
+            nextButton.innerHTML = '<i class="fas fa-chevron-left"></i>';
+            nextButton.disabled = currentPage === totalPages;
+            nextButton.onclick = () => {
+                if (currentPage < totalPages) {
+                    currentPage++;
+                    displayUsers();
+                }
+            };
+            pagination.appendChild(nextButton);
+        }
+
+        // دالة لتعديل المستخدم
+        function editUser(userId) {
+            const user = allUsers.find(u => u._id === userId);
+            if (!user) return;
+
+            const overlay = document.createElement('div');
+            overlay.className = 'overlay';
+            
+            const editForm = document.createElement('div');
+            editForm.className = 'edit-form';
+            editForm.innerHTML = `
+                <h3>تعديل بيانات المستخدم</h3>
+                <div class="form-group">
+                    <label>اسم المستخدم</label>
+                    <input type="text" id="editUsername" value="${user.username}">
+                </div>
+                <div class="form-group">
+                    <label>البريد الإلكتروني</label>
+                    <input type="email" id="editEmail" value="${user.email}">
+                </div>
+                <div class="form-group">
+                    <label>العمر</label>
+                    <input type="number" id="editAge" value="${user.age}">
+                </div>
+                <div class="form-group">
+                    <label>الولاية</label>
+                    <input type="text" id="editWilaya" value="${user.wilaya}">
+                </div>
+                <div class="form-group">
+                    <label>البلدية</label>
+                    <input type="text" id="editCommune" value="${user.commune}">
+                </div>
+                <div class="form-group">
+                    <label>الجنس</label>
+                    <select id="editGender">
+                        <option value="male" ${user.gender === 'male' ? 'selected' : ''}>ذكر</option>
+                        <option value="female" ${user.gender === 'female' ? 'selected' : ''}>أنثى</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>رقم الهاتف</label>
+                    <input type="tel" id="editPhoneNumber" value="${user.phoneNumber}">
+                </div>
+                <div class="form-group">
+                    <label>نوع المستخدم</label>
+                    <select id="editUserType">
+                        <option value="user" ${user.userType === 'user' ? 'selected' : ''}>مستخدم</option>
+                        <option value="admin" ${user.userType === 'admin' ? 'selected' : ''}>مدير</option>
+                    </select>
+                </div>
+                <div class="form-buttons">
+                    <button class="cancel-btn" onclick="this.closest('.overlay').remove()">إلغاء</button>
+                    <button class="save-btn" onclick="saveUserChanges('${userId}')">حفظ التغييرات</button>
+                </div>
+            `;
+            
+            overlay.appendChild(editForm);
+            document.body.appendChild(overlay);
+        }
+
+        // دالة لحفظ تغييرات المستخدم
+        async function saveUserChanges(userId) {
+            const userData = {
+                username: document.getElementById('editUsername').value,
+                email: document.getElementById('editEmail').value,
+                age: document.getElementById('editAge').value,
+                wilaya: document.getElementById('editWilaya').value,
+                commune: document.getElementById('editCommune').value,
+                gender: document.getElementById('editGender').value,
+                phoneNumber: document.getElementById('editPhoneNumber').value,
+                userType: document.getElementById('editUserType').value
+            };
+
+            try {
+                const response = await fetch(`/api/users/${userId}`, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(userData)
+                });
+
+                const data = await response.json();
+                if (data.success) {
+                    showSuccessMessage('تم تحديث بيانات المستخدم بنجاح');
+                    document.querySelector('.overlay').remove();
+                    fetchUsers(); // تحديث قائمة المستخدمين
+                } else {
+                    alert(data.message || 'حدث خطأ أثناء تحديث بيانات المستخدم');
+                }
+            } catch (error) {
+                console.error('Error updating user:', error);
+                alert('حدث خطأ في الاتصال بالخادم');
+            }
+        }
+
+        // دالة لحذف المستخدم
+        function deleteUser(userId) {
+            const overlay = document.createElement('div');
+            overlay.className = 'overlay';
+            
+            const confirmDialog = document.createElement('div');
+            confirmDialog.className = 'confirm-dialog';
+            confirmDialog.innerHTML = `
+                <h3>تأكيد الحذف</h3>
+                <p>هل أنت متأكد من حذف هذا المستخدم؟</p>
+                <div class="buttons">
+                    <button class="cancel-btn" onclick="this.closest('.overlay').remove()">إلغاء</button>
+                    <button class="confirm-btn" onclick="confirmDelete('${userId}')">حذف</button>
+                </div>
+            `;
+            
+            overlay.appendChild(confirmDialog);
+            document.body.appendChild(overlay);
+        }
+
+        // دالة لتأكيد حذف المستخدم
+        async function confirmDelete(userId) {
+            try {
+                const response = await fetch(`/api/users/${userId}`, {
+                    method: 'DELETE'
+                });
+
+                const data = await response.json();
+                if (data.success) {
+                    showSuccessMessage('تم حذف المستخدم بنجاح');
+                    document.querySelector('.overlay').remove();
+                    fetchUsers(); // تحديث قائمة المستخدمين
+                } else {
+                    alert(data.message || 'حدث خطأ أثناء حذف المستخدم');
+                }
+            } catch (error) {
+                console.error('Error deleting user:', error);
+                alert('حدث خطأ في الاتصال بالخادم');
+            }
+        }
+
+        // دالة لعرض رسالة النجاح
+        function showSuccessMessage(message) {
+            const successMessage = document.createElement('div');
+            successMessage.className = 'success-message';
+            successMessage.textContent = message;
+            document.body.appendChild(successMessage);
+            
+            setTimeout(() => {
+                successMessage.remove();
+            }, 3000);
+        }
+
+        // دالة للبحث عن المستخدمين
+        function searchUsers(query) {
+            const filteredUsers = allUsers.filter(user => 
+                user.username.toLowerCase().includes(query.toLowerCase()) ||
+                user.email.toLowerCase().includes(query.toLowerCase()) ||
+                user.wilaya.toLowerCase().includes(query.toLowerCase()) ||
+                user.commune.toLowerCase().includes(query.toLowerCase())
+            );
+            
+            allUsers = filteredUsers;
+            currentPage = 1;
+            displayUsers();
+        }
+
+        // إضافة مستمع حدث للبحث
+        document.querySelector('.search-box').addEventListener('input', (e) => {
+            if (e.target.value === '') {
+                fetchUsers(); // إعادة تحميل جميع المستخدمين
+            } else {
+                searchUsers(e.target.value);
+            }
+        });
+
+        // تحميل المستخدمين عند تحميل الصفحة
+        fetchUsers();
+    </script>
+</body>
+</html> 

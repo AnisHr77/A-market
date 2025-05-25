@@ -1,234 +1,199 @@
-import { useState, useRef, useEffect } from "react";
-import "./Chat.css";
-import paperclip from './paperclip.png';
-import defaultProfile from './defaultProfile.png';
+import { useState, useEffect, useRef } from 'react';
+import './Chat.css';
 
 function Chat() {
-    const fileInputRef = useRef(null);
-    const profileInputRef = useRef(null);
+    const [users, setUsers] = useState([]);
+    const [selectedUser, setSelectedUser] = useState(null);
+    const [messages, setMessages] = useState([]);
+    const [newMessage, setNewMessage] = useState('');
+    const messagesEndRef = useRef(null);
+    const currentUserId = 2; // المستخدم الحالي دائماً هو user_id = 2
 
-    const [message, setMessage] = useState('');
-    const [activeChat, setActiveChat] = useState('Scouting Group');
-    const [profilePic, setProfilePic] = useState(defaultProfile);
-
-    // Helper to load messages from localStorage with date parsing
-    const loadMessages = () => {
-        const saved = localStorage.getItem('chatMessages');
-        if (!saved) {
-            return {
-                'Scouting Group': [],
-                'lafdel walid': []
-            };
-        }
-        const parsed = JSON.parse(saved);
-        Object.keys(parsed).forEach(chat => {
-            parsed[chat] = parsed[chat].map(msg => ({
-                ...msg,
-                timestamp: new Date(msg.timestamp)
-            }));
-        });
-        return parsed;
+    const scrollToBottom = () => {
+        messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
     };
 
-    const [messages, setMessages] = useState(loadMessages);
-
-    // Save messages to localStorage on change
     useEffect(() => {
-        localStorage.setItem('chatMessages', JSON.stringify(messages));
+        loadUsers();
+        const interval = setInterval(checkUnreadMessages, 5000);
+        return () => clearInterval(interval);
+    }, []);
+
+    useEffect(() => {
+        if (selectedUser) {
+            loadMessages(selectedUser.user_id);
+        }
+    }, [selectedUser]);
+
+    useEffect(() => {
+        scrollToBottom();
     }, [messages]);
 
-    const handleSendMessage = () => {
-        if (!message.trim()) return;
-
-        const newMessage = {
-            text: message,
-            sender: 'You',
-            timestamp: new Date()
-        };
-
-        setMessages(prev => ({
-            ...prev,
-            [activeChat]: [...prev[activeChat], newMessage]
-        }));
-
-        setMessage('');
-    };
-
-    const handleUploadClick = () => {
-        fileInputRef.current.click();
-    };
-
-    const handleImageUpload = (e) => {
-        const file = e.target.files[0];
-        if (!file) return;
-
-        if (!file.type.match('image.*')) {
-            alert('Please select an image file');
-            return;
+    const loadUsers = async () => {
+        try {
+            // إنشاء توكن وهمي للمستخدم 2
+            const mockToken = 'mock_token_for_user_2';
+            const response = await fetch('http://localhost:3006/api/users', {
+                headers: {
+                    'Authorization': `Bearer ${mockToken}`
+                }
+            });
+            const data = await response.json();
+            // تصفية المستخدمين للحصول على المستخدم رقم 1 فقط
+            const userOne = data.find(user => user.user_id === 1);
+            if (userOne) {
+                setUsers([userOne]);
+                setSelectedUser(userOne); // تحديد المستخدم رقم 1 تلقائياً
+            }
+        } catch (error) {
+            console.error('Error loading users:', error);
         }
-
-        const reader = new FileReader();
-        reader.onload = () => {
-            const newMessage = {
-                text: message,
-                image: reader.result,
-                sender: 'You',
-                timestamp: new Date()
-            };
-
-            setMessages(prev => ({
-                ...prev,
-                [activeChat]: [...prev[activeChat], newMessage]
-            }));
-
-            setMessage('');
-        };
-        reader.readAsDataURL(file);
     };
 
-    const handleProfileUpload = (e) => {
-        const file = e.target.files[0];
-        if (!file) return;
-
-        if (!file.type.match('image.*')) {
-            alert('Please select an image file');
-            return;
+    const loadMessages = async (userId) => {
+        try {
+            // إنشاء توكن وهمي للمستخدم 2
+            const mockToken = 'mock_token_for_user_2';
+            const response = await fetch(`http://localhost:3006/api/messages/${userId}`, {
+                headers: {
+                    'Authorization': `Bearer ${mockToken}`
+                }
+            });
+            const data = await response.json();
+            // تصفية الرسائل بين المستخدمين 1 و 2 فقط
+            const filteredMessages = data.filter(msg => 
+                (msg.sender_id === 1 && msg.receiver_id === 2) || 
+                (msg.sender_id === 2 && msg.receiver_id === 1)
+            );
+            setMessages(filteredMessages);
+            await markMessagesAsRead(userId);
+        } catch (error) {
+            console.error('Error loading messages:', error);
         }
+    };
 
-        const reader = new FileReader();
-        reader.onload = () => {
-            setProfilePic(reader.result);
-        };
-        reader.readAsDataURL(file);
+    const sendMessage = async () => {
+        if (!newMessage.trim() || !selectedUser) return;
+
+        try {
+            // إنشاء توكن وهمي للمستخدم 2
+            const mockToken = 'mock_token_for_user_2';
+            const response = await fetch('http://localhost:3006/api/messages', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${mockToken}`
+                },
+                body: JSON.stringify({
+                    receiver_id: 1, // دائماً نرسل إلى المستخدم رقم 1
+                    message_text: newMessage
+                })
+            });
+
+            if (response.ok) {
+                setNewMessage('');
+                await loadMessages(1); // إعادة تحميل الرسائل مع المستخدم رقم 1
+            }
+        } catch (error) {
+            console.error('Error sending message:', error);
+        }
+    };
+
+    const markMessagesAsRead = async (userId) => {
+        try {
+            // إنشاء توكن وهمي للمستخدم 2
+            const mockToken = 'mock_token_for_user_2';
+            await fetch(`http://localhost:3006/api/mark-read/${userId}`, {
+                method: 'POST',
+                headers: {
+                    'Authorization': `Bearer ${mockToken}`
+                }
+            });
+        } catch (error) {
+            console.error('Error marking messages as read:', error);
+        }
+    };
+
+    const checkUnreadMessages = async () => {
+        try {
+            // إنشاء توكن وهمي للمستخدم 2
+            const mockToken = 'mock_token_for_user_2';
+            const response = await fetch(`http://localhost:3006/api/unread-messages/1`, {
+                headers: {
+                    'Authorization': `Bearer ${mockToken}`
+                }
+            });
+            const data = await response.json();
+            const badge = document.getElementById('unread-1');
+            if (data.count > 0) {
+                badge.textContent = data.count;
+                badge.style.display = 'inline';
+            } else {
+                badge.style.display = 'none';
+            }
+        } catch (error) {
+            console.error('Error checking unread messages:', error);
+        }
+    };
+
+    const handleKeyPress = (e) => {
+        if (e.key === 'Enter') {
+            sendMessage();
+        }
     };
 
     return (
-        <div className="chat-app">
-            <div className="chat-header">
-                <h1 className={'bolding'}>Messaging</h1>
-                <div className="profile-pic-container">
-                    <img
-                        src={profilePic}
-                        alt="Profile"
-                        className="profile-pic"
-                        onClick={() => profileInputRef.current.click()}
-                    />
-                    <input
-                        type="file"
-                        ref={profileInputRef}
-                        style={{ display: 'none' }}
-                        accept="image/*"
-                        onChange={handleProfileUpload}
-                    />
-                </div>
-            </div>
-
+        <div className="chat-component">
             <div className="chat-container">
-                <div className="chat-list">
-                    <div className="chat-list-header">
-                        <h2 className={'boldingg'}>Chats</h2>
-                        <div className="chat-tabs">
-                            <button>Open</button>
+                <div className="users-list">
+                    {users.map(user => (
+                        <div
+                            key={user.user_id}
+                            className={`user-item ${selectedUser?.user_id === user.user_id ? 'active' : ''}`}
+                            onClick={() => setSelectedUser(user)}
+                        >
+                            <div className="user-avatar">{user.full_name.charAt(0)}</div>
+                            <div className="user-info">
+                                <div className="user-name">{user.full_name}</div>
+                                <div className="user-status">Online</div>
+                            </div>
+                            <span className="unread-badge" id="unread-1" style={{ display: 'none' }}>0</span>
                         </div>
-                    </div>
-
-                    <div
-                        className={`chat-list-item ${activeChat === 'lafdel walid' ? 'active' : ''}`}
-                        onClick={() => setActiveChat('lafdel walid')}
-                    >
-                        <div className="chat-preview">
-                            <h3 className={'texting'}>lafdel walid</h3>
-                            <p className={'small'}>You: UK Consulting</p>
-                        </div>
-                        <span className="chat-time">12m</span>
-                    </div>
-
-                    <div
-                        className={`chat-list-item ${activeChat === 'Scouting Group' ? 'active' : ''}`}
-                        onClick={() => setActiveChat('Scouting Group')}
-                    >
-                        <div className="chat-preview">
-                            <h3 className={'texting'}>Scouting Group</h3>
-                            <p className={'small'}>Welcome to the Streamline scouting chat</p>
-                        </div>
-                    </div>
+                    ))}
                 </div>
-
                 <div className="chat-area">
+                    <div className="chat-header">
+                        <div className="user-info">
+                            <div className="user-name">Select a user to start</div>
+                        </div>
+                    </div>
                     <div className="chat-messages">
-                        <h2 className={'boldingg'}>{activeChat}</h2>
-
-                        {activeChat === 'Scouting Group' && (
-                            <div className="message-date">Tuesday, April 7th at 1:21 PM</div>
-                        )}
-
-                        {messages[activeChat].map((msg, index) => (
+                        {messages.map((msg, index) => (
                             <div
                                 key={index}
-                                className={`message ${msg.sender === 'You' ? 'sent' : 'received'} ${msg.image ? 'image-message' : ''}`}
+                                className={`message ${msg.sender_id === currentUserId ? 'sent' : 'received'}`}
                             >
-                                {msg.sender !== 'You' && msg.sender !== 'System' && (
-                                    <span className="sender-name">{msg.sender}</span>
-                                )}
-
-                                {msg.image && (
-                                    <div className="message-image">
-                                        <img src={msg.image} alt="Uploaded content" />
-                                    </div>
-                                )}
-
-                                {msg.isLink ? (
-                                    <a href="#" className="message-link">{msg.text}</a>
-                                ) : (
-                                    msg.text && <p>{msg.text}</p>
-                                )}
-
-                                <span className="message-time">
-                                    {msg.timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
-                                </span>
+                                <div className="message-content">{msg.message_text}</div>
+                                <div className="message-time">
+                                    {new Date(msg.sent_at).toLocaleTimeString()}
+                                </div>
                             </div>
                         ))}
+                        <div ref={messagesEndRef} />
                     </div>
-
                     <div className="message-input">
                         <input
-                            type="file"
-                            ref={fileInputRef}
-                            style={{ display: 'none' }}
-                            accept="image/*"
-                            onChange={handleImageUpload}
-                        />
-                        <button onClick={handleUploadClick} className="attach-button" style={{ cursor: 'default' }}>
-                            <img
-                                src={paperclip}
-                                alt="Attach file"
-                                className="paperclip-icon"
-                                style={{ width: '24px', height: '24px', cursor: 'pointer' }}
-                            />
-                        </button>
-                        <input
                             type="text"
-                            placeholder="Write a message..."
-                            value={message}
-                            onChange={(e) => setMessage(e.target.value)}
-                            onKeyDown={(e) => e.key === 'Enter' && handleSendMessage()}
+                            value={newMessage}
+                            onChange={(e) => setNewMessage(e.target.value)}
+                            onKeyPress={handleKeyPress}
+                            placeholder="Type your message here..."
                         />
-                        <button className="send" onClick={handleSendMessage}>Send</button>
-                    </div>
-                </div>
-
-                <div className="chat-info">
-                    <h2 className={'boldingg'}>Shared Files</h2>
-                    <h2 className={'boldingg'}>Shared Links</h2>
-
-                    <div className="customize-chat">
-                        <h3 className={'texting'}>Customize Chat</h3>
-                        <p className={'small'}>Change layout and colors</p>
-                    </div>
-
-                    <div className="privacy-support">
-                        <h3 className={'texting'}>Privacy and Support</h3>
-                        <p className={'small'}>Get immediate advice</p>
+                        <button onClick={sendMessage} aria-label="Send">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M3 20L21 12L3 4V10L17 12L3 14V20Z" fill="currentColor"/>
+                            </svg>
+                        </button>
                     </div>
                 </div>
             </div>
