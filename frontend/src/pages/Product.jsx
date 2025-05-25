@@ -49,16 +49,7 @@ const Product = () => {
             <div className="asket-product">
                 <div className="image-section">
                     <img src={mainImage} alt={product.title} className="main-image" />
-                    <div className="image-dots">
-                        {product.images?.map((img, idx) => (
-                            <button
-                                key={idx}
-                                className={mainImage === img ? 'active' : ''}
-                                onClick={() => setMainImage(img)}
-                                aria-label={`Select image ${idx + 1}`}
-                            />
-                        ))}
-                    </div>
+
                 </div>
 
                 <div className="info-section">

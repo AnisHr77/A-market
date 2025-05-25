@@ -41,7 +41,8 @@ const Recommendations = () => {
     };
 
     return (
-        <div className="recommendations">
+        <div id={'Recomendations'} style={{overflow: 'hidden'}}>
+        <div  className="recommendations">
             <h2 style={{
                 fontSize: '25px',
                 marginBottom: '1.5rem',
@@ -120,6 +121,7 @@ const Recommendations = () => {
                     </button>
                 )}
             </div>
+        </div>
         </div>
     );
 };

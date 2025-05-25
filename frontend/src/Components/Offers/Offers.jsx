@@ -6,8 +6,8 @@ import offersData from "./OffersData";
 
 const Offers = () => {
     return (
-
-        <div className='Offers'>
+        <div id={'SupperOffers'}>
+        <div  className='Offers'>
 
             {offersData.map((productsData) =>(
 
@@ -28,7 +28,7 @@ const Offers = () => {
 
                 ))}
         </div>
-
+        </div>
     )
 }
 export default Offers;

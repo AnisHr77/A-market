@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import './App.css';
 import { Routes, Route, useLocation } from 'react-router-dom';
 
@@ -23,14 +23,27 @@ import { LoadingProvider, useLoading } from './Context/LoadingContext';
 const AppContent = () => {
     const location = useLocation();
     const { loading, setLoading } = useLoading();
+    const prevLocationKey = useRef(location.key);
 
     useEffect(() => {
+        const params = new URLSearchParams(location.search);
+        const hasCategoryParam = params.has('category');
+
         setLoading(true);
+
+        if (hasCategoryParam) {
+            // Immediately hide loader if category param exists
+            setLoading(false);
+            return;
+        }
+
         const timeout = setTimeout(() => {
             setLoading(false);
         }, 1200);
+
         return () => clearTimeout(timeout);
-    }, [location.key]);
+    }, [location, setLoading]);
+
 
     return (
         <>
@@ -44,10 +57,6 @@ const AppContent = () => {
                     <NavbarLeft />
                     <Routes>
                         <Route path="/" element={<Shop />} />
-                        <Route path="/phones" element={<ShopCategory Category="phones" />} />
-                        <Route path="/laptops" element={<ShopCategory Category="laptops" />} />
-                        <Route path="/mens" element={<ShopCategory Category="mens" />} />
-                        <Route path="/womens" element={<ShopCategory Category="womens" />} />
                         <Route path="/products" element={<Product />} />
                         <Route path="/product/:productID" element={<Product />} />
                         <Route path="/Card" element={<CardPage />} />

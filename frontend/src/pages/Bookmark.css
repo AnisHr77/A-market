@@ -1,63 +1,75 @@
+
+
 .bookmark {
-    position: absolute;
-    width: 100%;
-    top: 0;
-    left: 8%;
-    font-family: "Plus Jakarta Sans", sans-serif;
-    justify-content: center;
+
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    box-sizing: border-box;
+
+    margin-left: 6.5%;
+    padding: 2rem;
+    min-height: 100vh;
+    background-color: rgba(35, 35, 35, 0.66);
+    color: #e4e4e4;
 }
 
 .bookmark h1 {
-    text-align: center;
-    position: relative;
-    right: 4%;
-    margin-top: 3%;
-
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    color: #e4e4e4;
 }
 
 .favorites-list {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
-    gap: 2%;
-    width: 90%;
-    position: relative;
-    right: 4%;
-    margin: 4rem auto;
-
-
-
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 2rem;
 }
 
 .favorite-card {
-    width: 200px;
-    text-align: center;
-    padding-bottom: 20px;
-    margin-bottom: 20px;
-    border-bottom: 1px solid #ddd;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+    padding: 1rem;
+    transition: transform 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 400px;
 }
 
-
-@media (min-width: 768px) {
-    .favorites-list > .favorite-card:nth-last-child(-n+4) {
-        border-bottom: none;
-    }
+.favorite-card:hover {
+    transform: translateY(-4px);
 }
 
-.favorites-list img {
-    width: 200px;
-    height: 200px;
-    object-fit: cover;
+.favorite-card img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 5/4;
+    object-fit: fill;
+    border-radius: 5px;
+    margin-bottom: 1rem;
+}
+
+.favorite-card h3 {
+    font-size: 1.1rem;
+    margin: 0.5rem 0;
+    color: #000000;
+}
+
+.favorite-card p {
+    font-size: 0.95rem;
+    color: rgb(0, 0, 0);
+    margin-bottom: 0.5rem;
 }
 
 .remove-btn {
+    margin-top: auto;
+    padding: 0.5rem 0.75rem;
     background-color: #ff4d4f;
+    color: #fff;
     border: none;
-    color: white;
-    padding: 8px 12px;
-    border-radius: 6px;
+    border-radius: 8px;
+    font-size: 0.9rem;
     cursor: pointer;
-    margin-top: 8px;
     transition: background-color 0.2s ease;
 }
 
@@ -66,6 +78,40 @@
 }
 
 
+.bookmark-empty {
+    margin-left: 7%;
+    padding: 2rem;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(35, 35, 35, 0.66);
+    color: #aaa;
+    font-size: 1.2rem;
+    font-weight: 500;
+    text-align: center;
+    flex-direction: column;
+}
+
+.bookmark-empty img.empty-img {
+    width: 250px;
+    margin-bottom: 1rem;
+    opacity: 0.8;
+}
 
 
+@media (max-width: 768px) {
+    .bookmark {
+        margin-left: 0;
+        padding: 1.5rem;
+    }
 
+    .favorites-list {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 1.2rem;
+    }
+
+    .bookmark h1 {
+        font-size: 1.5rem;
+    }
+}
