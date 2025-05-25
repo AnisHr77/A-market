@@ -23,7 +23,7 @@ import Saved from "./pages/Saved";
 import Settings from "./pages/Settings";
 import Helpp from "./pages/Help";
 
-// Settings pages (General, Profile, Payment, etc.)
+
 import PageGeneral from "./pages/ComponentOfSetting/PagesOfHeader/PageGeneral/PageGeneral";
 import Notification from "./pages/ComponentOfSetting/PagesOfHeader/PageGeneral/Notification";
 import Contact from "./pages/ComponentOfSetting/PagesOfHeader/PageGeneral/Contact";
@@ -88,6 +88,12 @@ function AppContent() {
     const hideNavbar = location.pathname.startsWith("/Settings");
 
     useEffect(() => {
+        // Skip loading for Settings routes
+        if (location.pathname.startsWith("/Settings")) {
+            setLoading(false);
+            return;
+        }
+
         setLoading(true);
         if (hasCategoryParam) {
             setLoading(false);
@@ -95,7 +101,9 @@ function AppContent() {
         }
         const timeout = setTimeout(() => setLoading(false), 1200);
         return () => clearTimeout(timeout);
-    }, [location.key]);
+    }, [location.pathname]);
+
+
 
     if (loading) return <Loader />;
 
@@ -143,7 +151,7 @@ function AppContent() {
                 <Route path="/TrackingFooter" element={<TrackingFooter />} />
 
 
-                {/* Settings Routes */}
+
                 <Route path="/Settings" element={<Settings />}>
                     <Route index element={<Navigate to="General" replace />} />
                     <Route path="General" element={<PageGeneral />}>
