@@ -44,10 +44,10 @@ const Login = () => {
 
             {isHovered && (
                 <ul id="loginList">
-                    <li id="loginItem" onClick={handleLogout}>
+                    <a href='/login' id="loginItem" onClick={handleLogout}>
                         <span className="icon"><RiLogoutCircleRLine /></span>
                         Log out
-                    </li>
+                    </a>
                 </ul>
             )}
         </div>

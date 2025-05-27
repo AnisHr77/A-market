@@ -1,0 +1,187 @@
+.head1{
+    display:flex;
+    flex-direction:row;
+    align-items: center;
+    justify-content:space-between;
+    gap: 39rem;
+
+}
+
+.head1 .myTextH1Head1{
+    font-size: 28px;
+    font-weight: bold;
+    font-family: "Microsoft PhagsPa";
+    color: rgba(255, 255, 255, 0.53);
+    margin-top: -10px;
+}
+.head1 input {
+    width: 230px;
+    height: 40px;
+    margin-left: -6px;
+    border-radius: 30px;
+    border: none;
+    background-color: rgba(255, 255, 255, 0);
+    outline:none;
+    font-size: 15px;
+    padding-left: 18px ;
+    padding-top: 3px ;
+    align-items: center;
+    color: white;
+    font-weight: bold;
+    z-index: 1000;
+    cursor: pointer;
+}
+
+.head1 input::placeholder{
+    color: rgba(255, 255, 255, 0.58);
+    font-weight: bold;
+    font-size: 15px;
+    font-family:   sans-serif !important;
+
+}
+.head1 input:hover{
+    background-color: rgba(0, 0, 0, 0.025);
+    transition-duration: 0.2s ;
+}
+.head1 .MdOutlinePhoto{
+position: absolute;
+    left: 40rem;
+    top:20px;
+    background-color: rgba(255, 255, 255, 0);
+    border-radius: 20px;
+    height: 40px;
+    width:35px;
+    font-size: 200px;
+    color: rgba(255, 255, 255, 0.62);
+    z-Index:2;
+    cursor: pointer;
+}
+.head1 .MdOutlinePhoto:hover{
+    color: #8766d2;
+    transition: 0.4s ease;
+}
+.head1 .label-title{
+    position:relative;
+    left:-22rem;
+    top:-1rem;
+    align-items: center;
+    border:none;
+    box-shadow: 0 0 2px  2px rgba(255, 255, 255, 0.2) inset;
+    background-color: rgba(255, 255, 255, 0.06);
+    max-width: 250px;
+    border-radius: 30px;
+    height: 35px;
+    display: flex;
+    padding:4px 4px 4px 10px;
+    margin-left: 2px;
+    cursor: pointer;
+}
+/** head2*/
+/*.head2  {
+    display:flex;
+    justify-content:space-between;
+    gap: 10px;
+
+}*/
+.head2hR .head2 {
+    height: 35px;
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    gap: 40px;
+    align-items: center;
+    padding: 10px;
+    margin-top: -40px;
+    font-weight: bold;
+    font-size: 1.15rem;
+    font-family: "Microsoft PhagsPa";
+}
+.head2hR .head2 .Selector {
+    color: rgba(255, 255, 255, 0.53);
+    height: 35px;
+    position: relative;
+    cursor: pointer;
+
+    font-size: 16px;
+    text-align: center;
+    line-height: 30px;
+    text-decoration: none;
+    transition: transform 0.4s ease;
+
+}
+
+.head2hR .head2 .Selector:focus,
+.head2hR .head2 .Selector:focus,
+.head2hR .head2 :active {
+    outline: none;
+    transition: 0.4s ease;
+
+}
+.head2hR .head2 .Selector.active {
+    color: #8766d2;
+    position: relative;
+    font-weight: bold;
+}
+.head2hR .head2 .Selector:focus::after{
+    position: absolute;
+    left: 0;
+    bottom: -9px;
+    width: 100%;
+    height: 2px;
+    z-index: 10;
+    animation: anime2 0.4s forwards;
+}
+.head2hR .head2 .Selector.active::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -9px;
+    width: 100%;
+    height: 2px;
+    background-color: #8766d2;
+    z-index: 10;
+    animation: anime2 0.5s forwards;
+}
+
+
+@keyframes anime2{
+    from{
+        width: 0;
+        opacity: 0;
+        transform: translateX(-30px);
+    }to{ width: 100%;
+         opacity: 1;
+     }
+}
+.head2hR .head2 .Selector:hover {
+    color: #8766d2;
+    transition: 0.4s ease;
+}
+
+.header-hr{
+    width:100%;
+    position: absolute;
+    left:-1px;
+    top:136px;
+    color: rgba(255, 255, 255, 0);
+}
+
+
+/**/
+@media screen and (min-width: 1300px) {
+
+
+    .head1 .MdOutlinePhoto{
+        left: 49rem;
+
+    }
+    .head2hR .head2{
+        gap:90px
+    }
+
+
+
+
+}
+
+
