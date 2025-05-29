@@ -1,24 +1,38 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { SlArrowDown } from "react-icons/sl";
 import { FaHeadphones, FaLaptop, FaMobileAlt, FaKeyboard, FaMouse } from 'react-icons/fa';
 import { MdWatch } from 'react-icons/md';
 import './NavbarUp.css';
 
+const iconMap = {
+    headphones: <FaHeadphones />,
+    laptops: <FaLaptop />,
+    phones: <FaMobileAlt />,
+    watches: <MdWatch />,
+    keyboards: <FaKeyboard />,
+    mouses: <FaMouse />,
+};
+
 const Categories = () => {
     const [isHovered, setIsHovered] = useState(false);
+    const [categories, setCategories] = useState([]);
     const timeoutRef = useRef(null);
     const navigate = useNavigate();
     const location = useLocation();
 
-    const categories = [
-        { name: 'Headphones', icon: <FaHeadphones /> },
-        { name: 'Laptops', icon: <FaLaptop /> },
-        { name: 'Phones', icon: <FaMobileAlt /> },
-        { name: 'Watches', icon: <MdWatch /> },
-        { name: 'Keyboards', icon: <FaKeyboard /> },
-        { name: 'Mouses', icon: <FaMouse /> },
-    ];
+    useEffect(() => {
+        const fetchCategories = async () => {
+            try {
+                const res = await fetch('http://localhost:3006/api/categories');
+                const data = await res.json();
+                setCategories(data);
+            } catch (err) {
+                console.error('Failed to load categories:', err);
+            }
+        };
+        fetchCategories();
+    }, []);
 
     const handleMouseEnter = () => {
         if (timeoutRef.current) clearTimeout(timeoutRef.current);
@@ -31,28 +45,19 @@ const Categories = () => {
 
     const handleCategoryClick = (categoryName) => {
         setIsHovered(false);
-
         const searchParams = new URLSearchParams(location.search);
         searchParams.set('category', categoryName);
 
-        if (location.pathname === '/') {
-            // ✅ Avoid triggering React Router loaders by using state
-            navigate(`${location.pathname}?${searchParams.toString()}`, {
-                replace: true,
-                state: 'category-change',
-            });
+        navigate(`/?${searchParams.toString()}`, {
+            replace: true,
+            state: 'category-change',
+        });
 
-            // ✅ Manually scroll to the ProductsFilter element
-            setTimeout(() => {
-                const el = document.getElementById('ProductsFilter');
-                if (el) el.scrollIntoView({ behavior: 'smooth' });
-            }, 0);
-        } else {
-            // Navigate to homepage normally (it may load)
-            navigate(`/?category=${encodeURIComponent(categoryName)}`);
-        }
+        setTimeout(() => {
+            const el = document.getElementById('ProductsFilter');
+            if (el) el.scrollIntoView({ behavior: 'smooth' });
+        }, 0);
     };
-
 
     return (
         <div
@@ -66,18 +71,22 @@ const Categories = () => {
                     Categories <SlArrowDown style={{ marginLeft: '5px', width: '10px', height: '10px' }} />
                 </a>
             </div>
+
             {isHovered && (
                 <ul id="categoryList">
-                    {categories.map((category, index) => (
-                        <li
-                            key={index}
-                            id="categoryItem"
-                            style={{ padding: '5px 0', cursor: 'pointer' }}
-                            onClick={() => handleCategoryClick(category.name)}
-                        >
-                            <span className="icon">{category.icon}</span> {category.name}
-                        </li>
-                    ))}
+                    {categories.map((category) => {
+                        const nameLower = category.name.toLowerCase();
+                        return (
+                            <li
+                                key={category.category_id}
+                                id="categoryItem"
+                                style={{ padding: '5px 0', cursor: 'pointer' }}
+                                onClick={() => handleCategoryClick(category.name)}
+                            >
+                                <span className="icon">{iconMap[nameLower] || null}</span> {category.name}
+                            </li>
+                        );
+                    })}
                 </ul>
             )}
         </div>

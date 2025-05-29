@@ -1,19 +1,190 @@
+import "./SearchIA.css";
+import React, { useState, useEffect, useRef } from "react";
 
-import React from 'react'
+function Chatbot() {
+    const [message, setMessage] = useState("");
+    const [messages, setMessages] = useState([]);
+    const [isLoading, setIsLoading] = useState(false);
+    const messagesEndRef = useRef(null);
 
-const SearchIa = () => {
+    const generateBotResponse = async (chatHistory) => {
+        const transformedChatHistory = chatHistory.map(({ sender, text }) => ({
+            role: sender === "user" ? "user" : "model",
+            parts: [{ text }]
+        }));
+
+        const requestOptions = {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ contents: transformedChatHistory })
+        };
+
+        try {
+            const response = await fetch(process.env.REACT_APP_API_URL, requestOptions);
+            const responseText = await response.text();
+
+            if (!response.ok) {
+                let errorDetails = `API request failed with status ${response.status}`;
+                try {
+                    const errorData = JSON.parse(responseText);
+                    errorDetails = errorData?.error?.message || errorData?.message || errorDetails;
+                    console.error("API Error Details:", errorData);
+                } catch (e) {
+                    errorDetails = `API request failed with status ${response.status}. Response body: ${responseText.substring(0, 200)}`;
+                    console.error("API Error (non-JSON response):", responseText);
+                }
+                throw new Error(errorDetails);
+            }
+
+            const data = JSON.parse(responseText);
+            const botText = data.candidates?.[0]?.content?.parts?.[0]?.text;
+
+            if (!botText) {
+                console.warn("API response had no generated text candidates. Full response:", JSON.stringify(data, null, 2));
+
+                const safetyRatings = data.promptFeedback?.safetyRatings;
+                if (safetyRatings && safetyRatings.length > 0) {
+                    const blockedReason = safetyRatings.map(r => `${r.category}: ${r.probability}`).join(", ");
+                    throw new Error(`Content blocked by safety filters. Details: ${blockedReason}`);
+                }
+
+                throw new Error("API returned no valid response candidates or text.");
+            }
+
+            return botText;
+        } catch (error) {
+            console.error("Error calling generateBotResponse:", error);
+            throw error;
+        }
+    };
+
+    useEffect(() => {
+        const savedMessages = localStorage.getItem("chatbotMessages");
+        if (savedMessages) {
+            setMessages(JSON.parse(savedMessages));
+        }
+    }, []);
+
+    useEffect(() => {
+        localStorage.setItem("chatbotMessages", JSON.stringify(messages));
+    }, [messages]);
+
+    useEffect(() => {
+        scrollToBottom();
+    }, [messages]);
+
+    const scrollToBottom = () => {
+        messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+    };
+
+    const handleSendMessage = async () => {
+        if (!message.trim() || isLoading) return;
+
+        const userMessage = {
+            text: message,
+            sender: "user",
+            timestamp: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })
+        };
+
+        const updatedMessages = [...messages, userMessage];
+        setMessages(updatedMessages);
+        setMessage("");
+        setIsLoading(true);
+
+        try {
+            const botText = await generateBotResponse(updatedMessages);
+
+            const botResponse = {
+                text: botText,
+                sender: "bot",
+                timestamp: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })
+            };
+
+            setMessages(prevMessages => [...prevMessages, botResponse]);
+        } catch (error) {
+            console.error("Error in handleSendMessage:", error);
+            const errorMessage = {
+                text: error.message || "Sorry, I encountered an error generating a response.",
+                sender: "bot",
+                timestamp: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })
+            };
+
+            setMessages(prevMessages => [...prevMessages, errorMessage]);
+        } finally {
+            setIsLoading(false);
+        }
+    };
+
+    const handleKeyPress = (e) => {
+        if (e.key === "Enter" && !isLoading) {
+            handleSendMessage();
+        }
+    };
+
     return (
-        <div id="SearchIA">
-            <div  id='searchIA'>
-                Search By </div>
-                <svg id='IA' width="19" height="18" viewBox="0 0 19 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M13.8303 2.32901L14.5976 0H15.9309L16.6981 2.32901L19 3.10535V4.45439L16.6981 5.23073L15.9309 7.55974H14.5976L13.8303 5.23073L11.5284 4.45439V3.10535L13.8303 2.32901Z" fill="#FFFCFF"/>
-                    <path d="M16.4354 9.70492V18H14.093V9.70492H16.4354Z" fill="#FFFCFF"/>
-                    <path fillRule="evenodd" clipRule="evenodd" d="M3.94734 2.59486H7.84201L11.7892 18H9.3694L8.45851 14.445H3.33075L2.41982 18H0L3.94734 2.59486ZM3.93803 12.0749H7.85124L6.02945 4.96488H5.75988L3.93803 12.0749Z" fill="#FFFCFF"/>
-                </svg>
+        <div className="bodyIA">
+            <div className="leftnav" />
 
+            <div className="chatbot">
+                <div className="chatbot-header">
+                    <h2 className="myH2-AIChat">
+                        ChatA+{" "}
+                        <svg
+                            className="ai-icon"
+                            width="100"
+                            height="100"
+                            style={{ position: "relative", left: "-33px", top: "-19.5px" }}
+                            viewBox="0 0 100 100"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                        >
+                            <path d="M58.014 26.7172L58.9024 24H60.4463L61.3347 26.7172L64 27.6229V29.1968L61.3347 30.1025L60.4463 32.8197H58.9024L58.014 30.1025L55.3487 29.1968V27.6229L58.014 26.7172Z" fill="#FFFCFF" />
+                            <path d="M61.0305 35.3224V45H58.3182V35.3224H61.0305Z" fill="#FFFCFF" />
+                            <path fillRule="evenodd" clipRule="evenodd" d="M46.5706 27.0273H51.0802L55.6507 45H52.8488L51.7941 40.8525H45.8567L44.8019 45H42L46.5706 27.0273ZM46.5598 38.0874H51.0909L48.9815 29.7924H48.6693L46.5598 38.0874Z" fill="#FFFCFF" />
+                        </svg>
+                    </h2>
+                </div>
 
+                <div className="chatbot-messages">
+                    <div className="chatbot-messages-content">
+                        {messages.map((msg, index) => (
+                            <div key={index} className={`chatbot-message ${msg.sender}`}>
+                                <div className="message-text">{msg.text}</div>
+                                <div className="message-time">{msg.timestamp}</div>
+                            </div>
+                        ))}
+
+                        {isLoading && (
+                            <div className="chatbot-message bot">
+                                <div className="message-text">Typing...</div>
+                            </div>
+                        )}
+
+                        <div ref={messagesEndRef} />
+                    </div>
+
+                    <div className="chatbot-input">
+                        <input
+                            className="myInput-AIChat"
+                            type="text"
+                            value={message}
+                            onChange={(e) => setMessage(e.target.value)}
+                            onKeyPress={handleKeyPress}
+                            placeholder="Type your message..."
+                            disabled={isLoading}
+                        />
+                        <button
+                            className="myBtn-AIChat"
+                            onClick={handleSendMessage}
+                            disabled={isLoading || !message.trim()}
+                        >
+                            {isLoading ? "Sending..." : "Send"}
+                        </button>
+                    </div>
+                </div>
+            </div>
         </div>
-    )
+    );
 }
-export default SearchIa
+
+export default Chatbot;

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import './Contact.css';
 import {
     LineChart, Line, XAxis, YAxis, Tooltip, CartesianGrid, LabelList,
@@ -7,42 +7,86 @@ import {
     ResponsiveContainer
 } from "recharts";
 
-// Sales data with time
-const salesData = [
-    { date: "Mon", sales: 240, time: "10:30 AM" },
-    { date: "Tue", sales: 321, time: "1:15 PM" },
-    { date: "Wed", sales: 200, time: "3:45 PM" },
-    { date: "Thu", sales: 278, time: "11:10 AM" },
-    { date: "Fri", sales: 189, time: "5:00 PM" },
-    { date: "Sat", sales: 390, time: "9:00 AM" },
-    { date: "Sun", sales: 430, time: "4:30 PM" },
-];
-
-const categoryData = [
-    { name: "Electronics", value: 400 },
-    { name: "Fashion", value: 300 },
-    { name: "Books", value: 300 },
-    { name: "Toys", value: 200 },
-];
-
-const orderData = [
-    { day: "Mon", orders: 20 },
-    { day: "Tue", orders: 45 },
-    { day: "Wed", orders: 28 },
-    { day: "Thu", orders: 35 },
-    { day: "Fri", orders: 30 },
-    { day: "Sat", orders: 60 },
-    { day: "Sun", orders: 75 },
-];
-
-const COLORS = ["#625ce0", "#1ca149", "#fcb42f", "#e82c2c"];
+const COLORS = ["#625ce0", "#1ca149", "#fcb42f", "#e82c2c", "#FF8042", "#00C49F"];
 
 const StatisticsDashboard = () => {
+    const [products, setProducts] = useState([]);
+    const [categories, setCategories] = useState([]);
+    const [salesData, setSalesData] = useState([]);
+    const [categoryData, setCategoryData] = useState([]);
+    const [orderData, setOrderData] = useState([]);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const [productsRes, categoriesRes] = await Promise.all([
+                    fetch("http://localhost:3006/api/products"),
+                    fetch("http://localhost:3006/api/categories")
+                ]);
+
+                const productsData = await productsRes.json();
+                const categoriesData = await categoriesRes.json();
+
+                setProducts(productsData);
+                setCategories(categoriesData);
+
+                // Parse daily sales and orders based on `created_at`
+                const dailySales = {};
+                const dailyOrders = {};
+
+                productsData.forEach(product => {
+                    if (!product.created_at) return;
+
+                    const date = new Date(product.created_at);
+                    const day = date.toLocaleDateString('en-US', { weekday: 'short' }); // Mon, Tue, etc.
+                    const time = date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+
+                    dailySales[day] = (dailySales[day] || 0) + parseFloat(product.price || 0);
+                    dailyOrders[day] = (dailyOrders[day] || 0) + 1;
+                });
+
+                const daysOfWeek = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+                const sales = daysOfWeek.map(day => ({
+                    date: day,
+                    sales: dailySales[day] || 0,
+                    time: "10:00 AM" // placeholder, can enhance later
+                }));
+
+                const orders = daysOfWeek.map(day => ({
+                    day: day,
+                    orders: dailyOrders[day] || 0
+                }));
+
+                setSalesData(sales);
+                setOrderData(orders);
+
+                // Count products per category_id
+                const categoryCountMap = {};
+                productsData.forEach(product => {
+                    const catId = product.category_id;
+                    categoryCountMap[catId] = (categoryCountMap[catId] || 0) + 1;
+                });
+
+                const categoryChartData = categoriesData.map(cat => ({
+                    name: cat.name,
+                    value: categoryCountMap[cat.category_id] || 0
+                })).filter(cat => cat.value > 0);
+
+                setCategoryData(categoryChartData);
+
+            } catch (error) {
+                console.error("Failed to fetch dashboard data:", error);
+            }
+        };
+
+        fetchData();
+    }, []);
+
     return (
         <div className="dashboard-container">
             <div className="dashboard-grid">
 
-                {/* Line Chart with Time Labels */}
+                {/* Line Chart */}
                 <div className="dashboard-card">
                     <h2 className="card-title">Your Purchases This Week</h2>
                     <ResponsiveContainer width="100%" height={300}>
@@ -53,10 +97,17 @@ const StatisticsDashboard = () => {
                                 if (active && payload && payload.length) {
                                     const { date, sales, time } = payload[0].payload;
                                     return (
-                                        <div style={{ backgroundColor: "rgba(49,45,45,0)", padding: "10px", border: "1px solid #ccc",color:"white",fontWeight:"bold" ,borderRadius:"1rem"}}>
+                                        <div style={{
+                                            backgroundColor: "rgba(49,45,45,0.85)",
+                                            padding: "10px",
+                                            border: "1px solid #ccc",
+                                            color: "white",
+                                            fontWeight: "bold",
+                                            borderRadius: "1rem"
+                                        }}>
                                             <p><strong>{date}</strong></p>
-                                            <p>Sales: {sales}</p>
-                                            <p >Time: {time}</p>
+                                            <p>Sales: ${sales.toFixed(2)}</p>
+                                            <p>Time: {time}</p>
                                         </div>
                                     );
                                 }

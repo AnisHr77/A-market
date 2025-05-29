@@ -3,7 +3,8 @@ import React from 'react'
 
 const Reorde = ({ className }) => {
     return (
-        <div id='Reorde' className={className}>
+        <a href="/Bookmark">
+    <div id='Reorde' className={className}>
             <div id='reorder'>
                 Reorder
                 <br/>My items
@@ -13,7 +14,7 @@ const Reorde = ({ className }) => {
                 </svg>
             </div>
         </div>
-
+        </a>
 
     )
 }

@@ -38,7 +38,7 @@ const NavbarLeft = () => {
 
                     <a href="/Chat"><PiUsersBold id="friends" /><span>Chat</span></a>
                     <a href="/Delivry"><TbTruckDelivery id="Deliveries" /><span>Deliveries</span></a>
-                    <a href="#"><LuMenu id="menu" /><span>Menu</span></a>
+                    <a href="/Menu"><LuMenu id="menu" /><span>Menu</span></a>
                     <a href="/Bookmark"><FaRegBookmark id="Bookmark" /><span>Bookmark</span></a>
 
                     <div id="ligne"></div>

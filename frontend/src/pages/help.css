@@ -1,26 +1,29 @@
-/* help.css */
-
 .app-container {
     margin-left: 7%;
-    padding-top: 40px;
-    padding-right: 20px;
-    padding-bottom: 40px;
+
     color: #1f1f1f;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+    background-color: #25282D;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+    padding: 20px;
 }
 
-.app-container h2 {
+.app-container .my-h2-Help {
     font-size: 1.8rem;
     font-weight: 600;
     margin-bottom: 10px;
-    color: #004080;
+    color: #c0c8d3;
 }
 
-.app-container h1 {
+.app-container .my-h1-Help {
     font-size: 1.4rem;
     font-weight: 500;
     margin-bottom: 20px;
-    color: #003060;
+    color: #c0c8d3;
 }
 
 .topics-grid {
@@ -30,44 +33,50 @@
 }
 
 .topic-item {
-    background-color: rgba(255, 255, 255, 0.85);
-    border-left: 4px solid #1a73e8;
+    background-color: rgba(51, 55, 61, 0.7);
+    border-left: 4px solid rgb(52, 77, 71);
     padding: 14px 16px;
     border-radius: 8px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     cursor: pointer;
-    transition: background-color 0.25s ease;
+
 }
 
 .topic-item:hover {
-    background-color: rgba(255, 255, 255, 0.95);
+
+    background: linear-gradient(135deg, rgb(41, 56, 53), rgba(51, 80, 84, 0.8));
+    transition: 0.2s;
+
 }
+
 
 .question {
     font-weight: 500;
     font-size: 1rem;
     flex: 1;
+    color: #f5f6f6;
 }
 
 .arrow {
     width: 20px;
     margin-left: 12px;
-    color: #1a73e8;
+    color: rgb(67, 96, 90);
 }
 
 .answer {
     max-height: 0;
     overflow: hidden;
     opacity: 0;
+    color: #f5f6f6;
     transform: scaleY(0.9);
     transition: all 0.3s ease;
-    background-color: rgba(255, 255, 255, 0.9);
+    background-color: rgba(67, 70, 77, 0.63);
     margin-top: 4px;
     margin-left: 8px;
     padding: 0 16px;
-    border-left: 2px solid #1a73e8;
+    border-left: 2px solid rgb(52, 77, 71);
     border-radius: 4px;
 }
 

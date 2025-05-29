@@ -2,6 +2,7 @@
 
 
 .page-wrapper {
+    font-family: "Plus Jakarta sans", sans-serif !important;
     display: flex;
     flex-direction: column;
 padding-bottom:  60%;

@@ -9,18 +9,18 @@ const RecommendationCard = ({ item }) => {
     const { addFavorite, removeFavorite, isFavorite } = useFavorites();
     const [isClicked, setIsClicked] = useState(false);
 
-    const favorited = isFavorite(item.id);
+    const favorited = isFavorite(item.product_id);
 
     const toggleFavorite = (e) => {
         e.stopPropagation();
         e.preventDefault();
         if (favorited) {
-            removeFavorite(item.id);
+            removeFavorite(item.product_id);
         } else {
             addFavorite({
-                id: item.id,
-                image: item.image,
-                title: item.title,
+                id: item.product_id,
+                image: item.image_url,
+                title: item.name,
                 description: item.description,
                 price: item.price
             });
@@ -55,7 +55,7 @@ const RecommendationCard = ({ item }) => {
 
     return (
         <a
-            href={`/product/${item.id}`}
+            href={`/product/${item.product_id}`}
             target="_blank"
             rel="noopener noreferrer"
             style={{ textDecoration: 'none', color: 'inherit' }}
@@ -63,7 +63,7 @@ const RecommendationCard = ({ item }) => {
             <div className="ContainerCard">
                 <div className='RecommendationCard' style={{ cursor: 'pointer', position: 'relative' }}>
                     <div>
-                        <img src={item.image} alt={item.title} />
+                        <img src={item.image_url} alt={item.name} />
                         {favorited ? (
                             <FaHeart onClick={toggleFavorite} style={heartStyle} />
                         ) : (
@@ -78,15 +78,17 @@ const RecommendationCard = ({ item }) => {
                             <p style={{ fontSize: '13.5px', position: 'relative', top: '-12px' }}>
                                 Now ${item.price}
                             </p>
-                            <p style={{
-                                fontSize: '13.5px',
-                                color: 'grey',
-                                textDecoration: 'line-through',
-                                position: 'relative',
-                                top: '-12px'
-                            }}>
-                                ${item.oldprice}
-                            </p>
+                            {item.old_price && (
+                                <p style={{
+                                    fontSize: '13.5px',
+                                    color: 'grey',
+                                    textDecoration: 'line-through',
+                                    position: 'relative',
+                                    top: '-12px'
+                                }}>
+                                    ${item.old_price}
+                                </p>
+                            )}
                             <button
                                 onClick={handleAddToCart}
                                 style={{ width: '70px', height: '30px', borderRadius: '20px', border: 'none' }}
@@ -95,14 +97,15 @@ const RecommendationCard = ({ item }) => {
                             </button>
                         </div>
 
+                        {/* Optional data: can be removed or replaced with real metrics later */}
                         <div className="Sold">
-                            <div>{item.Sold}K +sold</div>
-                            <div>{item.Comment}</div>
+                            <div>{item.visits} views</div>
+                            <div>{item.discount_percent}% off</div>
                         </div>
 
                         <div style={{ display: 'flex' }} className="Statistiques">
-                            <div>{item.Stars}</div>
-                            <div style={{ position: 'relative', top: '2px' }}>{item.Statistiques}</div>
+                            <div>★</div>
+                            <div style={{ position: 'relative', top: '2px' }}>{item.quantity} in stock</div>
                         </div>
                     </div>
                 </div>

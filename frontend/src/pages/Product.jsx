@@ -1,29 +1,45 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import './Product.css';
-
 import { useCart } from '../Context/CartContext';
-
-import bigSaves from '../Components/Products/BigSaves/BigSavesData';
-import recommendations from '../Components/Products/Recommendations/RecommendationData';
-import flashSales from '../Components/Products/FlashSales/FlashSalesData';
-import allProducts from '../Components/Products/Allproducts/ProductsData';
 
 const Product = () => {
     const { productID } = useParams();
     const { addToCart } = useCart();
 
-    const product =
-        bigSaves.find(item => String(item.id) === productID) ||
-        recommendations.find(item => String(item.id) === productID) ||
-        flashSales.find(item => String(item.id) === productID) ||
-        allProducts.find(item => String(item.id) === productID);
+    const [product, setProduct] = useState(null);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
 
-    const [mainImage, setMainImage] = useState(product?.image || '');
+    const [mainImage, setMainImage] = useState('');
     const [selectedSize, setSelectedSize] = useState('');
     const [selectedFit, setSelectedFit] = useState('');
     const [tab, setTab] = useState('Overview');
 
+    useEffect(() => {
+        const fetchProduct = async () => {
+            setLoading(true);
+            setError(null);
+            try {
+                const response = await fetch(`http://localhost:3006/api/product/${productID}`);
+
+
+                if (!response.ok) throw new Error('Failed to fetch product data');
+                const data = await response.json();
+                setProduct(data);
+                setMainImage(data.image_url || '');
+            } catch (err) {
+                setError(err.message);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        if (productID) fetchProduct();
+    }, [productID]);
+
+    if (loading) return <div>Loading product...</div>;
+    if (error) return <div>Error: {error}</div>;
     if (!product) return <div>Product not found.</div>;
 
     const handleAddToCart = () => {
@@ -43,20 +59,28 @@ const Product = () => {
         alert('Your product is in the cart!');
     };
 
-
     return (
         <div className="asket-product-page">
             <div className="asket-product">
                 <div className="image-section">
-                    <img src={mainImage} alt={product.title} className="main-image" />
-
+                    <img src={mainImage} alt={product.name} className="main-image" />
                 </div>
 
                 <div className="info-section">
-                    <h2>{product.title}</h2>
-                    <p className="price">{product.price} USD</p>
+                    <h2>{product.name}</h2>
 
-                    <div className="color-selector"></div>
+                    <p className="price">
+                        <strong>{parseFloat(product.price).toFixed(2)} USD</strong>{' '}
+                        {product.old_price && (
+                            <span className="old-price">{parseFloat(product.old_price).toFixed(2)} USD</span>
+                        )}
+                    </p>
+
+                    {product.discount_percent && (
+                        <p className="discount">-{parseFloat(product.discount_percent).toFixed(2)}% OFF</p>
+                    )}
+
+                    <div className="category">Category: {product.category_name}</div>
 
                     <div className="selectors">
                         <label>
@@ -107,9 +131,9 @@ const Product = () => {
 
                     <div className="tab-content">
                         {tab === 'Overview' && <p>{product.description}</p>}
-                        {tab === 'Details' && <p>Additional product details...</p>}
-                        {tab === 'Fit' && <p>Size and fit guide...</p>}
-                        {tab === 'Care' && <p>Care instructions...</p>}
+                        {tab === 'Details' && <p>Advanced Apple device with cutting-edge features.</p>}
+                        {tab === 'Fit' && <p>Compact and sleek — designed for daily performance.</p>}
+                        {tab === 'Care' && <p>Use a microfiber cloth to clean. Keep away from liquids.</p>}
                     </div>
                 </div>
             </div>

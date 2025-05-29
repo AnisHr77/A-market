@@ -62,8 +62,8 @@ function Chat() {
             });
             const data = await response.json();
             // تصفية الرسائل بين المستخدمين 1 و 2 فقط
-            const filteredMessages = data.filter(msg => 
-                (msg.sender_id === 1 && msg.receiver_id === 2) || 
+            const filteredMessages = data.filter(msg =>
+                (msg.sender_id === 1 && msg.receiver_id === 2) ||
                 (msg.sender_id === 2 && msg.receiver_id === 1)
             );
             setMessages(filteredMessages);

@@ -145,9 +145,16 @@ const Login = () => {
             const data = await response.json();
 
             if (data.success) {
+                if (data.user.type === 'admin') {
+                    window.location.href = 'http://localhost:3006/admin';
+
+
+                    return;
+                }
+
                 setSuccess(data.message);
                 localStorage.setItem('user', JSON.stringify(data.user));
-                setTimeout(() => navigate('/'),500);
+                setTimeout(() => navigate('/'), 800);
             } else {
                 setError(data.message || 'Login failed. Please try again.');
             }
@@ -155,6 +162,7 @@ const Login = () => {
             console.error('Login error:', error);
             setError('Cannot connect to server. Please check if the server is running.');
         }
+
     };
 
     return (

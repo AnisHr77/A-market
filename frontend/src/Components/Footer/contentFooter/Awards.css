@@ -1,5 +1,6 @@
 .awards-content{
-    margin-left:115px
+    margin-left:115px;
+    font-family: "Plus Jakarta sans", sans-serif !important;
 }
 .hrAwards{
     border-color: rgba(37, 40, 45, 0.37);

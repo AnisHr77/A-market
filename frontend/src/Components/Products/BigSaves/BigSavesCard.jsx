@@ -19,8 +19,8 @@ const BigSavesCard = ({ item }) => {
         } else {
             addFavorite({
                 id: item.id,
-                image: item.image,
-                title: item.title,
+                image_url: item.image_url,
+                name: item.name,
                 description: item.description,
                 price: item.price
             });
@@ -69,7 +69,7 @@ const BigSavesCard = ({ item }) => {
                         <FaRegHeart onClick={toggleFavorite} style={heartStyle} />
                     )}
 
-                    <img src={item.image} alt={item.title} />
+                    <img src={item.image_url} alt={item.name} />
                     <div style={{ position: 'relative', top: '-20px' }}>
                         <div style={{ display: "flex", position: 'relative', top: '25px', marginBottom: '30px' }}>
                             <div style={{

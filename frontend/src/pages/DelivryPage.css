@@ -1,5 +1,4 @@
 
-
 .DelivryPage {
     background-color: #f7f6f4;
     width: 100vw;
@@ -135,6 +134,7 @@
 
 /* —————— RESPONSIVE ADDITIONS —————— */
 
+
 @media (max-width: 1100px) {
     .track {
         flex-wrap: wrap;
@@ -217,4 +217,48 @@
         width: auto;
         padding: 8px 12px;
     }
+}
+.tracker-response {
+     position: fixed;
+     bottom: 20px;
+     left: 50%;
+     transform: translateX(-50%);
+     max-width: 90vw;
+     width: 400px;
+     background: rgba(126, 122, 122, 0.89);
+     color: #fff;
+     padding: 12px 20px;
+     border-radius: 8px;
+     box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+     font-size: 14px;
+     text-align: center;
+     z-index: 10000;
+ }
+
+
+
+
+.order-box {
+    max-width: 500px;
+    margin: 20px auto;
+    padding: 20px;
+    border-radius: 12px;
+    background-color: #fff;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 12px;
+    background: transparent;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    color: #888;
+}
+
+.close-btn:hover {
+    color: #000;
 }

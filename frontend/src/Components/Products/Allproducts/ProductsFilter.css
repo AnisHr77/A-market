@@ -11,7 +11,7 @@
     justify-content: center;
     align-items: center;
     border-top: 1px solid rgba(255, 255, 255, 0.17);
-    margin-bottom: 2rem;
+    margin-bottom: 5rem;
     font-family: "Plus Jakarta sans";
 
     padding-left: 6rem;
@@ -32,6 +32,8 @@
 }
 
 .ButtonesCategory {
+
+
     display: flex;
     gap: 1.5rem;
     height: 55px;
@@ -45,6 +47,7 @@
     scroll-behavior: smooth;
     max-width:100%;
     margin-top: 2rem;
+    -webkit-scroll-snap-type: none;
 }
 
 .ButtonesCategory::-webkit-scrollbar {
@@ -89,6 +92,7 @@
     }
     .seemore{
         display: none;
+
     }
 
 }

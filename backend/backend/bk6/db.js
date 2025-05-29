@@ -1,14 +1,14 @@
 const mysql = require('mysql2/promise');
 
 const pool = mysql.createPool({
-    host: 'localhost',
+    host: '127.0.0.1',
     user: 'root',
-    password: 'walid',
+    password: 'Anis2005',
     database: 'user_dashboard',
     waitForConnections: true,
     connectionLimit: 10,
     queueLimit: 0
-});
+});;
 
 // Create orders table if it doesn't exist
 const createOrdersTable = async () => {

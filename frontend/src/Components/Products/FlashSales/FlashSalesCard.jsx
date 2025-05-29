@@ -20,8 +20,8 @@ const FlashSalesCard = ({ item }) => {
         } else {
             addFavorite({
                 id: item.id,
-                image: item.image,
-                title: item.title,
+                image_url: item.image_url,
+                name: item.name,
                 description: item.description,
                 price: item.price
             });
@@ -64,7 +64,7 @@ const FlashSalesCard = ({ item }) => {
             <div className="ContainerCard" style={{ cursor: 'pointer' }}>
                 <div className='RecommendationCard'>
                     <div>
-                        <img src={item.image} alt={item.title} />
+                        <img src={item.image_url} alt={item.name} />
                         {favorited ? (
                             <FaHeart onClick={toggleFavorite} style={heartStyle} />
                         ) : (

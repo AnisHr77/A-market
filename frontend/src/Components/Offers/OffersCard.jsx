@@ -11,8 +11,8 @@ export function OffersCard(props) {
         addToCart({
             id: `${props.id}-${index}`,
             category : props.category[index],
-            title: props.title[index],
-            image: props.image[index],
+            name: props.name[index],
+            image_url: props.image_url[index],
             countdown: props.countdown?.[index],
             saves: props.saves?.[index],
 
@@ -32,8 +32,8 @@ export function OffersCard(props) {
     const {
         category,
         icon,
-        image,
-        title,
+        image_url,
+        name,
         price,
         oldprice,
         countdown,
@@ -62,7 +62,7 @@ export function OffersCard(props) {
                             className={'image'}
                             key={i}
                             id={i}
-                            src={image[i]}
+                            src={image_url[i]}
                             alt={`Offers-img-${i}`}
                             style={{
                                 borderRadius: '10px',
@@ -211,7 +211,7 @@ export function OffersCard(props) {
                                 marginLeft: '16px',
                                 marginRight: '16px',
                             }}>
-                                <h5 style={{ margin: '0 0 0px 0' }}>{title[i]}</h5>
+                                <h5 style={{ margin: '0 0 0px 0' }}>{name[i]}</h5>
                                 <button
                                     onClick={() => handleAddToCart(i)}
 

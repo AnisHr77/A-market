@@ -1,14 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import RecommendationCard from './RecommendationCard';
-import RecommendationData from './RecommendationData';
 import './Recommendation.css';
-import { FaChevronLeft, FaChevronRight } from "react-icons/fa6";
-import { FaRegHeart } from "react-icons/fa";
+import { FaChevronLeft, FaChevronRight, FaRegHeart } from "react-icons/fa6";
 
 const Recommendations = () => {
     const cardWidth = 200;
     const gap = 48;
 
+    const [products, setProducts] = useState([]);
     const [currentIndex, setCurrentIndex] = useState(0);
     const [cardsToShow, setCardsToShow] = useState(5);
     const [isSmallScreen, setIsSmallScreen] = useState(false);
@@ -29,7 +28,22 @@ const Recommendations = () => {
         return () => window.removeEventListener('resize', handleResize);
     }, []);
 
-    const maxIndex = RecommendationData.length - cardsToShow;
+    useEffect(() => {
+        const fetchProducts = async () => {
+            try {
+                const response = await fetch('http://localhost:3006/api/products');
+                const data = await response.json();
+                const category8 = data.filter(product => product.category_id === 8);
+                setProducts(category8);
+            } catch (error) {
+                console.error('Failed to fetch products:', error);
+            }
+        };
+
+        fetchProducts();
+    }, []);
+
+    const maxIndex = products.length - cardsToShow;
     const sliderWidth = cardWidth * cardsToShow + gap * (cardsToShow - 1);
 
     const handleNext = () => {
@@ -41,87 +55,78 @@ const Recommendations = () => {
     };
 
     return (
-        <div id={'Recomendations'} style={{overflow: 'hidden'}}>
-        <div  className="recommendations">
-            <h2 style={{
-                fontSize: '25px',
-                marginBottom: '1.5rem',
-                marginTop: '1.5rem',
-                marginLeft: '1rem'
-            }}>
-                <FaRegHeart style={{
-                    fontWeight: 'bold',
-                    position: 'relative',
-                    top: '3px'
-                }} /> Recommendations
-            </h2>
-
-            <div
-                style={{
-                    position: 'relative',
-                    width: isSmallScreen ? '100%' : `${sliderWidth}px`,
-                    margin: '0 auto'
-                }}
-            >
-                {!isSmallScreen && (
-                    <button
-                        className="slider-btn"
-                        onClick={handlePrev}
-                        disabled={currentIndex === 0}
-                        style={{
-                            position: 'absolute',
-                            top: '25%',
-                            left: '-22px',
-                            transform: 'translateY(-50%)',
-                            zIndex: 2,
-                        }}
-                    >
-                        <FaChevronLeft style={{ color: '#303030', fontSize: '15px', fontWeight: 'bold' }} />
-                    </button>
-                )}
+        <div id="Recomendations" style={{ overflow: 'hidden' }}>
+            <div className="recommendations">
+                <h2 style={{ fontSize: '25px', margin: '1.5rem 0 1.5rem 1rem' }}>
+                    <FaRegHeart style={{ position: 'relative', top: '3px' }} /> Recommendations
+                </h2>
 
                 <div
-                    className="flexing"
                     style={{
-                        overflowX: isSmallScreen ? 'auto' : 'hidden',
-                        overflowY: 'hidden',
-                        width: '100%',
-                        justifyContent: 'flex-start',
+                        position: 'relative',
+                        width: isSmallScreen ? '100%' : `${sliderWidth}px`,
+                        margin: '0 auto',
                     }}
                 >
-                    <div
-                        style={{
-                            display: 'flex',
-                            gap: `${gap}px`,
-                            transform: isSmallScreen ? 'none' : `translateX(-${currentIndex * (cardWidth + gap)}px)`,
-                            transition: isSmallScreen ? 'none' : 'transform 0.5s ease',
-                            minWidth: isSmallScreen ? 'max-content' : 'auto',
-                        }}
-                    >
-                        {RecommendationData.map((item) => (
-                            <RecommendationCard key={item.id} item={item} />
-                        ))}
-                    </div>
-                </div>
+                    {!isSmallScreen && (
+                        <button
+                            className="slider-btn"
+                            onClick={handlePrev}
+                            disabled={currentIndex === 0}
+                            style={{
+                                position: 'absolute',
+                                top: '25%',
+                                left: '-22px',
+                                transform: 'translateY(-50%)',
+                                zIndex: 2,
+                            }}
+                        >
+                            <FaChevronLeft  style={{ color: '#303030', fontSize: '15px', fontWeight: 'bold' }}/>
+                        </button>
+                    )}
 
-                {!isSmallScreen && (
-                    <button
-                        className="slider-btn"
-                        onClick={handleNext}
-                        disabled={currentIndex >= maxIndex}
+                    <div
+                        className="flexing"
                         style={{
-                            position: 'absolute',
-                            right: '-20px',
-                            top: '25%',
-                            transform: 'translateY(-50%)',
-                            zIndex: 2,
+                            overflowX: isSmallScreen ? 'auto' : 'hidden',
+                            overflowY: 'hidden',
+                            width: '100%',
+                            justifyContent: 'flex-start',
                         }}
                     >
-                        <FaChevronRight style={{ color: '#303030', fontSize: '15px', fontWeight: 'bold' }} />
-                    </button>
-                )}
+                        <div
+                            style={{
+                                display: 'flex',
+                                gap: `${gap}px`,
+                                transform: isSmallScreen ? 'none' : `translateX(-${currentIndex * (cardWidth + gap)}px)`,
+                                transition: isSmallScreen ? 'none' : 'transform 0.5s ease',
+                                minWidth: isSmallScreen ? 'max-content' : 'auto',
+                            }}
+                        >
+                            {products.map((item) => (
+                                <RecommendationCard key={item.product_id} item={item} />
+                            ))}
+                        </div>
+                    </div>
+
+                    {!isSmallScreen && (
+                        <button
+                            className="slider-btn"
+                            onClick={handleNext}
+                            disabled={currentIndex >= maxIndex}
+                            style={{
+                                position: 'absolute',
+                                right: '-20px',
+                                top: '25%',
+                                transform: 'translateY(-50%)',
+                                zIndex: 2,
+                            }}
+                        >
+                            <FaChevronRight style={{ color: '#303030', fontSize: '15px', fontWeight: 'bold' }} />
+                        </button>
+                    )}
+                </div>
             </div>
-        </div>
         </div>
     );
 };

@@ -3,6 +3,7 @@ import { useCart } from '../Context/CartContext';
 import './CardPage.css';
 import { IoIosCloseCircle, IoIosArrowRoundForward } from "react-icons/io";
 import { MdOutlineKeyboardDoubleArrowRight, MdOutlineKeyboardDoubleArrowLeft } from "react-icons/md";
+import { FiShoppingCart } from "react-icons/fi";
 
 const CardPage = () => {
     const {
@@ -89,7 +90,7 @@ const CardPage = () => {
     const [deliveryCost, setDeliveryCost] = useState(5.00);
     const [promoCode, setPromoCode] = useState('');
     const [discount, setDiscount] = useState(0);
-    const [sidebarOpen, setSidebarOpen] = useState(true);
+    let [sidebarOpen, setSidebarOpen] = useState(true);
     const [showPaymentModal, setShowPaymentModal] = useState(false);
     const [imageSrc, setImageSrc] = useState(null);
     const [selectedMethod, setSelectedMethod] = useState("creditcard");
@@ -118,9 +119,16 @@ const CardPage = () => {
     };
 
     useEffect(() => {
+
         resetAllFields();
     }, [selectedMethod, showPaymentModal === false]);
-
+    useEffect(() => {
+        if (cartItems.length === 0) {
+            document.body.classList.add('no-scroll');
+        } else {
+            document.body.classList.remove('no-scroll');
+        }
+    }, [cartItems]);
 
 
 
@@ -211,6 +219,8 @@ const CardPage = () => {
 
 
 
+
+
     const handlePlaceOrder = () => {
         if (validate()) {
             alert("Order Placed!");
@@ -227,8 +237,14 @@ const CardPage = () => {
     const total = subtotal + parseFloat(deliveryCost) - discount;
 
     const handleDeliveryChange = (event) => {
-        setDeliveryCost(parseFloat(event.target.value));
+        const selectedCost = parseFloat(event.target.value);
+        setDeliveryCost(selectedCost);
     };
+    const deliveryOptions = [
+        { label: "Second Delivery", cost: 5.00 },
+        { label: "Express Delivery", cost: 10.00 },
+        { label: "Free Delivery", cost: 0.00 }
+    ];
 
     const handleApplyPromo = () => {
         if (promoCode === 'ANISHR77') {
@@ -243,13 +259,30 @@ const CardPage = () => {
 
     return (
         <div className="CardPage">
-            <button onClick={() => setSidebarOpen(!sidebarOpen)} className="sidebar-toggle">
-                {sidebarOpen ? <MdOutlineKeyboardDoubleArrowLeft /> : <MdOutlineKeyboardDoubleArrowRight />}
-            </button>
+            {cartItems.length > 0 && (
+                <button onClick={() => setSidebarOpen(!sidebarOpen)} className="sidebar-toggle">
+                    {sidebarOpen ? <MdOutlineKeyboardDoubleArrowLeft /> : <MdOutlineKeyboardDoubleArrowRight />}
+                </button>
+            )}
 
-            <div className="CardPage1">
+            <div className="CardPage1" style={{ textAlign: 'center', paddingTop: '5rem' }}>
                 {cartItems.length === 0 ? (
-                    <p style={{position:"fixed",top:'35%',left:'30%',translate:'transform(-50,-50%)',fontSize:'2rem',fontFamily:'"Plus Jakarta sans", sans-serif'}}>Your cart is empty.</p>
+                    <div
+                        id={'empty-state-container'} className={`empty-state-container fade-up delay-1 ${
+                        sidebarOpen ? "empty-state-with-sidebar" : "empty-state-full"
+                    }`}
+                    >
+                        <FiShoppingCart className="empty-icon fade-up delay-1" />
+
+                        <h2 className="empty-title fade-up delay-2">Your Cart is Empty</h2>
+                        <p className="empty-subtext fade-up delay-3">
+                            Looks like you haven’t added any items to your cart yet.<br />
+                            Browse products and add them to your cart to see them here.
+                        </p>
+                        <a href="/" className="go-home-link fade-up delay-4">
+                            ← Back to Home
+                        </a>
+                    </div>
                 ) : (
                     <div className={`CartProduct ${sidebarOpen ? 'with-sidebar' : 'no-sidebar'}`}>
                         <div id="mytitle">
@@ -274,9 +307,9 @@ const CardPage = () => {
                                     width: '37%',
                                     color: 'white'
                                 }}>
-                                    <img src={item.image} alt={item.title} />
+                                    <img src={item.image_url} alt={item.name} />
                                     <div style={{ flexDirection: 'column' }}>
-                                        <h4 style={{ color: 'white' }}>{item.title}</h4>
+                                        <h4 style={{ color: 'white' }}>{item.name}</h4>
                                         <p>{item.description}</p>
                                         <p style={{ color: 'grey' }}>{item.price}$</p>
                                     </div>
@@ -302,7 +335,7 @@ const CardPage = () => {
                 )}
             </div>
 
-            {sidebarOpen && (
+            {sidebarOpen && cartItems.length > 0 && (
                 <div className="SidebarRight">
                     <div>
                         <h3>Order Summary</h3>
@@ -316,26 +349,45 @@ const CardPage = () => {
 
                         <label className="sidebar-select-label">Shipping</label>
                         <select id="delivcart" onChange={handleDeliveryChange} value={deliveryCost}>
-                            <option value="5.00">Second Delivery - $5.00</option>
-                            <option value="10.00">Express Delivery - $10.00</option>
-                            <option value="0.00">Free Delivery - $0.00</option>
+                            {deliveryOptions.map((option, index) => (
+                                <option key={index} value={option.cost}>
+                                    {option.label} - ${option.cost.toFixed(2)}
+                                </option>
+                            ))}
                         </select>
 
-                        <label className="sidebar-select-label">Promo Code</label>
-                        <input
-                            id="promo-code"
-                            type="text"
-                            placeholder="XXXX-XXXX"
-                            maxLength={8}
-                            value={promoCode}
-                            onChange={(e) => {
-                                let input = e.target.value.toUpperCase().replace(/[^A-Z0-9]/g, "").slice(0, 8);
-                                setPromoCode(input);
+                        <form
+                            onSubmit={(e) => {
+                                e.preventDefault(); // Prevent page reload
+                                handleApplyPromo(); // Trigger your apply logic
                             }}
-                        />
+                        >
+                            <label className="sidebar-select-label">Promo Code</label>
+                            <input
+                                id="promo-code"
+                                type="text"
+                                placeholder="XXXX-XXXX"
+                                maxLength={8}
+                                value={promoCode}
+                                onChange={(e) => {
+                                    let input = e.target.value
+                                        .toUpperCase()
+                                        .replace(/[^A-Z0-9]/g, "")
+                                        .slice(0, 8);
+                                    setPromoCode(input);
+                                }}
+                            />
 
-                        <button className="apply-btn" onClick={handleApplyPromo}>Apply</button>
-                        {discount > 0 && <p style={{ color: 'green', fontSize: '0.9rem' }}>Discount applied: -${discount.toFixed(2)}</p>}
+                            <button type="submit" className="apply-btn">
+                                Apply
+                            </button>
+                        </form>
+
+                        {discount > 0 && (
+                            <p style={{ color: 'green', fontSize: '0.9rem' }}>
+                                Discount applied: -${discount.toFixed(2)}
+                            </p>
+                        )}
 
                         <div className="sidebar-total">
                             <span>{cartCounter} Items</span>
@@ -346,6 +398,7 @@ const CardPage = () => {
                     <button className="checkout-btn" onClick={() => setShowPaymentModal(true)}>Checkout</button>
                 </div>
             )}
+
 
             {showPaymentModal && (
                 <div
@@ -375,15 +428,27 @@ const CardPage = () => {
 
                             {selectedMethod === "creditcard" && (
                                 <div className="card-list">
-                                    <div className="card selected">
-                                        <p></p>
+                                    <div
+                                        onClick={() => setSelectedMethod("creditcard")}
+                                        className={`card ${selectedMethod === "creditcard" ? "selected" : ""}`}
+                                    >
+
                                     </div>
-                                    <div className="card">
-                                        <p></p>
+
+                                    <div
+                                        onClick={() => setSelectedMethod("paypal")}
+                                        className={`card ${selectedMethod === "paypal" ? "selected" : ""}`}
+                                    >
+
                                     </div>
-                                    <div className="card add-card">
-                                        <p></p>
+
+                                    <div
+                                        onClick={() => setSelectedMethod("baridimob")}
+                                        className={`card add-card ${selectedMethod === "baridimob" ? "selected" : ""}`}
+                                    >
+
                                     </div>
+
                                 </div>
                             )}
 
@@ -392,18 +457,18 @@ const CardPage = () => {
                                     <>
 
 
-                                            <input
-                                                type="number"
-                                                inputMode="numeric"
-                                                style={{ position:'relative' ,height: '30%',top:'6%',right:'2%',width:'95%' }}
-                                                placeholder={cardNumberError || "Card Number"}
-                                                value={cardNumberError ? "" : cardNumber}
-                                                onChange={(e) => {
-                                                    setCardNumber(e.target.value);
-                                                    setCardNumberError('');
+                                        <input
+                                            type="number"
+                                            inputMode="numeric"
+                                            style={{ position:'relative' ,height: '30%',top:'6%',right:'2%',width:'95%' }}
+                                            placeholder={cardNumberError || "Card Number"}
+                                            value={cardNumberError ? "" : cardNumber}
+                                            onChange={(e) => {
+                                                setCardNumber(e.target.value);
+                                                setCardNumberError('');
 
-                                                }}
-                                            />
+                                            }}
+                                        />
 
 
 

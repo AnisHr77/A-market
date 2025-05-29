@@ -7,7 +7,7 @@
      /* centré horizontalement */
     border-radius: 15px;
     background-color: #25282d;
-    background-size: cover;
+    background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
     display: flex;

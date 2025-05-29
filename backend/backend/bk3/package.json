@@ -4,10 +4,10 @@
     "description": "Employee Dashboard Backend",
     "main": "server.js",
     "scripts": {
-      "start": "node server.js && echo Server running at http://localhost:3002"
+        "start": "node server.js && echo Server running at http://localhost:3002"
     },
     "dependencies": {
-      "express": "^4.18.2",
-      "mysql2": "^3.6.0"
+        "express": "^4.18.2",
+        "mysql2": "^3.14.1"
     }
 }

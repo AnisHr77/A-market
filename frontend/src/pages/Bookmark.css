@@ -1,10 +1,6 @@
-
-
 .bookmark {
-
     font-family: 'Plus Jakarta Sans', sans-serif;
     box-sizing: border-box;
-
     margin-left: 6.5%;
     padding: 2rem;
     min-height: 100vh;
@@ -43,7 +39,6 @@
 .favorite-card img {
     width: 100%;
     height: auto;
-    aspect-ratio: 5/4;
     object-fit: fill;
     border-radius: 5px;
     margin-bottom: 1rem;
@@ -77,28 +72,61 @@
     background-color: #d9363e;
 }
 
-
 .bookmark-empty {
-    margin-left: 7%;
-    padding: 2rem;
-    min-height: 100vh;
+    height: 100vh;
+    padding: 0 2rem;
     display: flex;
     align-items: center;
     justify-content: center;
     background-color: rgba(35, 35, 35, 0.66);
-    color: #aaa;
+    color: white;
     font-size: 1.2rem;
-    font-weight: 500;
     text-align: center;
     flex-direction: column;
+    overflow: hidden;
 }
 
-.bookmark-empty img.empty-img {
-    width: 250px;
-    margin-bottom: 1rem;
-    opacity: 0.8;
+
+.bookmark-empty .empty-icon {
+    width: 80px;
+    height: 80px;
+    stroke: #ccc;
+    opacity: 1;
+    margin-bottom: 20px;
 }
 
+.bookmark-empty .empty-title {
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+    color: white;
+}
+
+.bookmark-empty .empty-subtext {
+    font-size: 1.1rem;
+    color: #ccc;
+    line-height: 1.5;
+    max-width: 400px;
+}
+
+.go-home-link {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 0.6rem 1.2rem;
+    font-size: 1rem;
+    color: white;
+    background: linear-gradient(to top, rgb(37, 40, 45), rgb(37, 40, 46));
+    box-shadow: 0.5px 1px 1px rgb(55, 55, 55);
+    border: 2px solid #343537;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.go-home-link:hover {
+    color: white;
+    background-color: white;
+    box-shadow: 0 1px 12px rgba(77, 166, 255, 0.3);
+}
 
 @media (max-width: 768px) {
     .bookmark {
@@ -115,3 +143,28 @@
         font-size: 1.5rem;
     }
 }
+
+
+@keyframes fadeUp {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-up {
+    animation-name: fadeUp;
+    animation-duration: 0.6s;
+    animation-timing-function: ease;
+    animation-fill-mode: both;
+    opacity: 0;
+}
+
+.fade-up.delay-1 { animation-delay: 0.1s; }
+.fade-up.delay-2 { animation-delay: 0.25s; }
+.fade-up.delay-3 { animation-delay: 0.4s; }
+.fade-up.delay-4 { animation-delay: 0.55s; }

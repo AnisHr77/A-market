@@ -23,6 +23,8 @@ import Bookmark from "./pages/Bookmark";
 import Saved from "./pages/Saved";
 import Settings from "./pages/Settings";
 import Helpp from "./pages/Help";
+import Menu from "./pages/Menu";
+
 
 // Footer pages
 import Vision from "./Components/Footer/contentFooter/Vision";
@@ -64,7 +66,6 @@ import PayPal from "./pages/ComponentOfSetting/PagesOfHeader/PagePayment/TypeOfP
 import BaridiMob from "./pages/ComponentOfSetting/PagesOfHeader/PagePayment/TypeOfPayment/BaridiMob";
 import Skrill from "./pages/ComponentOfSetting/PagesOfHeader/PagePayment/TypeOfPayment/Skrill";
 
-
 import PageHelpSupports from "./pages/ComponentOfSetting/PagesOfHeader/PageHelpSupports/PageHelpSupports";
 import Help from "./pages/ComponentOfSetting/PagesOfHeader/PageHelpSupports/ContentHelpSupports/Help";
 import PhoneHelp from "./pages/ComponentOfSetting/PagesOfHeader/PageHelpSupports/ContentHelpSupports/PhoneHelp";
@@ -79,47 +80,29 @@ import Loader from "./Loader";
 import { CartProvider } from "./Context/CartContext";
 import { FavoritesProvider } from "./Context/FavoritesContext";
 import { LoadingProvider, useLoading } from "./Context/LoadingContext";
+import SearchIA from "./Components/NavbarUp/SearchIA";
 
 function AppContent() {
     const location = useLocation();
-    const { loading, setLoading } = useLoading('true');
-    const params = new URLSearchParams(location.search);
-    const hasCategoryParam = params.has("category");
+    const { loading, setLoading } = useLoading();
 
     const hideNavbar =
         location.pathname.startsWith("/Settings") ||
         location.pathname === "/login";
 
     useEffect(() => {
-        if (location.pathname.startsWith("/product/")) {
-            setLoading(true);
-            const timeout = setTimeout(() => setLoading(false), 1200);
-            return () => clearTimeout(timeout);
-        } else {
-            setLoading(false);
-        }
-    }, [location.pathname]);
-    useEffect(() => {
-        setLoading(true);
-
-        const timeout = setTimeout(() => {
-            setLoading(false);
-        }, 1500);
-
-        return () => clearTimeout(timeout);
-    }, [location.pathname]);
-    useEffect(() => {
-        if (location.pathname.startsWith("/Settings")) {
+        // Skip loader for some routes
+        if (location.pathname.startsWith("/Settings") || location.pathname === "/login") {
             setLoading(false);
             return;
         }
 
+        // Show loader on route change, then hide after 1.2s
         setLoading(true);
         const timeout = setTimeout(() => setLoading(false), 1200);
+
         return () => clearTimeout(timeout);
-    }, [location.pathname]);
-
-
+    }, [location.pathname, setLoading]);
 
     if (loading) return <Loader />;
 
@@ -143,6 +126,14 @@ function AppContent() {
                 <Route path="/Bookmark" element={<Bookmark />} />
                 <Route path="/Saved" element={<Saved />} />
                 <Route path="/help" element={<Helpp />} />
+
+
+                <Route path="/IA" element={<SearchIA />} />
+
+                <Route path="/Menu" element={<Menu/>} />
+
+
+
 
                 {/* Footer Routes */}
                 <Route path="/visiMission" element={<Vision />} />
@@ -176,7 +167,6 @@ function AppContent() {
                         <Route index element={<Notification />} />
                         <Route path="Notification" element={<Notification />} />
                         <Route path="Contact" element={<Contact />} />
-
                     </Route>
                     <Route path="Profile" element={<PageProfile />}>
                         <Route index element={<User />} />
@@ -190,7 +180,6 @@ function AppContent() {
                         <Route path="PayPal" element={<PayPal />} />
                         <Route path="BaridiMob" element={<BaridiMob />} />
                         <Route path="Skrill" element={<Skrill />} />
-
                     </Route>
                     <Route path="HelpSupports" element={<PageHelpSupports />}>
                         <Route index element={<Help />} />

@@ -1,5 +1,5 @@
 // API base URL
-const API_BASE_URL = 'http://localhost:3001/api';
+const API_BASE_URL = 'http://localhost:3001/';
 
 document.addEventListener('DOMContentLoaded', () => {
     // const imageInputs = document.querySelectorAll('.image-inputs input[type="text"]'); // Removed
