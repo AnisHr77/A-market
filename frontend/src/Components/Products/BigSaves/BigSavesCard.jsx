@@ -22,7 +22,8 @@ const BigSavesCard = ({ item }) => {
                 image_url: item.image_url,
                 name: item.name,
                 description: item.description,
-                price: item.price
+                price: item.price,
+
             });
         }
         setIsClicked(true);
@@ -74,7 +75,7 @@ const BigSavesCard = ({ item }) => {
                         <div style={{ display: "flex", position: 'relative', top: '25px', marginBottom: '30px' }}>
                             <div style={{
                                 position: 'relative',
-                                width: `${item.Pourcentage}`,
+                                width: '40%',
                                 height: '3px',
                                 backgroundColor: 'white',
                             }}>
@@ -106,7 +107,7 @@ const BigSavesCard = ({ item }) => {
                                 position: 'relative',
                                 top: '-12px'
                             }}>
-                                ${item.oldprice}
+                                ${item.old_price}
                             </p>
 
                             <button
@@ -124,14 +125,11 @@ const BigSavesCard = ({ item }) => {
                         </div>
 
                         <div className="Sold">
-                            <div>{item.Sold}K +sold</div>
-                            <div>{item.Comment}</div>
+                            <div>{item.discount_percent}% Discount</div>
+
                         </div>
 
-                        <div style={{ display: 'flex' }} className="Statistiques">
-                            <div>{item.Stars}</div>
-                            <div style={{ position: 'relative', top: '2px' }}>{item.Statistiques}</div>
-                        </div>
+
                     </div>
                 </div>
             </div>

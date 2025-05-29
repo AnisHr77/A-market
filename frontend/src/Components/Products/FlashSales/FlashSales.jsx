@@ -19,7 +19,7 @@ const FlashSales = () => {
             try {
                 const response = await fetch('http://localhost:3006/api/products');
                 const data = await response.json();
-                const flashSalesProducts = data.filter(product => product.category_id === 3);
+                const flashSalesProducts = data.filter(product => product.category_id === 2);
                 setProducts(flashSalesProducts);
             } catch (error) {
                 console.error("Failed to fetch flash sales products:", error);

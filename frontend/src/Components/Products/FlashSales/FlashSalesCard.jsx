@@ -32,7 +32,7 @@ const FlashSalesCard = ({ item }) => {
 
     const handleAddToCart = (e) => {
         e.stopPropagation();
-        e.preventDefault(); // Prevent triggering the link
+        e.preventDefault();
         addToCart(item);
         toast.success("Item added to cart!", {
             style: {
@@ -76,16 +76,18 @@ const FlashSalesCard = ({ item }) => {
                         <div style={{ display: "flex", position: 'relative', top: '35px', marginBottom: '30px' }}>
                             <div style={{
                                 position: 'relative',
-                                width: `${item.Pourcentage}`,
+                                width: '50%',
                                 height: '3px',
                                 backgroundColor: 'white',
+                                marginBottom:'8px'
                             }}>
                                 <IoIosFlash style={{
                                     position: 'absolute',
                                     top: '-8px',
                                     right: '-10px',
                                     height: '20px',
-                                    width: '20px'
+                                    width: '20px',
+                                    marginBottom:'8px'
                                 }} />
                             </div>
                             <span style={{ position: "relative", top: '-5px', left: '25px', fontSize: '13px' }}>{item.Timer}</span>
@@ -95,7 +97,7 @@ const FlashSalesCard = ({ item }) => {
 
                         <div className='Prices'>
                             <p style={{ position: 'relative', top: '-10px' }}>Now ${item.price}</p>
-                            <p style={{ color: 'grey', textDecoration: 'line-through', position: 'relative', top: '-10px' }}> ${item.oldprice}</p>
+                            <p style={{ color: 'grey', textDecoration: 'line-through', position: 'relative', top: '-10px' }}> ${item.old_price}</p>
                             <button
                                 style={{ width: '70px', height: '30px', position: 'relative', borderRadius: '20px', border: 'none' }}
                                 onClick={handleAddToCart}
@@ -105,14 +107,10 @@ const FlashSalesCard = ({ item }) => {
                         </div>
 
                         <div className="Sold">
-                            <div>{item.Sold}K +sold</div>
-                            <div>{item.Comment}</div>
+                            <div>{item.discount_percent}%  Off</div>
+
                         </div>
 
-                        <div style={{ display: 'flex' }} className="Statistiques">
-                            <div>{item.Stars}</div>
-                            <div style={{ position: 'relative', top: '2px' }}>{item.Statistiques}</div>
-                        </div>
                     </div>
                 </div>
             </div>

@@ -33,7 +33,7 @@ const Recommendations = () => {
             try {
                 const response = await fetch('http://localhost:3006/api/products');
                 const data = await response.json();
-                const category8 = data.filter(product => product.category_id === 8);
+                const category8 = data.filter(product => product.category_id === 1);
                 setProducts(category8);
             } catch (error) {
                 console.error('Failed to fetch products:', error);
