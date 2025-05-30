@@ -9,7 +9,6 @@ const DelivryPage = () => {
     const [error, setError] = useState('');
     const [showDetails, setShowDetails] = useState(true);
 
-
     const handleInputChange = (e) => {
         setTrackingNumber(e.target.value);
     };
@@ -23,7 +22,7 @@ const DelivryPage = () => {
         setLoading(true);
         setError('');
         setOrderData(null);
-        setShowDetails(false); // optional: hide it first for quick refresh UX
+        setShowDetails(false);
 
         try {
             const response = await fetch(`http://localhost:3006/api/orders/tracking/${trackingNumber}`);
@@ -33,7 +32,7 @@ const DelivryPage = () => {
 
             const data = await response.json();
             setOrderData(data);
-            setShowDetails(true); // <-- always show details after success
+            setShowDetails(true);
         } catch (err) {
             setError(err.message || 'Failed to fetch order');
         } finally {
@@ -41,6 +40,10 @@ const DelivryPage = () => {
         }
     };
 
+    // Create Google Map address URL from shipping address + commune + wilaya
+    const mapAddress = orderData
+        ? `https://www.google.com/maps?q=${encodeURIComponent(`${orderData.shipping_address}, ${orderData.commune}, ${orderData.wilaya}`)}&output=embed`
+        : 'https://www.google.com/maps/embed?pb=!1m18...'; // default map
 
     return (
         <div className="DelivryPage">
@@ -51,7 +54,7 @@ const DelivryPage = () => {
             <div className="track">
                 <img src={delivery} alt="delivery" id="delivery" />
                 <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2624.9990126144976!2d2.294481315674817!3d48.8588440792871!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e66fdeb74f68ef%3A0x1cbd50d4e2130a6!2sTour%20Eiffel!5e0!3m2!1sfr!2sfr!4v1647001234567"
+                    src={mapAddress}
                     id="mapg"
                     allowFullScreen=""
                     loading="lazy"
@@ -93,7 +96,6 @@ const DelivryPage = () => {
                     <p><strong>Actual Delivery:</strong> {new Date(orderData.actual_delivery_date).toLocaleString()}</p>
                 </div>
             )}
-
         </div>
     );
 };

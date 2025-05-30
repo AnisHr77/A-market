@@ -1,26 +1,58 @@
 import React, { useState, useEffect, useRef, forwardRef } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import ProductCard from '../Recommendations/RecommendationCard';
 import './ProductsFilter.css';
 
 const ProductsFilter = forwardRef((props, ref) => {
     const location = useLocation();
+    const navigate = useNavigate();
+
     const params = new URLSearchParams(location.search);
-    const categoryFromUrl = params.get('category') || 'All';
+    const categoryFromUrl = params.get('category') || 'all';
 
     const [productsData, setProductsData] = useState([]);
     const [categories, setCategories] = useState([{ category_id: 'all', name: 'All' }]);
-    const [selectedCategory, setSelectedCategory] = useState(categoryFromUrl);
     const [visibleMultiplier, setVisibleMultiplier] = useState(3);
     const [cardsToShow, setCardsToShow] = useState(5);
     const [loadingProducts, setLoadingProducts] = useState(true);
     const [loadingCategories, setLoadingCategories] = useState(true);
+
     const productListRef = useRef(null);
     const scrollContainerRef = useRef(null);
+    const isInitialMount = useRef(true);
 
     const [canScrollLeft, setCanScrollLeft] = useState(false);
     const [canScrollRight, setCanScrollRight] = useState(false);
 
+    // Custom smooth scroll function
+    function smoothScrollTo(element, offset = 0, duration = 600) {
+        const startY = window.scrollY || window.pageYOffset;
+        const elementY = element.getBoundingClientRect().top + startY + offset;
+        const distance = elementY - startY;
+        let startTime = null;
+
+        function step(currentTime) {
+            if (!startTime) startTime = currentTime;
+            const timeElapsed = currentTime - startTime;
+            const progress = Math.min(timeElapsed / duration, 1);
+
+            // easeInOutQuad easing function
+            const ease =
+                progress < 0.5
+                    ? 2 * progress * progress
+                    : -1 + (4 - 2 * progress) * progress;
+
+            window.scrollTo(0, startY + distance * ease);
+
+            if (timeElapsed < duration) {
+                requestAnimationFrame(step);
+            }
+        }
+
+        requestAnimationFrame(step);
+    }
+
+    // Fetch products
     useEffect(() => {
         const fetchProducts = async () => {
             try {
@@ -34,6 +66,21 @@ const ProductsFilter = forwardRef((props, ref) => {
         };
         fetchProducts();
     }, []);
+
+
+    useEffect(() => {
+        // Prevent WebKit from restoring scroll and reset manually
+        if ('scrollRestoration' in window.history) {
+            window.history.scrollRestoration = 'manual';
+        }
+
+        // Scroll to top on load (once)
+        window.scrollTo({ top: 0, behavior: 'auto' });
+    }, []);
+
+
+    // Fetch categories
+
 
     useEffect(() => {
         const fetchCategories = async () => {
@@ -49,16 +96,7 @@ const ProductsFilter = forwardRef((props, ref) => {
         fetchCategories();
     }, []);
 
-    useEffect(() => {
-        if (categoryFromUrl !== selectedCategory) {
-            setSelectedCategory(categoryFromUrl);
-            setVisibleMultiplier(3);
-            if (productListRef.current) {
-                productListRef.current.scrollIntoView({ behavior: 'smooth' });
-            }
-        }
-    }, [categoryFromUrl]);
-
+    // Update cardsToShow on window resize
     useEffect(() => {
         const handleResize = () => {
             const width = window.innerWidth;
@@ -72,31 +110,33 @@ const ProductsFilter = forwardRef((props, ref) => {
         return () => window.removeEventListener('resize', handleResize);
     }, []);
 
+    // Smooth scroll on category change (except on initial load)
+    useEffect(() => {
+        setVisibleMultiplier(3);
+        if (isInitialMount.current) {
+            isInitialMount.current = false;
+            return; // skip scroll on first mount
+        }
+        if (productListRef.current) {
+            const offset = -100; // adjust as needed for sticky headers or padding
+            setTimeout(() => {
+                smoothScrollTo(productListRef.current, offset, 700);
+            }, 100); // small delay to allow layout
+        }
+    }, [location.search]);
+
     const visibleCount = cardsToShow * visibleMultiplier;
 
-    const handleCategoryClick = (categoryId) => {
-        if (categoryId === selectedCategory) return;
-        setSelectedCategory(categoryId);
-        setVisibleMultiplier(3);
-    };
-
-    const filteredProducts =
-        selectedCategory === 'All' || selectedCategory === 'all'
-            ? productsData
-            : productsData.filter((p) => String(p.category_id) === String(selectedCategory));
-
+    // Scroll container buttons
     const scrollLeft = () => {
-        if (scrollContainerRef.current) {
-            scrollContainerRef.current.scrollBy({ left: -200, behavior: 'smooth' });
-        }
+        scrollContainerRef.current?.scrollBy({ left: -200, behavior: 'smooth' });
     };
 
     const scrollRight = () => {
-        if (scrollContainerRef.current) {
-            scrollContainerRef.current.scrollBy({ left: 200, behavior: 'smooth' });
-        }
+        scrollContainerRef.current?.scrollBy({ left: 200, behavior: 'smooth' });
     };
 
+    // Update scroll buttons state
     const updateScrollButtonsState = () => {
         const el = scrollContainerRef.current;
         if (!el) return;
@@ -112,12 +152,38 @@ const ProductsFilter = forwardRef((props, ref) => {
         return () => el.removeEventListener('scroll', updateScrollButtonsState);
     }, [categories]);
 
+    const handleCategoryClick = (categoryId) => {
+        const newParams = new URLSearchParams(location.search);
+        newParams.set('category', categoryId);
+        navigate(`/?${newParams.toString()}`, { replace: false });
+    };
+
+    const filteredProducts =
+        categoryFromUrl.toLowerCase() === 'all'
+            ? productsData
+            : productsData.filter(
+                (p) => String(p.category_id) === String(categoryFromUrl)
+            );
+
     const openProductInNewTab = (productId) => {
         const newTab = window.open('', '_blank');
-        newTab.document.write(`
-            
-        `);
+        newTab.document.write('');
         newTab.location.href = `/product/${productId}`;
+    };
+
+    const scrollBtnStyle = {
+        backgroundColor: '#272b30',
+        color: '#d8cfe2',
+        border: 'none',
+        borderRadius: '50%',
+        width: '30px',
+        height: '30px',
+        fontSize: '18px',
+        cursor: 'pointer',
+        fontWeight: 'bold',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
     };
 
     return (
@@ -132,7 +198,16 @@ const ProductsFilter = forwardRef((props, ref) => {
                     <button
                         onClick={scrollLeft}
                         disabled={!canScrollLeft}
-                        style={{ ...scrollBtnStyle, opacity: canScrollLeft ? 1 : 0.1,visibility:canScrollLeft ? '':'hidden' ,cursor: canScrollLeft ? 'pointer' : 'default', marginRight: 8, position: 'relative', top: '15px', right: '-15px' }}
+                        style={{
+                            ...scrollBtnStyle,
+                            opacity: canScrollLeft ? 1 : 0.1,
+                            visibility: canScrollLeft ? '' : 'hidden',
+                            cursor: canScrollLeft ? 'pointer' : 'default',
+                            marginRight: 8,
+                            position: 'relative',
+                            top: '15px',
+                            right: '-15px',
+                        }}
                         aria-label="Scroll categories left"
                     >
                         ‹
@@ -161,7 +236,6 @@ const ProductsFilter = forwardRef((props, ref) => {
                             <p style={{ color: '#ccc', margin: 0 }}>Loading categories...</p>
                         ) : (
                             categories.map((category) => (
-
                                 <button
                                     key={category.category_id}
                                     onClick={() => handleCategoryClick(category.category_id)}
@@ -171,9 +245,13 @@ const ProductsFilter = forwardRef((props, ref) => {
                                         alignItems: 'center',
                                         padding: '15px 30px',
                                         backgroundColor:
-                                            String(selectedCategory) === String(category.category_id) ? '#ffffff' : '#272b30',
+                                            String(categoryFromUrl) === String(category.category_id)
+                                                ? '#ffffff'
+                                                : '#272b30',
                                         color:
-                                            String(selectedCategory) === String(category.category_id) ? '#0b0b0b' : '#d8cfe2',
+                                            String(categoryFromUrl) === String(category.category_id)
+                                                ? '#0b0b0b'
+                                                : '#d8cfe2',
                                         border: '1px solid #d8cfe2',
                                         borderRadius: '30px',
                                         cursor: 'pointer',
@@ -183,13 +261,13 @@ const ProductsFilter = forwardRef((props, ref) => {
                                         transition: 'background-color 0.2s, color 0.2s',
                                     }}
                                     onMouseEnter={(e) => {
-                                        if (String(selectedCategory) !== String(category.category_id)) {
+                                        if (String(categoryFromUrl) !== String(category.category_id)) {
                                             e.currentTarget.style.backgroundColor = '#3a3f47';
                                             e.currentTarget.style.color = '#fff';
                                         }
                                     }}
                                     onMouseLeave={(e) => {
-                                        if (String(selectedCategory) !== String(category.category_id)) {
+                                        if (String(categoryFromUrl) !== String(category.category_id)) {
                                             e.currentTarget.style.backgroundColor = '#272b30';
                                             e.currentTarget.style.color = '#d8cfe2';
                                         }
@@ -204,7 +282,15 @@ const ProductsFilter = forwardRef((props, ref) => {
                     <button
                         onClick={scrollRight}
                         disabled={!canScrollRight}
-                        style={{ ...scrollBtnStyle, opacity: canScrollRight ? 1 : 0.3, cursor: canScrollRight ? 'pointer' : 'default', marginLeft: 8, position: 'relative', top: '15px', right: '10px' }}
+                        style={{
+                            ...scrollBtnStyle,
+                            opacity: canScrollRight ? 1 : 0.3,
+                            cursor: canScrollRight ? 'pointer' : 'default',
+                            marginLeft: 8,
+                            position: 'relative',
+                            top: '15px',
+                            right: '10px',
+                        }}
                         aria-label="Scroll categories right"
                     >
                         ›
@@ -244,43 +330,34 @@ const ProductsFilter = forwardRef((props, ref) => {
                         style={{
                             justifyContent: 'center',
                             alignItems: 'center',
-                            marginTop: '1.5rem',
+                            marginTop: '2rem',
                             position: 'absolute',
-                            left: '50%',
-                            marginBottom: '4rem',
-                            padding: '12px 30px',
-                            backgroundColor: '#ffffff',
-                            color: '#1e2126',
-                            fontWeight: 'bold',
-                            borderRadius: '30px',
-                            border: 'none',
+                            left: '53%',
+                            transform: 'translateX(-50%)',
+                            padding: '10px 25px',
+                            border: '1px solid #bcb6b6',
+                            borderRadius: '5px',
+                            backgroundColor: 'transparent',
                             cursor: 'pointer',
+                            color: '#bcb6b6',
+                            transition: 'all 0.3s',
+
+                        }}
+                        onMouseEnter={(e) => {
+                            e.currentTarget.style.backgroundColor = '#6c63ff';
+                            e.currentTarget.style.color = '#fff';
+                        }}
+                        onMouseLeave={(e) => {
+                            e.currentTarget.style.backgroundColor = 'transparent';
+                            e.currentTarget.style.color = '#bcb6b6';
                         }}
                     >
-                        See more{' '}
-                        <span style={{ position: 'relative', top: '-0.5px', right: '-2px', fontSize: '10px' }}>
-                            ˅
-                        </span>
+                        See More
                     </button>
                 )}
             </div>
         </div>
     );
 });
-
-const scrollBtnStyle = {
-    backgroundColor: '#272b30',
-    color: '#d8cfe2',
-    border: 'none',
-    borderRadius: '50%',
-    width: '30px',
-    height: '30px',
-    fontSize: '18px',
-    cursor: 'pointer',
-    fontWeight: 'bold',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-};
 
 export default ProductsFilter;

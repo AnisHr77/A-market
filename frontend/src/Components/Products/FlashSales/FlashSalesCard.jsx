@@ -1,31 +1,33 @@
 import React, { useState } from 'react';
-import { IoIosFlash } from "react-icons/io";
 import { toast } from 'react-toastify';
 import { useCart } from '../../../Context/CartContext';
 import { useFavorites } from '../../../Context/FavoritesContext';
 import { FaRegHeart, FaHeart } from "react-icons/fa";
+import { IoIosFlash } from "react-icons/io";
 
 const FlashSalesCard = ({ item }) => {
     const { addToCart } = useCart();
     const { addFavorite, removeFavorite, isFavorite } = useFavorites();
     const [isClicked, setIsClicked] = useState(false);
 
-    const favorited = isFavorite(item.id);
+    const favorited = isFavorite(item.product_id);
 
     const toggleFavorite = (e) => {
         e.stopPropagation();
-        e.preventDefault(); // Prevent triggering the link
+        e.preventDefault();
+
         if (favorited) {
-            removeFavorite(item.id);
+            removeFavorite(item.product_id);
         } else {
             addFavorite({
-                id: item.id,
-                image_url: item.image_url,
-                name: item.name,
+                id: item.product_id,
+                image: item.image_url,
+                title: item.name,
                 description: item.description,
                 price: item.price
             });
         }
+
         setIsClicked(true);
         setTimeout(() => setIsClicked(false), 150);
     };
@@ -47,7 +49,7 @@ const FlashSalesCard = ({ item }) => {
         width: '20px',
         height: '20px',
         left: '172px',
-        top: '-177px',
+        top: '-178px',
         cursor: 'pointer',
         transition: 'transform 0.2s ease, color 0.2s ease',
         transform: isClicked ? 'scale(1.4)' : 'scale(1)',
@@ -56,13 +58,13 @@ const FlashSalesCard = ({ item }) => {
 
     return (
         <a
-            href={`/product/${item.id}`}
+            href={`/product/${item.product_id}`}
             target="_blank"
             rel="noopener noreferrer"
             style={{ textDecoration: 'none', color: 'inherit' }}
         >
-            <div className="ContainerCard" style={{ cursor: 'pointer' }}>
-                <div className='RecommendationCard'>
+            <div className="ContainerCard">
+                <div className='RecommendationCard' style={{ cursor: 'pointer', position: 'relative' }}>
                     <div>
                         <img src={item.image_url} alt={item.name} />
                         {favorited ? (
@@ -73,44 +75,64 @@ const FlashSalesCard = ({ item }) => {
                     </div>
 
                     <div style={{ position: 'relative', top: '-50px' }}>
-                        <div style={{ display: "flex", position: 'relative', top: '35px', marginBottom: '30px' }}>
+                        {/* Flash bar and icon */}
+                        <div style={{
+                            display: "flex",
+                            position: 'relative',
+                            top: '35px',
+                            marginBottom: '3rem'
+                        }}>
                             <div style={{
                                 position: 'relative',
                                 width: '50%',
                                 height: '3px',
                                 backgroundColor: 'white',
-                                marginBottom:'8px'
+                                marginBottom: '0.5rem'
                             }}>
                                 <IoIosFlash style={{
                                     position: 'absolute',
                                     top: '-8px',
                                     right: '-10px',
                                     height: '20px',
-                                    width: '20px',
-                                    marginBottom:'8px'
+                                    width: '20px'
                                 }} />
                             </div>
-                            <span style={{ position: "relative", top: '-5px', left: '25px', fontSize: '13px' }}>{item.Timer}</span>
                         </div>
 
-                        <p style={{ position:'relative',top:'5px',fontSize: '13px', fontWeight: 'bold' }}>{item.description}</p>
+                        <p style={{ fontSize: '13px', fontWeight: 'bold' }}>{item.description}</p>
 
                         <div className='Prices'>
-                            <p style={{ position: 'relative', top: '-10px' }}>Now ${item.price}</p>
-                            <p style={{ color: 'grey', textDecoration: 'line-through', position: 'relative', top: '-10px' }}> ${item.old_price}</p>
+                            <p style={{ fontSize: '13.5px', position: 'relative', top: '-12px' }}>
+                                Now ${item.price}
+                            </p>
+                            {item.old_price && (
+                                <p style={{
+                                    fontSize: '13.5px',
+                                    color: 'grey',
+                                    textDecoration: 'line-through',
+                                    position: 'relative',
+                                    top: '-12px'
+                                }}>
+                                    ${item.old_price}
+                                </p>
+                            )}
                             <button
-                                style={{ width: '70px', height: '30px', position: 'relative', borderRadius: '20px', border: 'none' }}
                                 onClick={handleAddToCart}
+                                style={{ width: '70px', height: '30px', borderRadius: '20px', border: 'none' }}
                             >
                                 Add
                             </button>
                         </div>
 
                         <div className="Sold">
-                            <div>{item.discount_percent}%  Off</div>
-
+                            <div>{item.visits} views</div>
+                            <div>{item.discount_percent}% off</div>
                         </div>
 
+                        <div style={{ display: 'flex' }} className="Statistiques">
+                            <div>★</div>
+                            <div style={{ position: 'relative', top: '2px' }}>{item.quantity} in stock</div>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -8,3 +8,7 @@ html {
     color: white;
 
 }
+html, body {
+    scroll-behavior: auto !important; /* disables smooth scrolling on load */
+    overflow-anchor: none; /* disables scroll anchoring that causes jumps */
+}
