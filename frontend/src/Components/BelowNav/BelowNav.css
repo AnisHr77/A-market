@@ -1,0 +1,148 @@
+
+html {
+    scroll-behavior: smooth;
+}
+body {
+    overflow-x: hidden;
+}
+
+
+#Recomendations, #NewItems, #FlashSales, #SupperOffers,#BigSaves {
+    width: 100%;
+    max-width: 100vw;
+    box-sizing: border-box;
+    overflow-x: hidden;
+}
+
+
+.below-nav{
+    position: Absolute;
+
+    top: 6rem;
+    right: -1.3rem;
+
+
+    width: 95%;
+    height: 30px;
+    box-sizing: border-box;
+}
+.container-BelowNav {
+    text-decoration: none;
+    color: white;
+
+
+    position: relative;
+    justify-content: space-evenly;
+
+
+
+
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+    box-sizing: border-box;
+
+}
+.container-BelowNav a {
+    color: white;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+
+
+    font-size: 18px;
+    font-weight: bold;
+    font-family: "Plus Jakarta sans";
+    white-space: nowrap;
+    padding: 5px 10px;
+    border-radius: 8px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+.container-BelowNav a:hover {
+    background-color: rgba(255, 255, 255, 0.1); /* خلفية شفافة فاتحة */
+    color: #00f7ff;
+    cursor: pointer;
+}
+
+@media (max-width: 490px) {
+
+    .below-nav {
+        display: none;
+
+    }
+
+
+
+
+
+
+
+}
+@media (min-width: 850px) and (max-width: 1170px)
+{
+    .below-nav{
+
+        width: 90%;
+        height: 2rem;
+        position: Absolute;
+        top: 4.5rem;
+        right: 0px;
+
+
+
+
+
+    }
+    .container-BelowNav {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        margin:auto;
+        display: flex;
+        align-items: center;
+        gap: 0.8rem;
+
+
+    }
+    .container-BelowNav a{
+        width: 200px;
+        font-size: 13px;
+        font-weight: bold;
+
+    }
+
+
+}
+@media (min-width: 490px) and (max-width: 850px) {
+    .below-nav {
+
+        width: 90%;
+        height: 2rem;
+        position: Absolute;
+        top: 3.2rem;
+        right: 0px;
+
+
+    }
+
+    .container-BelowNav {
+        position: relative;
+        width: 100%;
+        height: 100%;
+
+        display: flex;
+        align-items: center;
+        gap: 0.4rem;
+
+
+    }
+
+    .container-BelowNav a {
+        width: 200px;
+        font-size: 10px;
+        font-weight: bold;
+
+    }
+}

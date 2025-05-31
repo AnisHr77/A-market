@@ -1,0 +1,308 @@
+.login-auth-container {
+    max-width: 500px;
+    margin: 50px auto;
+    padding: 20px;
+    font-family: 'Tajawal', sans-serif;
+}
+
+.login-auth-container * {
+    box-sizing: border-box;
+}
+
+.login-form-container {
+    background: white;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.login-title {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #2c3e50;
+}
+
+.login-error {
+    background-color: #ffebee;
+    color: #c62828;
+    padding: 15px;
+    border-radius: 4px;
+    margin-bottom: 15px;
+    text-align: center;
+    border: 1px solid #ffcdd2;
+    animation: slideIn 0.5s ease-out, shake 0.5s ease-in-out;
+    position: relative;
+    overflow: hidden;
+}
+
+.login-success {
+    background-color: #e8f5e9;
+    color: #2e7d32;
+    padding: 15px;
+    border-radius: 4px;
+    margin-bottom: 15px;
+    text-align: center;
+    border: 1px solid #c8e6c9;
+    animation: slideIn 0.5s ease-out, bounce 0.5s ease-in-out;
+    position: relative;
+    overflow: hidden;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+    20%, 40%, 60%, 80% { transform: translateX(5px); }
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+    40% { transform: translateY(-10px); }
+    60% { transform: translateY(-5px); }
+}
+
+.login-error::before,
+.login-success::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+.login-form .login-input,
+.login-form .login-select,
+.login-form .login-button {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+.login-form .login-input::placeholder {
+    text-align: left;
+}
+
+.login-form .login-select {
+    text-align: left;
+    padding-left: 12px;
+    background-color: white;
+    cursor: pointer;
+}
+
+.login-form .login-select:focus {
+    outline: none;
+    border-color: #2c3e50;
+}
+
+.login-form .login-select option {
+    padding: 10px;
+}
+
+.login-form .login-input[type="text"],
+.login-form .login-input[type="email"],
+.login-form .login-input[type="password"],
+.login-form .login-input[type="tel"],
+.login-form .login-input[type="number"] {
+    text-align: left;
+    direction: ltr;
+    padding-left: 15px;
+}
+
+.login-form .login-button {
+    background-color: #2c3e50;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.login-form .login-button:hover {
+    background-color: #1a252f;
+}
+
+.login-switch-text {
+    text-align: center;
+    margin-top: 15px;
+    color: #2c3e50;
+    font-size: 14px;
+}
+
+.login-link {
+    color: #3498db;
+    text-decoration: none;
+    font-weight: bold;
+    margin-left: 5px;
+}
+
+.login-link:hover {
+    text-decoration: underline;
+}
+
+.login-password-container {
+    position: relative;
+    width: 100%;
+}
+
+.login-password-container .login-input {
+    width: 100%;
+    padding-left: 40px;
+}
+
+.login-file-container {
+    text-align: center;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.login-file-label {
+    display: inline-block;
+    padding: 12px 24px;
+    background-color: #2c3e50;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-bottom: 10px;
+}
+
+.login-file-label:hover {
+    background-color: #1a252f;
+}
+
+.login-file-input {
+    display: none;
+}
+
+.login-image-preview {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin: 10px auto;
+    border: 3px solid #2c3e50;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+/* User Dropdown Styles */
+.user-dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.user-dropdown-content {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 100%;
+    background-color: white;
+    min-width: 220px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+    border-radius: 8px;
+    padding: 8px 0;
+    z-index: 1000;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+}
+
+.user-dropdown-content.show,
+.user-dropdown:hover .user-dropdown-content {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.nav-hover-effect {
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.nav-hover-effect:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+.dropdown-item {
+    padding: 12px 20px;
+    display: flex;
+    align-items: center;
+    color: #2c3e50;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+}
+
+.dropdown-item:hover {
+    background-color: #f8f9fa;
+    color: #3498db;
+}
+
+.dropdown-item i {
+    margin-right: 10px;
+    width: 20px;
+    text-align: center;
+    font-size: 16px;
+}
+
+.dropdown-divider {
+    height: 1px;
+    background-color: #eee;
+    margin: 8px 0;
+}
+
+/* Animation for dropdown items */
+.dropdown-item {
+    opacity: 0;
+    transform: translateX(-10px);
+    animation: slideIn 0.3s ease forwards;
+}
+
+.dropdown-item:nth-child(1) { animation-delay: 0.1s; }
+.dropdown-item:nth-child(2) { animation-delay: 0.15s; }
+.dropdown-item:nth-child(3) { animation-delay: 0.2s; }
+.dropdown-item:nth-child(4) { animation-delay: 0.25s; }
+.dropdown-item:nth-child(5) { animation-delay: 0.3s; }
+.dropdown-item:nth-child(7) { animation-delay: 0.35s; }
+
+@keyframes slideIn {
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+} 

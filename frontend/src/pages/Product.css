@@ -1,0 +1,347 @@
+
+.asket-product-page{
+    background-color: rgb(44, 47, 53) !important;
+}
+.image-section {
+    width: 480px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.asket-product{
+    display: flex;
+    gap: 0.5rem;
+    background-color: #f3f3f3;
+    padding: 2rem;
+    border-radius: 0.3rem;
+}
+.main-image {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+
+    image-rendering: auto;
+}
+
+.image-dots {
+    margin-top: 15px;
+    display: flex;
+    gap: 8px;
+}
+
+.image-dots button {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    border: none;
+    background-color: #555555;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.image-dots button.active {
+    background-color: #000;
+}
+
+/* INFO SECTION */
+.info-section {
+    color: black;
+    width: 480px;
+    display: flex;
+    flex-direction: column;
+    background-color: #e6e6e6;
+    padding: 2rem;
+    border-left: 1px solid #e0e0e0;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.03);
+    box-sizing: border-box;
+}
+
+.info-section h2 {
+    font-size: 26px;
+    margin-bottom: 0.5rem;
+}
+
+.price {
+    font-size: 22px;
+    font-weight: bold;
+    color: #111;
+    margin-bottom: 1rem;
+}
+
+.color-selector {
+    margin-bottom: 1rem;
+    /* If you want to add colors later, style here */
+}
+
+.selectors label {
+    display: block;
+    margin-bottom: 1rem;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.selectors select {
+    width: 100%;
+    padding: 0.5rem;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-top: 0.3rem;
+}
+
+.add-to-cart {
+    background-color: #191818;
+    color: white;
+    padding: 1rem;
+    font-weight: bold;
+    border: none;
+    width: 100%;
+    margin-top: 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.add-to-cart:hover {
+    background-color: #ececec;
+}
+
+.delivery {
+    margin: 0.8rem 0 1.5rem;
+    color: #555;
+    font-size: 14px;
+}
+
+/* Tabs styles */
+.tabs {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.tabs button {
+    background: none;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+    padding-bottom: 6px;
+    border-bottom: 2px solid transparent;
+    font-size: 15px;
+    transition: border-color 0.3s ease;
+}
+
+.tabs button:hover {
+    border-color: #666;
+}
+
+.tabs .active-tab {
+    border-color: #000;
+}
+
+.tab-content {
+    color: #333;
+    font-size: 14px;
+    line-height: 1.6;
+}
+.asket-product-page {
+    display: flex;
+    font-family: 'Helvetica Neue', sans-serif;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 4rem 2rem;
+    background-color: rgba(255, 255, 255, 0.76);
+    gap: 2rem;
+    box-sizing: border-box;
+    min-height: 80vh;
+}
+
+.image-section {
+    width: 480px;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.main-image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+    background-color: white;
+    image-rendering: auto;
+}
+
+
+
+.info-section {
+    width: 480px;
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Soft shadow */
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    color: #000;
+}
+
+.info-section h2 {
+    font-size: 26px;
+    margin-bottom: 0.5rem;
+}
+
+.price {
+    font-size: 22px;
+    font-weight: bold;
+    color: #111;
+    margin-bottom: 1rem;
+}
+
+.color-selector {
+    margin-bottom: 1rem;
+    /* Add color swatches styling here if needed */
+}
+
+.selectors label {
+    display: block;
+    margin-bottom: 1rem;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.selectors select {
+    width: 100%;
+    padding: 0.5rem;
+    font-size: 14px;
+    border: 1px solid #c8c4c4;
+    border-radius: 4px;
+    margin-top: 0.3rem;
+}
+
+.add-to-cart {
+    background-color: #0b0a0a;
+    color: white;
+    padding: 1rem;
+    font-weight: bold;
+    border: none;
+    width: 100%;
+    margin-top: 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.add-to-cart:hover {
+    background-color: #151515;
+}
+
+.delivery {
+    margin: 0.8rem 0 1.5rem;
+    color: #555;
+    font-size: 14px;
+}
+
+/* Tabs styles */
+.tabs {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.tabs button {
+    background: none;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+    padding-bottom: 6px;
+    border-bottom: 2px solid transparent;
+    font-size: 15px;
+    transition: border-color 0.3s ease;
+}
+
+.tabs button:hover {
+    border-color: #666;
+}
+
+.tabs .active-tab {
+    border-color: #000;
+}
+
+.tab-content {
+    color: #333;
+    font-size: 14px;
+    line-height: 1.6;
+}
+.info-section {
+    width: 480px;
+    background-color: #fff; /* White box */
+    padding: 2rem;
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Soft shadow */
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    color: #000;
+}
+
+@media (max-width: 1024px) {
+    .asket-product-page {
+        flex-direction: column;
+        padding: 2rem 1rem;
+        align-items: center;
+    }
+
+    .asket-product {
+        flex-direction: column;
+        padding: 1.5rem;
+        width: 100%;
+    }
+
+    .image-section,
+    .info-section {
+        width: 100%;
+        max-width: 600px;
+    }
+}
+
+@media (max-width: 600px) {
+    .asket-product-page {
+        padding: 1rem;
+    }
+
+    .asket-product {
+        padding: 1rem;
+        gap: 1rem;
+    }
+
+    .info-section {
+        padding: 1rem;
+    }
+
+    .tabs {
+        flex-wrap: wrap;
+        gap: 0.5rem;
+    }
+
+    .tabs button {
+        font-size: 14px;
+    }
+
+    .price {
+        font-size: 20px;
+    }
+
+    .info-section h2 {
+        font-size: 22px;
+    }
+
+    .add-to-cart {
+        padding: 0.8rem;
+        font-size: 14px;
+    }
+}
+

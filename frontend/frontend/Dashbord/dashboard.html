@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A+ MARKET Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .iframe-container {
+            width: 100%;
+            height: calc(100vh - 80px);
+            position: relative;
+        }
+        .iframe-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        .loading-message {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: #666;
+        }
+        .section {
+            display: none;
+        }
+        .section.active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="logo-container">
+                <i class="fas fa-store logo-icon"></i>
+                <h1 class="logo-text">A+ MARKET</h1>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <ul>
+                    <li class="nav-item active" onclick="showSection('analytics', 3000)">
+                        <i class="fas fa-chart-line"></i>
+                        <span>Analytics</span>
+                    </li>
+                    <li class="nav-item" onclick="showSection('login', 3006)">
+                        <i class="fas fa-sign-in-alt"></i>
+                        <span>Login</span>
+                    </li>
+                    <li class="nav-item" onclick="showSection('products', 3003)">
+                        <i class="fas fa-box-open"></i>
+                        <span>Products</span>
+                    </li>
+                    <li class="nav-item" onclick="showSection('orders', 3005)">
+                        <i class="fas fa-truck"></i>
+                        <span>Orders</span>
+                    </li>
+                    <li class="nav-item" onclick="showSection('customize', 3001)">
+                        <i class="fas fa-paint-brush"></i>
+                        <span>Customize</span>
+                    </li>
+                    <li class="nav-item" onclick="showSection('chat', 3004)">
+                        <i class="fas fa-comments"></i>
+                        <span>Chat</span>
+                    </li>
+                    <li class="nav-item" onclick="showSection('staff', 3002)">
+                        <i class="fas fa-users"></i>
+                        <span>Staff</span>
+                    </li>
+                </ul>
+            </nav>
+
+            <div class="user-profile">
+                <div class="user-avatar-gradient"></div>
+                <div class="user-info">
+                    <span class="user-name">Lafdal</span>
+                    <span class="user-role">Admin</span>
+                </div>
+                <i class="fas fa-cog"></i>
+            </div>
+        </aside>
+        
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <header class="top-bar">
+                <div class="search-bar">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Search here...">
+                </div>
+                <div class="notifications">
+                    <i class="fas fa-bell"></i>
+                    <span class="notification-badge">3</span>
+                </div>
+            </header>
+            
+            <div class="content-area">
+                <!-- Dynamic iframe sections will be created here -->
+                    </div>
+        </main>
+                </div>
+                
+    <script>
+        // Function to create and show a section
+        function showSection(sectionName, port) {
+            // Update active nav item
+            document.querySelectorAll('.nav-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            event.currentTarget.classList.add('active');
+
+            // Hide all sections
+            document.querySelectorAll('.section').forEach(section => {
+                section.classList.remove('active');
+            });
+
+            // Create or get section
+            let section = document.getElementById(sectionName);
+            if (!section) {
+                section = document.createElement('div');
+                section.id = sectionName;
+                section.className = 'section';
+                
+                // Create loading message with unique ID
+                const loadingId = `${sectionName}-loading`;
+                
+                // Skip loading message for products section
+                if (sectionName === 'products') {
+                    section.innerHTML = `
+                        <div class="iframe-container">
+                            <iframe 
+                                src="http://localhost:${port}"
+                                style="width: 100%; height: 100%; border: none;">
+                    </iframe>
+                </div>
+                    `;
+                } else {
+                    section.innerHTML = `
+                        <div class="iframe-container">
+                            <div class="loading-message" id="${loadingId}">
+                        <div class="loading-spinner"></div>
+                                <p>Loading ${sectionName}...</p>
+                    </div>
+                            <iframe 
+                                src="http://localhost:${port}"
+                                onload="handleIframeLoaded('${loadingId}')"
+                                onerror="handleIframeError('${loadingId}', '${sectionName}', ${port})">
+                            </iframe>
+                </div>
+                    `;
+                }
+                document.querySelector('.content-area').appendChild(section);
+            }
+
+            // Show the section
+            section.classList.add('active');
+        }
+
+        // Function to handle iframe loaded successfully
+        function handleIframeLoaded(loadingId) {
+            const loadingElement = document.getElementById(loadingId);
+            if (loadingElement) {
+                loadingElement.style.display = 'none';
+            }
+        }
+
+        // Function to handle iframe error
+        function handleIframeError(loadingId, sectionName, port) {
+            const loadingElement = document.getElementById(loadingId);
+            if (loadingElement) {
+                loadingElement.innerHTML = `
+                    <div style="color: #dc2626; text-align: center;">
+                        <i class="fas fa-exclamation-circle" style="font-size: 48px; margin-bottom: 16px;"></i>
+                        <p>Error loading ${sectionName}</p>
+                        <p style="font-size: 14px; color: #666;">Please check if the service is running on port ${port}</p>
+                    </div>
+                `;
+            }
+        }
+
+        // Show analytics section by default
+        document.addEventListener('DOMContentLoaded', () => {
+            showSection('analytics', 3000);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,189 @@
+.navbar-left {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 7%;
+    height: 100%;
+    background: linear-gradient(to top, rgb(37, 40, 45), rgb(37, 40, 46));
+    box-shadow: 0.5px 1px 1px rgb(55, 55, 55);
+    transition: width 0.3s ease;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+
+}
+
+
+.navbar-left:hover {
+    border-top: rgba(80, 77, 77, 0.63) 0.5px solid;
+    border-right: rgba(80, 77, 77, 0.63) 0.5px solid;
+    width:15%;
+    border-radius: 5px;
+}
+.icons{
+
+    width: 100%;
+    position: relative;
+    margin-top: -1.6rem;
+
+    gap: 10px;
+    height: 100%;
+    display: flex;
+
+    align-items: center;
+    flex-direction: column;
+    margin-bottom: 2rem;
+}
+
+
+
+.Container-icones {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    width: 100%;
+
+    margin-top: 0.5rem;
+}
+
+
+.navbar-left a {
+    font-family: "Plus Jakarta Sans";
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    gap: 0.75rem;
+    padding: 0.5rem 0.75rem;
+    color: white;
+    text-decoration: none;
+    transition: background 0.2s ease;
+    border-radius: 0.5rem;
+    box-sizing: border-box;
+}
+
+.navbar-left a:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+.navbar-left:hover #ligne{
+    width: 150px;
+    position: relative;
+
+}
+.navbar-left:hover #counter{
+    position: absolute;
+    width:18px;
+    height:18px;
+    align-items: center;
+    text-align:center;
+    justify-content: center;
+    top: -15px;
+    left: 35%;
+}
+#counter{
+    position: absolute;
+    width:18px;
+    height:18px;
+    align-items: center;
+    text-align:center;
+    justify-content: center;
+    top: -15px;
+    right: 30px;
+    background: red;
+    color: white;
+    border-radius: 50%;
+    font-size: 14px;
+    line-height: 1;
+}
+
+.navbar-left a span {
+
+    display: none;
+    white-space: nowrap;
+    transition: opacity 0.3s ease;
+    width: 50px;
+}
+.navbar-left:hover a  {
+    position: relative;
+    right: 1rem;
+
+}
+.navbar-left:hover a span {
+
+    display: inline;
+    opacity: 1;
+}
+
+.logo-link {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+    padding-left: 0.5rem;
+}
+
+.logo-img,
+.logoImg {
+    width: 50px;
+    height: 50px !important;
+}
+
+
+.divider,
+#ligne {
+    width: 60px;
+    border: none;
+    height: 1px;
+    background-color: #bcbdbf;
+    transition: width 0.3s ease;
+}
+
+
+#Explore {
+    color: white;
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+}
+
+#Deliveries, #menu, #Bookmark,
+#moon, #question, #settings,
+#shoppingCart, #friends {
+    color: white;
+    width: 23px;
+    height: 23px;
+    cursor: pointer;
+}
+@media screen and (max-width: 490px) {
+    .navbar-left {
+        display: none;
+        position: fixed;
+        width: 60%;
+        height: 100%;
+        z-index: 10000;
+        background: linear-gradient(to top, rgb(37, 40, 45), rgb(37, 40, 46));
+    }
+
+    .navbar-left.active {
+        display: flex; /* show when toggled */
+    }
+
+    .menu-toggle {
+        display: flex;
+        position: fixed;
+        top: 20px;
+        left: 20px;
+        z-index: 11000;
+        gap: 20px;
+        align-items: center;
+    }
+
+    #menu,
+    #shoppingCart {
+        color: white;
+        font-size: 24px;
+        cursor: pointer;
+    }
+}
+

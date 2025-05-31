@@ -1,0 +1,30 @@
+{
+  "name": "a-market",
+  "version": "1.0.0",
+  "description": "A full-stack e-commerce platform built with:\r - **Frontend:** React.js\r - **Backend:** Node.js & Express.js\r - **Database:** (Add your database choice, e.g., MongoDB, PostgreSQL)",
+  "main": "index.js",
+  "workspaces": [
+    "frontend",
+    "backend"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AnisHr77/A-market.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/AnisHr77/A-market/issues"
+  },
+  "homepage": "https://github.com/AnisHr77/A-market#readme",
+  "dependencies": {
+    "i18next": "^25.2.0",
+    "i18next-browser-languagedetector": "^8.1.0",
+    "react-i18next": "^15.5.1"
+  }
+}

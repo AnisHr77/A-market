@@ -1,0 +1,138 @@
+.notification-container {
+    color: white;
+    padding: 2rem;
+    max-width: 600px;
+    font-family: "Microsoft PhagsPa", sans-serif;
+}
+
+.myH2-1-Notification {
+    margin-bottom: 2rem;
+    margin-top:-20px;
+    margin-left: -20px !important;
+}
+
+/* ✅ المجموعة العامة للإشعارات */
+.notifications-section {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    margin-top: 10px;
+    margin-left: -30px;
+}
+
+/* ✅ كل إشعار */
+.checkbox-group {
+    display: flex;
+    align-items: flex-start;
+    gap: 2rem;
+
+}
+
+/* ✅ شكل المربع */
+.checkbox-group input[type="checkbox"] {
+    accent-color: #6366f1; /* بنفسجي */
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    margin-top: 0.3rem;
+}
+
+/* ✅ المحتوى النصي */
+.checkbox-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.label-title {
+    font-weight: 600;
+    font-size: 1rem;
+    margin-bottom: 0.2rem;
+}
+
+.label-desc {
+    font-size: 0.9rem;
+    color: #ccc;
+}
+
+/* ✅ اختيار اللغة، العملة، البلد */
+.Line2-General {
+    display: flex;
+    gap: 2rem;
+    margin-top: 10rem;
+
+}
+
+.language select,
+.coins select,
+.country select {
+    background-color: rgba(15, 151, 250, 0.41);
+    color: white;
+    font-weight: bold;
+    font-size: 15px;
+    padding: 10px;
+    border-radius: 15px;
+    border: none;
+    cursor: pointer;
+    font-family: "Microsoft PhagsPa", sans-serif;
+}
+
+.language option,
+.coins option,
+.country option {
+    background-color: #272b2c;
+    color: white;
+    font-weight: bold;
+}
+
+.text-selectH2 {
+    margin-bottom: 0.8rem;
+}
+
+.hr1
+ {
+    border-color: rgba(37, 40, 45, 0.37);
+    width:950px;
+    position:absolute;
+    top:20rem;
+    left:12px;
+}
+.hr2{
+    border-color: rgba(37, 40, 45, 0.37);
+    width:950px;
+    position:absolute;
+    top:26rem;
+    left:12px;
+
+}
+.notification-container .notifications-section .UU{
+    display: grid;
+position: absolute;
+    gap: 1.5rem;
+
+}
+.hr3{
+    border-color: rgba(37, 40, 45, 0.37);
+    width:950px;
+    position:absolute;
+    top:18rem;
+    left:12px
+}
+@media screen and (min-width: 1300px){
+    .hr1{
+        width:1095px;
+    }
+    .hr2{
+        width:1095px;
+    }
+    .hr3{
+        width:1095px;
+    }
+    .notifications-section{
+        margin-left: 30px;
+    }
+    .Line2-General{
+        margin-left: 30px;
+    }
+
+
+}

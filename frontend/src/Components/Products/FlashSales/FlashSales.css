@@ -1,0 +1,117 @@
+.ContainerCard {
+    cursor: pointer;
+}
+
+.RecommendationCard {
+    transition: background-color 0.2s ease, padding 0.2s ease, right 0.2s ease;
+    position: relative;
+}
+
+.ContainerCard:hover .RecommendationCard {
+    background-color: rgba(251, 251, 251, 0.03);
+    scale: 1.019;
+
+
+}
+
+.ContainerCard button {
+    cursor: pointer;
+}
+
+
+
+.slider-btn {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 50%;
+    font-size: 22px;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+}
+
+
+.recommendations{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: "Plus Jakarta sans";
+    margin-left:3rem;
+    margin-bottom: 1rem;
+    border-top:1px solid #44464b;
+    overflow-x: auto;
+
+}
+
+
+
+
+.flexing {
+    width: 100%;
+    display: flex;
+
+}
+
+.slider-btn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+
+.flexing::-webkit-scrollbar {
+    display: none;
+}
+
+.RecommendationCard{
+
+    width: 200px;
+    height: 320px;
+    gap:5px;
+}
+.RecommendationCard img{
+    border-radius: 8px;
+    width: 193px;
+    height: 176px;
+}
+.Prices{
+    display: flex;
+    justify-content: space-between;
+}
+.Sold{
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px ;
+    color: #f93950;
+}
+.Statistiques{
+    font-size: 13px;
+    margin-top: 5px;
+    align-self: flex-start;
+    gap:15px;
+}
+@media screen and (max-width: 490px) {
+    .recommendations {
+        margin-left:1rem;
+
+        width: 93%;
+        overflow-x: auto;
+
+    }
+
+    .RecommendationCard {
+        padding-bottom: 1rem;
+    }
+
+    .flexing {
+        display: flex;
+        overflow-x: auto;
+        scroll-behavior: smooth;
+        gap: 48px;
+        scrollbar-width: none;
+    }
+
+    .flexing::-webkit-scrollbar {
+        display: none;
+    }
+}

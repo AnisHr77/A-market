@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login / Register</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+            direction: ltr;
+        }
+
+        .container {
+            max-width: 500px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #666;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="password"],
+        input[type="number"],
+        input[type="tel"],
+        select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .toggle-form {
+            text-align: center;
+            margin-top: 15px;
+        }
+
+        .toggle-form a {
+            color: #4CAF50;
+            text-decoration: none;
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .success-message {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 90%;
+        }
+
+        .success-message h3 {
+            margin-bottom: 1rem;
+            color: #333;
+        }
+
+        .success-message p {
+            margin-bottom: 1.5rem;
+            color: #666;
+        }
+
+        .success-message button {
+            padding: 0.5rem 1.5rem;
+            margin: 0 0.5rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: background-color 0.3s;
+        }
+
+        .success-message button:first-of-type {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        .success-message button:last-of-type {
+            background-color: #f44336;
+            color: white;
+        }
+
+        .success-message button:hover {
+            opacity: 0.9;
+        }
+
+        .profile-image-preview {
+            max-width: 200px;
+            max-height: 200px;
+            margin: 10px 0;
+            display: none;
+        }
+
+        .file-input-container {
+            position: relative;
+        }
+
+        .image-upload-placeholder {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #f0f0f0;
+            border: 1px dashed #ddd;
+            border-radius: 4px;
+        }
+
+        .upload-label {
+            display: block;
+            margin-bottom: 5px;
+            color: #666;
+        }
+
+        .preview-container {
+            position: relative;
+        }
+
+        .preview-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Login Form -->
+        <div id="login-form">
+            <h2>Login</h2>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="loginEmail">Email</label>
+                    <input type="email" id="loginEmail" required>
+                </div>
+                <div class="form-group">
+                    <label for="loginPassword">Password</label>
+                    <input type="password" id="loginPassword" required>
+                </div>
+                <button type="submit">Login</button>
+            </form>
+            <div class="toggle-form">
+                <a href="#" id="showRegister">Don't have an account? Register now</a>
+            </div>
+        </div>
+
+        <!-- Registration Form -->
+        <div id="register-form" style="display: none;">
+            <h2>Register</h2>
+            <form id="registerForm">
+                <div class="form-group">
+                    <label for="username">Full Name</label>
+                    <input type="text" id="username" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" required>
+                </div>
+                <div class="form-group">
+                    <label for="phoneNumber">Phone Number</label>
+                    <input type="tel" id="phoneNumber" required pattern="[0-9]{10}" title="Please enter a valid 10-digit phone number">
+                </div>
+                <div class="form-group">
+                    <label for="age">Age</label>
+                    <input type="number" id="age" required min="18" max="100">
+                </div>
+                <div class="form-group">
+                    <label for="wilaya">State</label>
+                    <input type="text" id="wilaya" required>
+                </div>
+                <div class="form-group">
+                    <label for="commune">City</label>
+                    <input type="text" id="commune" required>
+                </div>
+                <div class="form-group">
+                    <label for="gender">Gender</label>
+                    <select id="gender" required>
+                        <option value="">Select Gender</option>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="userType">User Type</label>
+                    <select id="userType" required>
+                        <option value="">Select User Type</option>
+                        <option value="user">User</option>
+                        <option value="admin">Admin</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <div class="file-input-container">
+                        <div class="image-upload-placeholder" id="uploadPlaceholder">
+                            <i class="fas fa-camera"></i>
+                        </div>
+                        <label for="profileImage" class="upload-label">Choose Profile Picture</label>
+                        <input type="file" id="profileImage" accept="image/*" required>
+                        <div class="preview-container">
+                            <img id="imagePreview" class="profile-image-preview" alt="Image Preview">
+                            <div class="preview-text" id="previewText"></div>
+                        </div>
+                    </div>
+                </div>
+                <button type="submit">Register</button>
+            </form>
+            <div class="toggle-form">
+                <a href="#" id="showLogin">Already have an account? Login</a>
+            </div>
+        </div>
+    </div>
+
+    <div id="overlay" class="overlay" style="display: none;">
+        <div class="success-message">
+            <h3>Confirm User Type Change</h3>
+            <p id="confirmMessage">Are you sure you want to change the user type?</p>
+            <button onclick="confirmChange()">Confirm</button>
+            <button onclick="cancelChange()">Cancel</button>
+        </div>
+    </div>
+
+    <script>
+        // معاينة الصورة الشخصية
+        document.getElementById('profileImage').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            const preview = document.getElementById('imagePreview');
+            
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    preview.src = e.target.result;
+                    preview.style.display = 'block';
+                }
+                reader.readAsDataURL(file);
+            }
+        });
+
+        function changeType(userId, currentType) {
+            const newType = currentType === 'user' ? 'admin' : 'user';
+            showConfirmDialog(userId, currentType, newType);
+        }
+
+        function showConfirmDialog(userId, currentType, newType) {
+            const confirmMessage = document.getElementById('confirmMessage');
+            confirmMessage.textContent = `Are you sure you want to change the user type from "${currentType}" to "${newType}"?`;
+            document.getElementById('overlay').style.display = 'block';
+            window.pendingChange = { userId, newType };
+        }
+
+        function confirmChange() {
+            const { userId, newType } = window.pendingChange;
+            fetch('/change-type', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ userId, type: newType })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    location.reload();
+                } else {
+                    alert('Error changing user type');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Error changing user type');
+            })
+            .finally(() => {
+                hideConfirmDialog();
+            });
+        }
+
+        function cancelChange() {
+            hideConfirmDialog();
+        }
+
+        function hideConfirmDialog() {
+            document.getElementById('overlay').style.display = 'none';
+            window.pendingChange = null;
+        }
+    </script>
+    <script src="auth.js"></script>
+</body>
+</html> 

@@ -1,0 +1,75 @@
+
+body{
+    background-color: #25282D;
+
+}
+.Setting{
+
+    width: 100%;
+
+}
+
+.dashboard{
+    display:flex;
+    gap:50px;
+
+}
+
+.dashboard--content{
+    /* background-color:#1e2126;*/
+    background: linear-gradient(200deg, rgba(0, 0, 0, 0.45), rgba(110, 110, 110, 0.11), rgba(0, 0, 0, 0.4));
+    box-shadow: 0 0 1px 2px rgba(30, 34, 39, 0.93);
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    gap:50px;
+    padding: 20px 21rem 20rem 1.7rem;
+    width:100%;
+    height:140vh;
+    position: absolute;
+    left: 298px;
+    top: 0;
+    animation: dash;
+    animation-duration:1s ;
+    animation-iteration-count: 1;
+    transition: ease;
+}
+
+
+@keyframes dash {
+    0%{
+        opacity: 0 ;
+
+    }
+
+
+    100%{
+        opacity: 10;
+
+
+
+    }
+}
+.hh{
+    background: linear-gradient(200deg, rgba(0, 0, 0, 0.46), rgba(110, 110, 110, 0.11), rgba(0, 0, 0, 0.3));
+    position:absolute;
+    top:-20px;
+    left:0;
+    height:167px;
+    width:100%;
+}
+::-webkit-scrollbar{
+    width: 8px;
+
+
+}
+::-webkit-scrollbar-track{
+    background-color: rgb(255, 255, 255);
+
+}
+
+::-webkit-scrollbar-thumb{
+    background: linear-gradient(to right, rgba(24, 23, 24, 0.85), rgba(0, 0, 0, 0.96));
+    border-radius: 5px;
+}

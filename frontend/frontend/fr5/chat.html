@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: #f0f2f5;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .chat-container {
+            width: 90%;
+            max-width: 1200px;
+            height: 90vh;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            display: flex;
+            overflow: hidden;
+        }
+
+        .users-list {
+            width: 300px;
+            background: #f8f9fa;
+            border-left: 1px solid #e9ecef;
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        .user-item {
+            padding: 15px;
+            margin-bottom: 10px;
+            background: white;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .user-item:hover {
+            background: #e3f2fd;
+            transform: translateY(-2px);
+        }
+
+        .user-item.active {
+            background: #e3f2fd;
+            border-right: 4px solid #1e88e5;
+        }
+
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #e3f2fd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: #1e88e5;
+        }
+
+        .user-info {
+            flex: 1;
+        }
+
+        .user-name {
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 4px;
+        }
+
+        .user-status {
+            font-size: 12px;
+            color: #666;
+        }
+
+        .chat-area {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .chat-header {
+            padding: 20px;
+            background: white;
+            border-bottom: 1px solid #e9ecef;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .chat-messages {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .message {
+            max-width: 70%;
+            padding: 12px 16px;
+            border-radius: 15px;
+            position: relative;
+        }
+
+        .message.sent {
+            background: #e3f2fd;
+            align-self: flex-end;
+            border-bottom-right-radius: 5px;
+        }
+
+        .message.received {
+            background: #f5f5f5;
+            align-self: flex-start;
+            border-bottom-left-radius: 5px;
+        }
+
+        .message-time {
+            font-size: 11px;
+            color: #666;
+            margin-top: 5px;
+            text-align: right;
+        }
+
+        .message-input {
+            padding: 20px;
+            background: white;
+            border-top: 1px solid #e9ecef;
+            display: flex;
+            gap: 10px;
+        }
+
+        .message-input input {
+            flex: 1;
+            padding: 12px 15px;
+            border: 1px solid #e9ecef;
+            border-radius: 25px;
+            font-size: 14px;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+
+        .message-input input:focus {
+            border-color: #1e88e5;
+        }
+
+        .message-input button {
+            padding: 12px 25px;
+            background: #1e88e5;
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .message-input button:hover {
+            background: #1565c0;
+        }
+
+        .unread-badge {
+            background: #ff4444;
+            color: white;
+            padding: 2px 6px;
+            border-radius: 10px;
+            font-size: 12px;
+            margin-right: 5px;
+        }
+
+        /* Scrollbar Styling */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 3px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+    </style>
+</head>
+<body>
+    <div class="chat-container">
+        <div class="users-list" id="usersList">
+            <!-- Users will be loaded here -->
+        </div>
+        <div class="chat-area">
+            <div class="chat-header">
+                <div class="user-avatar" id="selectedUserAvatar">U</div>
+                <div class="user-info">
+                    <div class="user-name" id="selectedUserName">Select a user to start</div>
+                    <div class="user-status">Online</div>
+                </div>
+            </div>
+            <div class="chat-messages" id="messages">
+                <!-- Messages will be loaded here -->
+            </div>
+            <div class="message-input">
+                <input type="text" id="messageInput" placeholder="Type your message here...">
+                <button onclick="sendMessage()">Send</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentUserId = null;
+
+        // Load users
+        async function loadUsers() {
+            try {
+                const response = await fetch('/api/users');
+                const users = await response.json();
+                const usersList = document.getElementById('usersList');
+                usersList.innerHTML = users
+                    .filter(user => user.user_id !== 1) // Exclude admin
+                    .map(user => `
+                        <div class="user-item" onclick="selectUser(${user.user_id}, '${user.full_name}')">
+                            <div class="user-avatar">${user.full_name.charAt(0)}</div>
+                            <div class="user-info">
+                                <div class="user-name">${user.full_name}</div>
+                                <div class="user-status">Online</div>
+                            </div>
+                            <span class="unread-badge" id="unread-${user.user_id}" style="display: none">0</span>
+                        </div>
+                    `).join('');
+            } catch (error) {
+                console.error('Error loading users:', error);
+            }
+        }
+
+        // Select user and load messages
+        async function selectUser(userId, userName) {
+            currentUserId = userId;
+            document.querySelectorAll('.user-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            event.currentTarget.classList.add('active');
+            
+            // Update header
+            document.getElementById('selectedUserName').textContent = userName;
+            document.getElementById('selectedUserAvatar').textContent = userName.charAt(0);
+            
+            await loadMessages(userId);
+            await markMessagesAsRead(userId);
+        }
+
+        // Load messages
+        async function loadMessages(userId) {
+            try {
+                const response = await fetch(`/api/messages/${userId}`);
+                const messages = await response.json();
+                const messagesContainer = document.getElementById('messages');
+                messagesContainer.innerHTML = messages.map(msg => `
+                    <div class="message ${msg.sender_id === 1 ? 'sent' : 'received'}">
+                        <div class="message-content">${msg.message_text}</div>
+                        <div class="message-time">${new Date(msg.sent_at).toLocaleTimeString()}</div>
+                    </div>
+                `).join('');
+                messagesContainer.scrollTop = messagesContainer.scrollHeight;
+            } catch (error) {
+                console.error('Error loading messages:', error);
+            }
+        }
+
+        // Send message
+        async function sendMessage() {
+            if (!currentUserId) {
+                alert('Please select a user first');
+                return;
+            }
+
+            const messageInput = document.getElementById('messageInput');
+            const message = messageInput.value.trim();
+            
+            if (!message) return;
+
+            try {
+                const response = await fetch('/api/messages', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        receiver_id: currentUserId,
+                        message_text: message
+                    })
+                });
+
+                if (response.ok) {
+                    messageInput.value = '';
+                    await loadMessages(currentUserId);
+                }
+            } catch (error) {
+                console.error('Error sending message:', error);
+            }
+        }
+
+        // Mark messages as read
+        async function markMessagesAsRead(userId) {
+            try {
+                await fetch(`/api/mark-read/${userId}`, {
+                    method: 'POST'
+                });
+                document.getElementById(`unread-${userId}`).style.display = 'none';
+            } catch (error) {
+                console.error('Error marking messages as read:', error);
+            }
+        }
+
+        // Check for unread messages
+        async function checkUnreadMessages() {
+            const users = document.querySelectorAll('.user-item');
+            for (const user of users) {
+                const userId = user.getAttribute('onclick').match(/\d+/)[0];
+                try {
+                    const response = await fetch(`/api/unread-messages/${userId}`);
+                    const data = await response.json();
+                    const badge = document.getElementById(`unread-${userId}`);
+                    if (data.count > 0) {
+                        badge.textContent = data.count;
+                        badge.style.display = 'inline';
+                    } else {
+                        badge.style.display = 'none';
+                    }
+                } catch (error) {
+                    console.error('Error checking unread messages:', error);
+                }
+            }
+        }
+
+        // Initialize
+        loadUsers();
+        setInterval(checkUnreadMessages, 5000); // Check for new messages every 5 seconds
+
+        // Handle enter key
+        document.getElementById('messageInput').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                sendMessage();
+            }
+        });
+    </script>
+</body>
+</html> 

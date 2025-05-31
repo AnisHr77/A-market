@@ -1,0 +1,104 @@
+#ImgSlider {
+    position: relative;
+    right: -3rem;
+    width: 100%;
+    max-width: 86%;
+    height: 300px;
+     /* centré horizontalement */
+    border-radius: 15px;
+    background-color: #25282d;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-image 0.5s ease-in-out;
+    z-index: 0 !important;
+}
+#BestOffers{
+
+    position: relative;
+    justify-content: center;
+    text-align: center;
+
+    margin-top: 1rem;
+    margin-bottom: -1.5rem;
+    align-items: center;
+    left: 3rem !important;
+    font-family: "Plus Jakarta sans";
+    font-size: 3rem;
+
+}
+#switcher {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 20px;
+    transform: translateY(-50%);
+}
+
+#ScrollLeft,
+#ScrollRight {
+    width: 30px;
+    height: 30px;
+    color: white;
+    cursor: pointer;
+}
+
+@media (max-width: 490px) {
+    #ImgSlider {
+        position: relative;
+        right: 0rem;
+        width: 100%;
+        max-width: 100%;
+        height: 250px;
+        margin: 4rem 0rem 0rem 0rem;
+        border-radius: 10px;
+        z-index: 0 !important;
+    }
+    #BestOffers{
+        max-width: 400px;
+        margin-top: 2rem;
+        margin-bottom: 2rem;
+
+        left: 0 !important;
+
+    }
+
+    #switcher {
+        display: none;
+    }
+}
+
+/* === Tablet (491px–768px) === */
+@media (min-width: 491px) and (max-width: 768px) {
+    #ImgSlider {
+
+        width: 80%;
+        max-width: 90%;
+        height: 220px;
+        margin: 8rem 0rem -0.5rem 4rem;
+        border-radius: 12px;
+    }
+}
+
+/* === Small Desktop (769px–1170px) === */
+@media (min-width: 769px) and (max-width: 1170px) {
+    #ImgSlider {
+        width: 84%;
+        height: 260px;
+        margin: 8rem 0rem 0rem 4rem;
+    }
+}
+
+/* === Large Screens (1171px+) === */
+@media (min-width: 1171px) {
+    #ImgSlider {
+        width: 90%;
+        height: 300px;
+        margin: 9rem auto 1rem auto;
+    }
+}

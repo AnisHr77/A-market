@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-commerce Analytics Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header Section -->
+        <div class="header">
+            <h1>E-COMMERCE ANALYTICS DASHBOARD</h1>
+            <div class="header-controls">
+                <button id="currencyToggle" class="currency-btn">
+                    <i class="fas fa-exchange-alt"></i>
+                    <span>DZD</span>
+                </button>
+                <div class="time-display" id="timeDisplay"></div>
+            </div>
+        </div>
+
+        <!-- Stats Cards -->
+        <div class="stats-cards">
+            <div class="card sales">
+                <div class="card-header">
+                    <div class="card-title">TOTAL SALES</div>
+                    <div class="card-icon sales">
+                        <i class="fas fa-dollar-sign"></i>
+                    </div>
+                </div>
+                <div class="card-value">1,250,000 DZD</div>
+                <div class="card-change positive">+12% from last month</div>
+            </div>
+
+            <div class="card orders">
+                <div class="card-header">
+                    <div class="card-title">TOTAL ORDERS</div>
+                    <div class="card-icon orders">
+                        <i class="fas fa-shopping-bag"></i>
+                    </div>
+                </div>
+                <div class="card-value">3,400</div>
+                <div class="card-change positive">+8% from last month</div>
+            </div>
+
+            <div class="card users">
+                <div class="card-header">
+                    <div class="card-title">ACTIVE USERS</div>
+                    <div class="card-icon users">
+                        <i class="fas fa-users"></i>
+                    </div>
+                </div>
+                <div class="card-value">1,850</div>
+                <div class="card-change positive">+15% from last month</div>
+            </div>
+
+            <div class="card products">
+                <div class="card-header">
+                    <div class="card-title">PRODUCTS</div>
+                    <div class="card-icon products">
+                        <i class="fas fa-boxes"></i>
+                    </div>
+                </div>
+                <div class="card-value">420</div>
+                <div class="card-change negative">-3% from last month</div>
+            </div>
+        </div>
+
+        <!-- Charts Grid -->
+        <div class="chart-grid">
+            <!-- Sales Trend Line Chart -->
+            <div class="chart-container large-chart">
+                <div class="chart-header">
+                    <h3 class="chart-title">SALES TREND</h3>
+                    <!-- Time Period Buttons -->
+                    <div class="time-period-buttons">
+                        <button class="time-period-btn active" data-period="6months">Last 6 Months</button>
+                        <button class="time-period-btn" data-period="quarter">Last Quarter</button>
+                        <button class="time-period-btn" data-period="lastmonth">Last Month</button>
+                        <button class="time-period-btn" data-period="7days">Last 7 Days</button>
+                        <button class="time-period-btn" data-period="24hours">Last 24 Hours</button>
+                    </div>
+                </div>
+                <canvas id="salesTrendChart"></canvas>
+            </div>
+
+            <!-- Order Status Chart -->
+            <div class="chart-container">
+                <div class="chart-header">
+                    <h3 class="chart-title">ORDER STATUS DISTRIBUTION</h3>
+                    <!-- Time Period Buttons -->
+                    <div class="time-period-buttons">
+                        <button class="time-period-btn active" data-period="6months">Last 6 Months</button>
+                        <button class="time-period-btn" data-period="quarter">Last Quarter</button>
+                        <button class="time-period-btn" data-period="lastmonth">Last Month</button>
+                        <button class="time-period-btn" data-period="7days">Last 7 Days</button>
+                        <button class="time-period-btn" data-period="24hours">Last 24 Hours</button>
+                    </div>
+                </div>
+                <div class="chart-content">
+                    <canvas id="orderStatusChart"></canvas>
+                </div>
+            </div>
+
+            <!-- Top Products Chart -->
+            <div class="chart-container">
+                <div class="chart-header">
+                    <h3 class="chart-title">TOP SELLING PRODUCTS</h3>
+                    <!-- Time Period Buttons -->
+                    <div class="time-period-buttons">
+                        <button class="time-period-btn active" data-period="6months">Last 6 Months</button>
+                        <button class="time-period-btn" data-period="quarter">Last Quarter</button>
+                        <button class="time-period-btn" data-period="lastmonth">Last Month</button>
+                        <button class="time-period-btn" data-period="7days">Last 7 Days</button>
+                        <button class="time-period-btn" data-period="24hours">Last 24 Hours</button>
+                    </div>
+                </div>
+                <canvas id="topProductsChart"></canvas>
+            </div>
+
+            <!-- User Acquisition Chart -->
+            <div class="chart-container">
+                <div class="chart-header">
+                    <h3 class="chart-title">USER ACQUISITION</h3>
+                    <!-- Time Period Buttons -->
+                    <div class="time-period-buttons">
+                        <button class="time-period-btn active" data-period="lastmonth">Last Month</button>
+                        <button class="time-period-btn" data-period="7days">Last 7 Days</button>
+                        <button class="time-period-btn" data-period="24hours">Last 24 Hours</button>
+                    </div>
+                </div>
+                <canvas id="userAcquisitionChart"></canvas>
+            </div>
+
+            <!-- Revenue by Category Chart -->
+            <div class="chart-container">
+                <div class="chart-header">
+                    <h3 class="chart-title">REVENUE BY CATEGORY</h3>
+                    <!-- Time Period Buttons -->
+                    <div class="time-period-buttons">
+                        <button class="time-period-btn active" data-period="6months">Last 6 Months</button>
+                        <button class="time-period-btn" data-period="quarter">Last Quarter</button>
+                        <button class="time-period-btn" data-period="lastmonth">Last Month</button>
+                        <button class="time-period-btn" data-period="7days">Last 7 Days</button>
+                        <button class="time-period-btn" data-period="24hours">Last 24 Hours</button>
+                    </div>
+                </div>
+                <div class="chart-content">
+                    <canvas id="revenueCategoryChart"></canvas>
+                </div>
+            </div>
+
+            <!-- Top States Chart -->
+            <div class="chart-container large-chart">
+                <div class="chart-header">
+                    <h3 class="chart-title">TOP PROFITABLE STATES</h3>
+                    <!-- Time Period Buttons -->
+                    <div class="time-period-buttons">
+                        <button class="time-period-btn active" data-period="6months">Last 6 Months</button>
+                        <button class="time-period-btn" data-period="quarter">Last Quarter</button>
+                        <button class="time-period-btn" data-period="lastmonth">Last Month</button>
+                        <button class="time-period-btn" data-period="7days">Last 7 Days</button>
+                        <button class="time-period-btn" data-period="24hours">Last 24 Hours</button>
+                    </div>
+                </div>
+                <canvas id="topStatesChart"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,497 @@
+/* General Body and Layout */
+.bodyIA {
+    display: flex;
+    flex-direction: column; /* ترتيب العناصر بشكل عمودي */
+    justify-content: flex-start; /* محاذاة العناصر من الأعلى */
+    align-items: center;    /* توسيط العناصر أفقياً */
+    height: 100vh; /* تعيين الارتفاع الكامل للشاشة */
+    width: 93%;
+    margin-left: 7%;
+    padding: 0;
+    background: linear-gradient(135deg, #f6f9fc 0%, #edf2f7 100%);
+    color: #2d3748;
+    font-family: 'Google Sans', Roboto, Arial, sans-serif;
+    overflow: hidden; /* منع ظهور شريط التمرير */
+}
+
+/* تنسيق الصفحة في الحالة الأولية */
+.bodyIA.initial-grok-page {
+    justify-content: center; /* توسيط المحتوى عمودياً */
+    transition: all 0.6s ease-out; /* إضافة انتقال سلس لجميع التغييرات */
+}
+
+/* تنسيق الصفحة أثناء الانتقال */
+.bodyIA.initial-grok-page.transitioning-out {
+    opacity: 0; /* إخفاء تدريجي */
+    transform: translateY(-20px); /* حركة للأعلى */
+    pointer-events: none; /* منع التفاعل أثناء الانتقال */
+}
+
+/* تنسيق الصفحة في وضع المحادثة النشط */
+.bodyIA.chat-active-page {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* توزيع المساحة بين العناصر */
+    overflow-y: hidden; /* منع التمرير العمودي */
+    width: 100%;
+    height: 100vh;
+    box-sizing: border-box;
+    padding: 0;
+}
+
+/* تنسيق محتوى الصفحة الأولية */
+.initial-grok-layout-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 80px;
+    width: 90%;
+    max-width: 960px;
+    height: auto;
+    transition: all 0.6s ease-out; /* إضافة انتقال سلس */
+}
+
+/* تنسيق رأس المحادثة */
+.chatbot-header-initial, .chatbot-header-active {
+    background-color: transparent;
+    color: #333;
+    padding: 0;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: none;
+    border-bottom: none;
+    flex-shrink: 0; /* منع تقلص العنصر */
+    flex-grow: 0; /* منع تمدد العنصر */
+}
+
+/* تنسيق رأس المحادثة في الوضع النشط */
+.chatbot-header-active {
+    width: 100%;
+    max-width: 960px;
+    padding: 16px;
+    align-self: center;
+    box-sizing: border-box;
+    position: sticky; /* تثبيت الرأس في الأعلى */
+    top: 0;
+    z-index: 10;
+    background-color: #f6f9fc;
+    box-shadow: none;
+}
+
+.myH2-AIChat {
+    margin: 0;
+    font-size: 2.5rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    color: #333;
+    /* transition لجعل حركة العنوان والأيقونة سلسة */
+    transition: transform 0.6s ease-out, opacity 0.6s ease-out;
+}
+
+/* تطبيق الانتقال على العنوان عند بدء الانتقال */
+.bodyIA.initial-grok-page.transitioning-out .initial-grok-layout-content .myH2-AIChat {
+    transform: translateY(-140px);
+    opacity: 0;
+    pointer-events: none;
+    visibility: hidden;
+}
+
+/* تنسيق العنوان */
+.myH2-AIChat .text-box {
+    padding: 0;
+    background: none;
+    border: none;
+    color: #2d3748; /* لون افتراضي للمتصفحات التي لا تدعم التدرج */
+    font-size: 2.5rem;
+    font-weight: 600;
+    position: relative;
+    display: inline-block;
+}
+
+/* تدرج النص للعنوان - طريقة متوافقة */
+.myH2-AIChat .text-box::before {
+    content: attr(data-text);
+    position: absolute;
+    left: 0;
+    top: 0;
+    background: linear-gradient(135deg, #2d3748 0%, #1a202c 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    width: 100%;
+    height: 100%;
+}
+
+/* تنسيق أيقونة العنوان */
+.myH2-AIChat .icon-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+    box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+}
+
+.myH2-AIChat .ai-icon {
+    fill: #ffffff;
+    transform: scale(1.7);
+    transition: transform 0.3s ease-in-out;
+    position: relative;
+    left: -1px; /* Adjust this value */
+    top: -0.5px;
+}
+
+/* Chatbot Messages Area - This is now a standalone div in the active state */
+.chatbot-messages-active {
+    flex: 1; /* يسمح لها بالنمو لملء المساحة المتبقية */
+    width: 100%;
+    max-width: 960px;
+    background-color: transparent;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    align-self: center;
+    padding: 20px;
+    box-sizing: border-box;
+    min-height: 0; /* مهم للسماح بالتقلص داخل flex container */
+    overflow-y: auto; /* ADDED/CONFIRMED: This is crucial for the scrollbar to appear */
+}
+
+/* Content within messages area */
+.chatbot-messages-content {
+    padding: 0; /* قم بإزالة أي حشو هنا لتجنب مشاكل التمرير */
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    background: none;
+}
+
+.chatbot-message {
+    padding: 12px 18px;
+    border-radius: 20px;
+    max-width: 70%;
+    word-wrap: break-word;
+    line-height: 1.6;
+    box-shadow: none;
+    animation: fadeIn 0.3s ease-out;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.chatbot-message .message-text {
+    direction: rtl; /* توجيه النص من اليمين إلى اليسار */
+    text-align: right; /* محاذاة النص إلى اليمين */
+    font-family: 'Segoe UI', 'Arial', sans-serif;
+    line-height: 1.8;
+}
+
+.chatbot-message h2 {
+    direction: rtl;
+    text-align: right;
+    color: #1a202c;
+    border-bottom: 2px solid #e2e8f0;
+    padding-bottom: 8px;
+    margin-bottom: 12px;
+    font-size: 1.4em;
+}
+
+.chatbot-message ul {
+    direction: rtl;
+    text-align: right;
+    border-right: 3px solid #6366f1; /* تغيير الحدود إلى اليمين */
+    border-left: none;
+    padding-right: 15px; /* تغيير الحشو إلى اليمين */
+    padding-left: 0;
+    margin: 10px 0;
+}
+
+.chatbot-message li {
+    direction: rtl;
+    text-align: right;
+    color: #4a5568;
+    margin: 8px 0;
+    padding-right: 5px;
+}
+
+.chatbot-message strong {
+    direction: rtl;
+    color: #4f46e5;
+    font-weight: 600;
+}
+
+.chatbot-message p {
+    direction: rtl;
+    text-align: right;
+    margin: 8px 0;
+}
+
+.chatbot-message.user {
+    align-self: flex-end;
+    background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+    color: #ffffff;
+    border-bottom-right-radius: 8px;
+}
+
+.chatbot-message.user .message-text {
+    color: #ffffff;
+}
+
+.chatbot-message.bot {
+    align-self: flex-start;
+    background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+    color: #2d3748;
+    border-bottom-left-radius: 8px;
+    border: 1px solid rgba(226, 232, 240, 0.8);
+}
+
+.message-time {
+    direction: ltr; /* توجيه الوقت من اليسار إلى اليمين */
+    text-align: left;
+    font-size: 0.75rem;
+    color: #94a3b8;
+    align-self: flex-end;
+}
+
+/* Typing Indicator */
+.chatbot-message.bot.typing-indicator .message-text {
+    direction: rtl;
+    text-align: right;
+    color: #6366f1;
+    font-style: italic;
+}
+
+/* Chatbot Input Area (Grok Style) - General styles */
+.chatbot-input-grok-style {
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    border-top: none;
+    position: relative;
+    box-shadow: none;
+    flex-shrink: 0; /* لمنعه من التقلص */
+    flex-grow: 0; /* لمنعه من التمدد */
+    width: 100%; /* يجب أن يملأ العرض */
+    max-width: 960px; /* نفس Max-width مثل باقي العناصر */
+    align-self: center;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* تنسيق شريط الإدخال في الحالة الأولية */
+.chatbot-input-grok-style.initial-input-layout {
+    justify-content: center;
+    max-width: 90%;
+    padding: 16px 24px;
+    background-color: transparent;
+    border-radius: 32px;
+    box-shadow: none;
+    position: static;
+    bottom: auto;
+    transition: transform 0.6s ease-out, opacity 0.6s ease-out;
+}
+
+/* تطبيق الانتقال على شريط الإدخال عند بدء الانتقال */
+.bodyIA.initial-grok-page.transitioning-out .initial-grok-layout-content .chatbot-input-grok-style.initial-input-layout {
+    transform: translateY(200px);
+    opacity: 0;
+    pointer-events: none;
+    visibility: hidden;
+}
+
+/* تنسيق شريط الإدخال في وضع المحادثة النشط */
+.chatbot-input-grok-style.chat-active-input-layout {
+    position: sticky; /* تثبيت شريط الإدخال في الأسفل */
+    bottom: 0;
+    z-index: 10;
+    background: linear-gradient(
+        to top,
+        #f6f9fc 50%,
+        rgba(246, 249, 252, 0.9) 70%,
+        rgba(246, 249, 252, 0.5) 90%,
+        rgba(246, 249, 252, 0) 100%
+    );
+    box-shadow: none;
+}
+
+.chatbot-input-grok-style .myInput-AIChat {
+    flex: 1;
+    padding: 18px 24px;
+    border: 2px solid #e2e8f0;
+    border-radius: 32px;
+    background: #ffffff;
+    color: #333;
+    font-size: 1.1rem;
+    outline: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+/* هذا سيضمن أن myInput-AIChat في الوضع الأولي لا يتمدد بمرونة */
+.chatbot-input-grok-style.initial-input-layout .myInput-AIChat {
+    flex: none;
+    width: 100%; /* fill the 100% of its parent's content-box */
+}
+
+.chatbot-input-grok-style .myInput-AIChat:focus {
+    border-color: #6366f1;
+    box-shadow: 0 4px 20px rgba(99, 102, 241, 0.15);
+}
+
+.chatbot-input-grok-style .myInput-AIChat::placeholder {
+    color: #9aa0a6;
+    font-size: 1.1rem;
+}
+
+.chatbot-input-grok-style .myBtn-AIChat {
+    padding: 16px 28px;
+    margin-bottom: 13px; /* This margin-bottom will push the button up, consider if intended */
+    background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+    color: white;
+    border: none;
+    border-radius: 32px;
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+    min-width: 100px;
+    box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+}
+
+.chatbot-input-grok-style .myBtn-AIChat:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(99, 102, 241, 0.4);
+    background: linear-gradient(135deg, #4f46e5 0%, #4338ca 100%);
+}
+
+.chatbot-input-grok-style .myBtn-AIChat:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 10px rgba(99, 102, 241, 0.2);
+}
+
+.chatbot-input-grok-style .myBtn-AIChat:disabled {
+    background: #cccccc;
+    cursor: not-allowed;
+    box-shadow: none;
+    opacity: 0.7;
+}
+
+/* Scrollbar Styles - يجب أن تطبق على .chatbot-messages-active الآن */
+.chatbot-messages-active::-webkit-scrollbar {
+    width: 8px;
+}
+
+.chatbot-messages-active::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.chatbot-messages-active::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+    border-radius: 4px;
+}
+
+.chatbot-messages-active::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(135deg, #4f46e5 0%, #4338ca 100%);
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Media Queries for responsiveness */
+@media (max-width: 768px) {
+    .myH2-AIChat {
+        font-size: 2rem;
+    }
+
+    .myH2-AIChat .icon-box {
+        width: 40px;
+        height: 40px;
+    }
+
+    .myH2-AIChat .ai-icon {
+        transform: scale(1.6);
+    }
+
+    .chatbot-input-grok-style.initial-input-layout {
+        width: 95%;
+        max-width: 450px;
+    }
+
+    .chatbot-input-grok-style .myInput-AIChat {
+        padding: 14px 20px;
+        font-size: 1rem;
+    }
+
+    .chatbot-input-grok-style .myBtn-AIChat {
+        padding: 12px 20px;
+        font-size: 1rem;
+    }
+
+    .chatbot-messages-active {
+        padding: 15px 20px;
+        animation: fadeIn 0.5s ease-in;
+    }
+}
+
+@media (max-width: 480px) {
+    .myH2-AIChat {
+        font-size: 1.8rem;
+    }
+
+    .myH2-AIChat .icon-box {
+        width: 36px;
+        height: 36px;
+    }
+
+    .myH2-AIChat .ai-icon {
+        transform: scale(1.5);
+    }
+
+    .chatbot-input-grok-style.initial-input-layout {
+        width: 100%;
+        padding: 0 10px;
+    }
+
+    .chatbot-input-grok-style .myInput-AIChat {
+        padding: 12px 16px;
+        font-size: 0.9rem;
+    }
+
+    .chatbot-input-grok-style .myBtn-AIChat {
+        padding: 10px 18px;
+        font-size: 0.9rem;
+        min-width: 80px;
+    }
+
+    .chatbot-messages-active {
+        padding: 10px 15px;
+    }
+}
+#chatbot {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    /* overflow-y: auto; */ /* This might be redundant or conflicting if bodyIA is already handling height. */
+    background-color: #000; /* This background will only be visible if #chatbot is the direct parent and bodyIA doesn't cover it */
+    color: white;
+}

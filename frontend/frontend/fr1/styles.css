@@ -1,0 +1,395 @@
+:root {
+    --primary-blue: #3a86ff;
+    --secondary-blue: #4361ee;
+    --sales-color: #4cc9f0;
+    --orders-color: #f72585;
+    --users-color: #7209b7;
+    --products-color: #4895ef;
+    --delivered-color: #4cc9f0;
+    --shipped-color: #4895ef;
+    --processing-color: #4361ee;
+    --pending-color: #3a86ff;
+    --cancelled-color: #f72585;
+    --text-dark: #2a2a2a;
+    --text-light: #6c757d;
+    --bg-light: #f8f9fa;
+    --card-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    --card-hover-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: white;
+    color: var(--text-dark);
+    min-height: 100vh;
+}
+
+.container {
+    padding: 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* Header */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.header h1 {
+    font-weight: 600;
+    font-size: 2rem;
+    color: var(--text-dark);
+}
+
+.header-controls {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.currency-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    background-color: var(--primary-blue);
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+}
+
+.currency-btn:hover {
+    background-color: var(--secondary-blue);
+    transform: translateY(-1px);
+}
+
+.currency-btn i {
+    font-size: 0.9rem;
+}
+
+.currency-btn.active {
+    background-color: var(--secondary-blue);
+}
+
+/* Time Filters */
+.time-filters {
+    display: flex;
+    gap: 0.8rem;
+    margin-bottom: 1.5rem;
+}
+
+.time-btn {
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    background-color: white;
+    border: 1px solid #e0e0e0;
+    color: var(--text-light);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+}
+
+.time-btn:hover {
+    background-color: var(--bg-light);
+}
+
+.time-btn.active {
+    background-color: var(--primary-blue);
+    color: white;
+    border-color: var(--primary-blue);
+}
+
+/* Time Period Buttons */
+.time-period-buttons {
+    display: flex;
+    gap: 3px;
+    margin-top: 4px;
+}
+
+/* Default size for all time period buttons */
+.time-period-btn {
+    padding: 8px 16px;
+    border: 1px solid #e0e0e0;
+    border-radius: 20px;
+    background-color: #ffffff;
+    color: #666;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-width: 100px;
+    text-align: center;
+}
+
+/* Smaller size for specific charts */
+#orderStatusChart ~ .time-period-buttons .time-period-btn,
+#topProductsChart ~ .time-period-buttons .time-period-btn,
+#userAcquisitionChart ~ .time-period-buttons .time-period-btn,
+#revenueCategoryChart ~ .time-period-buttons .time-period-btn {
+    padding: 1px 4px;
+    font-size: 7px;
+    min-width: 35px;
+    border-radius: 6px;
+    font-weight: 400;
+    letter-spacing: -0.3px;
+    border-width: 0.8px;
+}
+
+.time-period-btn:hover {
+    background-color: #f5f5f5;
+    border-color: #d0d0d0;
+    transform: translateY(-1px);
+}
+
+.time-period-btn.active {
+    background-color: #3a86ff;
+    color: #ffffff;
+    border-color: #3a86ff;
+    box-shadow: 0 1px 2px rgba(58, 134, 255, 0.2);
+}
+
+/* Stats Cards */
+.stats-cards {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    margin-bottom: 2.5rem;
+}
+
+.card {
+    background-color: white;
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: var(--card-shadow);
+    transition: all 0.3s ease;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--card-hover-shadow);
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.card-title {
+    font-size: 1rem;
+    color: var(--text-light);
+    font-weight: 400;
+}
+
+.card-icon {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+
+.card-icon.sales {
+    background-color: var(--sales-color);
+}
+
+.card-icon.orders {
+    background-color: var(--orders-color);
+}
+
+.card-icon.users {
+    background-color: var(--users-color);
+}
+
+.card-icon.products {
+    background-color: var(--products-color);
+}
+
+.card-value {
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.card.sales .card-value {
+    color: var(--sales-color);
+}
+
+.card.orders .card-value {
+    color: var(--orders-color);
+}
+
+.card.users .card-value {
+    color: var(--users-color);
+}
+
+.card.products .card-value {
+    color: var(--products-color);
+}
+
+.card-change {
+    font-size: 0.9rem;
+    font-weight: 400;
+}
+
+.card-change.positive {
+    color: #00a86b;
+}
+
+.card-change.negative {
+    color: #ff6b6b;
+}
+
+/* Charts Grid */
+.chart-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.chart-container {
+    background-color: white;
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: var(--card-shadow);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    height: 450px;
+    position: relative;
+    margin-bottom: 2rem;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.chart-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding: 0 20px;
+}
+
+.chart-content {
+    position: relative;
+    height: 300px;
+    width: 100%;
+}
+
+/* Specific margins for certain charts */
+#salesTrendChart {
+    margin-bottom: 3rem;
+}
+
+#orderStatusChart,
+#topProductsChart {
+    margin-bottom: 3rem;
+}
+
+#userAcquisitionChart,
+#revenueCategoryChart {
+    margin-bottom: 3rem;
+}
+
+.large-chart {
+    grid-column: span 2;
+    height: 550px;
+    margin-bottom: 2rem;
+}
+
+.chart-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: #2a2a2a;
+    margin: 0;
+}
+
+/* Chart specific styles */
+#orderStatusChart,
+#revenueCategoryChart {
+    max-width: 95%;
+    margin: 0 auto;
+    height: 300px !important;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+    .stats-cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .chart-container {
+        height: 400px;
+        padding: 1.5rem;
+    }
+    
+    .large-chart {
+        height: 500px;
+    }
+
+    #orderStatusChart,
+    #revenueCategoryChart {
+        max-width: 85%;
+    }
+
+    .chart-grid {
+        gap: 1.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .stats-cards {
+        grid-template-columns: 1fr;
+    }
+    
+    .header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+    
+    .time-filters {
+        flex-wrap: wrap;
+    }
+    
+    .chart-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .large-chart {
+        grid-column: span 1;
+    }
+    
+    .chart-container {
+        height: 350px;
+        padding: 1.25rem;
+    }
+    
+    .large-chart {
+        height: 450px;
+    }
+
+    #orderStatusChart,
+    #revenueCategoryChart {
+        max-width: 80%;
+    }
+} 
