@@ -80,7 +80,7 @@ const Product = () => {
                         <p className="discount">-{parseFloat(product.discount_percent).toFixed(2)}% OFF</p>
                     )}
 
-                    <div className="category">Category: {product.category_name}</div>
+                    <div className="category" style={{background:'transparent',marginBottom:'1rem'}}>Category: {product.category_name}</div>
 
                     <div className="selectors">
                         <label>
@@ -90,7 +90,7 @@ const Product = () => {
                                 onChange={e => setSelectedSize(e.target.value)}
                             >
                                 <option value="">Choose</option>
-                                {['Gaming', 'Normal'].map(size => (
+                                {['Europian Quality', 'Local Quality','American Quality'].map(size => (
                                     <option key={size} value={size}>
                                         {size}
                                     </option>
