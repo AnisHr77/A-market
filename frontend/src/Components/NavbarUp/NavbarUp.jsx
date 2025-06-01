@@ -10,12 +10,18 @@ import Languages from"./LanguageSelect.jsx"
 import Login from './Login.jsx'
 import Notification from "./Notification";
 
+<<<<<<< HEAD
 const NavbarUp   = () => {
     const [Menu, setMenu] = useState("");
+=======
+    const NavbarUp   = () => {
+        const [Menu, setMenu] = useState("");
+>>>>>>> 39a31864d31c1a0b421962039b1217ea1a8332a9
 
     return (
         <div className="nav-bar">
             <div className="Conatiner">
+<<<<<<< HEAD
                 <Currency />
                 <Categories className="nav-hover-effect"/>
 
@@ -41,6 +47,17 @@ const NavbarUp   = () => {
                 <Languages />
                 <Notification className="nav-hover-effect"/>
                 <Login className="nav-hover-effect"/>
+=======
+            <Currency />
+            <Categories />
+
+            <SearchIA />
+             <Reorder />
+              <SearchBar />
+                <Languages />
+                <Notification/>
+                <Login />
+>>>>>>> 39a31864d31c1a0b421962039b1217ea1a8332a9
 
             </div>
         </div>

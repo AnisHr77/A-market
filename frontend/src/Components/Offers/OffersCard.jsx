@@ -11,8 +11,13 @@ export function OffersCard(props) {
         addToCart({
             id: `${props.id}-${index}`,
             category : props.category[index],
+<<<<<<< HEAD
             name: props.name[index],
             image_url: props.image_url[index],
+=======
+            title: props.title[index],
+            image: props.image[index],
+>>>>>>> 39a31864d31c1a0b421962039b1217ea1a8332a9
             countdown: props.countdown?.[index],
             saves: props.saves?.[index],
 
@@ -32,8 +37,13 @@ export function OffersCard(props) {
     const {
         category,
         icon,
+<<<<<<< HEAD
         image_url,
         name,
+=======
+        image,
+        title,
+>>>>>>> 39a31864d31c1a0b421962039b1217ea1a8332a9
         price,
         oldprice,
         countdown,
@@ -62,7 +72,11 @@ export function OffersCard(props) {
                             className={'image'}
                             key={i}
                             id={i}
+<<<<<<< HEAD
                             src={image_url[i]}
+=======
+                            src={image[i]}
+>>>>>>> 39a31864d31c1a0b421962039b1217ea1a8332a9
                             alt={`Offers-img-${i}`}
                             style={{
                                 borderRadius: '10px',
@@ -211,7 +225,11 @@ export function OffersCard(props) {
                                 marginLeft: '16px',
                                 marginRight: '16px',
                             }}>
+<<<<<<< HEAD
                                 <h5 style={{ margin: '0 0 0px 0' }}>{name[i]}</h5>
+=======
+                                <h5 style={{ margin: '0 0 0px 0' }}>{title[i]}</h5>
+>>>>>>> 39a31864d31c1a0b421962039b1217ea1a8332a9
                                 <button
                                     onClick={() => handleAddToCart(i)}
 

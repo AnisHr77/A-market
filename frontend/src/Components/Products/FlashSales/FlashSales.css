@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 .ContainerCard {
     cursor: pointer;
 }
@@ -20,6 +21,8 @@
 
 
 
+=======
+>>>>>>> 39a31864d31c1a0b421962039b1217ea1a8332a9
 .slider-btn {
     background-color: #fff;
     border: 1px solid #ccc;
@@ -66,7 +69,11 @@
 .RecommendationCard{
 
     width: 200px;
+<<<<<<< HEAD
     height: 320px;
+=======
+    height: 300px;
+>>>>>>> 39a31864d31c1a0b421962039b1217ea1a8332a9
     gap:5px;
 }
 .RecommendationCard img{

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { useState, useEffect, useRef } from 'react';
 import { IoIosNotificationsOutline } from "react-icons/io";
 import { MdOutlineNotificationsOff } from "react-icons/md";
@@ -202,3 +203,17 @@ const Notification = ({ className }) => {
 };
 
 export default Notification;
+=======
+import React from 'react'
+import { IoIosNotificationsOutline } from "react-icons/io";
+
+
+const Login = () => {
+    return (
+        <div>
+            <a href='#' ><IoIosNotificationsOutline id="notification"/> </a>
+        </div>
+    )
+}
+export default Login
+>>>>>>> 39a31864d31c1a0b421962039b1217ea1a8332a9

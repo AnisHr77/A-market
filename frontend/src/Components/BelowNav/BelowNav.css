@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 html {
     scroll-behavior: smooth;
@@ -15,16 +16,26 @@ body {
 }
 
 
+=======
+>>>>>>> 39a31864d31c1a0b421962039b1217ea1a8332a9
 .below-nav{
     position: Absolute;
 
     top: 6rem;
+<<<<<<< HEAD
     right: -1.3rem;
 
 
     width: 95%;
     height: 30px;
     box-sizing: border-box;
+=======
+    right: -1.2rem;
+
+
+    width: 94%;
+    height: 30px;
+>>>>>>> 39a31864d31c1a0b421962039b1217ea1a8332a9
 }
 .container-BelowNav {
     text-decoration: none;
@@ -40,21 +51,29 @@ body {
     height: 100%;
     width: 100%;
     display: flex;
+<<<<<<< HEAD
     align-items: center;
     padding: 0 10px;
     box-sizing: border-box;
+=======
+
+>>>>>>> 39a31864d31c1a0b421962039b1217ea1a8332a9
 
 }
 .container-BelowNav a {
     color: white;
     text-decoration: none;
+<<<<<<< HEAD
     display: flex;
+=======
+>>>>>>> 39a31864d31c1a0b421962039b1217ea1a8332a9
     align-items: center;
 
 
     font-size: 18px;
     font-weight: bold;
     font-family: "Plus Jakarta sans";
+<<<<<<< HEAD
     white-space: nowrap;
     padding: 5px 10px;
     border-radius: 8px;
@@ -70,6 +89,14 @@ body {
 
     .below-nav {
         display: none;
+=======
+
+}
+@media (max-width: 490px) {
+
+    .below-nav {
+       display: none;
+>>>>>>> 39a31864d31c1a0b421962039b1217ea1a8332a9
 
     }
 

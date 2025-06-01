@@ -32,8 +32,11 @@
 }
 
 .ButtonesCategory {
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 39a31864d31c1a0b421962039b1217ea1a8332a9
     display: flex;
     gap: 1.5rem;
     height: 55px;
@@ -47,7 +50,10 @@
     scroll-behavior: smooth;
     max-width:100%;
     margin-top: 2rem;
+<<<<<<< HEAD
     -webkit-scroll-snap-type: none;
+=======
+>>>>>>> 39a31864d31c1a0b421962039b1217ea1a8332a9
 }
 
 .ButtonesCategory::-webkit-scrollbar {
@@ -92,7 +98,10 @@
     }
     .seemore{
         display: none;
+<<<<<<< HEAD
 
+=======
+>>>>>>> 39a31864d31c1a0b421962039b1217ea1a8332a9
     }
 
 }

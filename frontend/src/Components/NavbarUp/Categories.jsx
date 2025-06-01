@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { SlArrowDown } from "react-icons/sl";
@@ -147,6 +148,33 @@ const Categories = () => {
                             </li>
                         );
                     })}
+=======
+import React, { useState } from 'react';
+import { SlArrowDown } from "react-icons/sl";
+
+const Categories = () => {
+    const [isHovered, setIsHovered] = useState(false);
+    const categories = ['Fashion', 'Laptops', 'Phones', 'Toys', 'Sports', 'Books'];
+
+    return (
+        <div
+            className="category-container"
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+            style={{ position: 'relative', display: 'inline-block' }} // Ensure it positions properly
+        >
+            <a href="#" id="categoryText">
+                Categories <SlArrowDown style={{ width: '10px', height: '10px', position: 'relative' }} />
+            </a>
+
+            {isHovered && (
+                <ul>
+                    {categories.map((category, index) => (
+                        <li key={index} id="categoryItem" style={{ padding: '5px 0' }}>
+                            {category}
+                        </li>
+                    ))}
+>>>>>>> 39a31864d31c1a0b421962039b1217ea1a8332a9
                 </ul>
             )}
         </div>

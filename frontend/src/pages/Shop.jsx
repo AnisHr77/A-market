@@ -1,6 +1,11 @@
+<<<<<<< HEAD
 import React, { useEffect, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
 import './Shop.css';
+=======
+import React from 'react'
+import './Shop.css'
+>>>>>>> 39a31864d31c1a0b421962039b1217ea1a8332a9
 import NavbarUp from "../Components/NavbarUp/NavbarUp.jsx";
 import NavbarLeft from "../Components/NavbarLeft/NavbarLeft";
 import BelowNav from "../Components/BelowNav/BelowNav.jsx";
@@ -14,6 +19,7 @@ import FlashSales from "../Components/Products/FlashSales/FlashSales";
 import ProductsFilter from "../Components/Products/Allproducts/ProductsFilter";
 import FadeInSection from "../Components/FadeInSection";
 
+<<<<<<< HEAD
 const Shop = () => {
     const location = useLocation();
 
@@ -109,4 +115,56 @@ const Shop = () => {
     );
 };
 
+=======
+
+
+const Shop = () => {
+    return (
+
+
+        <div>
+
+
+            <NavbarLeft style={{zIndex: '100 !important'}}/>
+
+            <div className="blur-overlay"></div>
+            <NavbarUp/>
+            <BelowNav/>
+            <FadeInSection delay={0.2}>
+            <Banner/>
+            </FadeInSection >
+
+            <FadeInSection delay={0.2}>
+            <Offers/>
+            </FadeInSection>
+
+            <Reminder/>
+
+           < FadeInSection delay={0.1}>
+            <Recommendations/>
+           </FadeInSection>
+
+            < FadeInSection delay={0.1}>
+            <FlashSales/>
+            </FadeInSection>
+
+            < FadeInSection delay={0.1}>
+            <BigSaves/>
+            </FadeInSection>
+
+                < FadeInSection delay={0.1}>
+            <ProductsFilter/>
+                </FadeInSection>
+
+                    < FadeInSection delay={0.1}>
+            <Footer/>
+                    </FadeInSection>
+
+
+        </div>
+
+
+    )
+}
+>>>>>>> 39a31864d31c1a0b421962039b1217ea1a8332a9
 export default Shop;

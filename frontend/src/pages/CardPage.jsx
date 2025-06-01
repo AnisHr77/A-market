@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { useState, useEffect } from 'react';
 import { useCart } from '../Context/CartContext';
 import { useNavigate } from 'react-router-dom';
@@ -5,12 +6,25 @@ import './CardPage.css';
 import { IoIosCloseCircle, IoIosArrowRoundForward } from "react-icons/io";
 import { MdOutlineKeyboardDoubleArrowRight, MdOutlineKeyboardDoubleArrowLeft } from "react-icons/md";
 import { FiShoppingCart } from "react-icons/fi";
+=======
+import React, { useState } from 'react';
+import { useCart } from '../Context/CartContext';
+import './CardPage.css';
+import { IoIosCloseCircle } from "react-icons/io";
+import { IoIosArrowRoundForward } from "react-icons/io";
+import { MdOutlineKeyboardDoubleArrowRight } from "react-icons/md";
+import { MdOutlineKeyboardDoubleArrowLeft } from "react-icons/md";
+
+
+
+>>>>>>> 39a31864d31c1a0b421962039b1217ea1a8332a9
 
 const CardPage = () => {
     const {
         cartItems,
         removeFromCart,
         increaseQuantity,
+<<<<<<< HEAD
         decreaseQuantity,
         clearCart
     } = useCart();
@@ -269,20 +283,45 @@ const CardPage = () => {
         { label: "Express Delivery", cost: 10.00 },
         { label: "Free Delivery", cost: 0.00 }
     ];
+=======
+        decreaseQuantity
+    } = useCart();
+
+    const [deliveryCost, setDeliveryCost] = useState(5.00);
+
+    const [promoCode, setPromoCode] = useState('');
+
+    const [discount, setDiscount] = useState(0);
+
+    const [sidebarOpen, setSidebarOpen] = useState(true);
+    const cartCount = cartItems.length;
+    const subtotal = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
+
+    const total = subtotal + parseFloat(deliveryCost) - discount;
+
+    const handleDeliveryChange = (event) => {
+        setDeliveryCost(event.target.value);
+    };
+>>>>>>> 39a31864d31c1a0b421962039b1217ea1a8332a9
 
     const handleApplyPromo = () => {
         if (promoCode === 'ANISHR77') {
             setDiscount(10);
         } else {
             setDiscount(0);
+<<<<<<< HEAD
         }
     };
 
+=======
+        }}
+>>>>>>> 39a31864d31c1a0b421962039b1217ea1a8332a9
 
 
 
     return (
         <div className="CardPage">
+<<<<<<< HEAD
             {cartItems.length > 0 && (
                 <button onClick={() => setSidebarOpen(!sidebarOpen)} className="sidebar-toggle">
                     {sidebarOpen ? <MdOutlineKeyboardDoubleArrowLeft /> : <MdOutlineKeyboardDoubleArrowRight />}
@@ -307,13 +346,27 @@ const CardPage = () => {
                             ← Back to Home
                         </a>
                     </div>
+=======
+            <button onClick={() => setSidebarOpen(!sidebarOpen)} className="sidebar-toggle">
+                {sidebarOpen ? <MdOutlineKeyboardDoubleArrowLeft /> : <MdOutlineKeyboardDoubleArrowRight />}
+            </button>
+
+            <div className="CardPage1">
+
+
+                {cartItems.length === 0 ? (
+                    <p>Your cart is empty.</p>
+>>>>>>> 39a31864d31c1a0b421962039b1217ea1a8332a9
                 ) : (
                     <div className={`CartProduct ${sidebarOpen ? 'with-sidebar' : 'no-sidebar'}`}>
                         <div id="mytitle">
                             <div id="shopicart">Shopping Cart</div>
                             <div id="nitem">{cartCount} Items</div>
                         </div>
+<<<<<<< HEAD
 
+=======
+>>>>>>> 39a31864d31c1a0b421962039b1217ea1a8332a9
                         <div className="conttit">
                             <h3 id="Productcr">Product</h3>
                             <div id="productcrr">
@@ -331,22 +384,39 @@ const CardPage = () => {
                                     width: '37%',
                                     color: 'white'
                                 }}>
+<<<<<<< HEAD
                                     <img src={item.image_url} alt={item.name} />
                                     <div style={{ flexDirection: 'column' }}>
                                         <h4 style={{ color: 'white' }}>{item.name}</h4>
                                         <p>{item.description}</p>
                                         <p style={{ color: 'grey' }}>{item.price}$</p>
+=======
+                                    <img src={item.image} alt={item.title}/>
+                                    <div style={{flexDirection: 'column'}}>
+                                        <h4 style={{color: 'white'}}>{item.title}</h4>
+                                        <p>{item.description}</p>
+                                        <p style={{color: 'grey'}}>{item.price}$</p>
+>>>>>>> 39a31864d31c1a0b421962039b1217ea1a8332a9
                                     </div>
                                 </div>
 
                                 <div className="quantity-container">
+<<<<<<< HEAD
                                     <button className="quantity-btn" onClick={() => decreaseQuantity(item.id)}>-</button>
                                     <span className="quantity-value">{item.quantity}</span>
                                     <button className="quantity-btn" onClick={() => increaseQuantity(item.id)}>+</button>
+=======
+                                    <button className="quantity-btn" onClick={() => decreaseQuantity(item.id)}>-
+                                    </button>
+                                    <span className="quantity-value">{item.quantity}</span>
+                                    <button className="quantity-btn" onClick={() => increaseQuantity(item.id)}>+
+                                    </button>
+>>>>>>> 39a31864d31c1a0b421962039b1217ea1a8332a9
                                 </div>
 
                                 <p id="cartprices"><strong>${(item.price * item.quantity).toFixed(2)}</strong></p>
 
+<<<<<<< HEAD
                                 <IoIosCloseCircle id="clsbtn" onClick={() => removeFromCart(item.id)} />
                             </div>
                         ))}
@@ -360,12 +430,35 @@ const CardPage = () => {
             </div>
 
             {sidebarOpen && cartItems.length > 0 && (
+=======
+                                <IoIosCloseCircle id="clsbtn" onClick={() => removeFromCart(item.id)}/>
+
+                            </div>
+
+                        ))}
+                        <a  className="cta">
+                            <span className="hover-underline-animation"> Add Cuppon Code</span>
+                            <IoIosArrowRoundForward id={'arrow'}/>
+                        </a>
+
+                    </div>
+
+                )}
+            </div>
+
+
+            {sidebarOpen && (
+>>>>>>> 39a31864d31c1a0b421962039b1217ea1a8332a9
                 <div className="SidebarRight">
                     <div>
                         <h3>Order Summary</h3>
 
                         <div className="sidebar-summary-section">
+<<<<<<< HEAD
                             <span>{cartCounter} Items</span>
+=======
+                            <span>{cartCount} Items</span>
+>>>>>>> 39a31864d31c1a0b421962039b1217ea1a8332a9
                             <span>${subtotal.toFixed(2)}</span>
                         </div>
 
@@ -373,6 +466,7 @@ const CardPage = () => {
 
                         <label className="sidebar-select-label">Shipping</label>
                         <select id="delivcart" onChange={handleDeliveryChange} value={deliveryCost}>
+<<<<<<< HEAD
                             {deliveryOptions.map((option, index) => (
                                 <option key={index} value={option.cost}>
                                     {option.label} - ${option.cost.toFixed(2)}
@@ -415,10 +509,40 @@ const CardPage = () => {
 
                         <div className="sidebar-total">
                             <span>{cartCounter} Items</span>
+=======
+                            <option value="5.00">Second Delivery - $5.00</option>
+                            <option value="10.00">Express Delivery - $10.00</option>
+                            <option value="0.00">Free Delivery - $0.00</option>
+                        </select>
+
+                        <label className="sidebar-select-label">Promo Code</label>
+                        <input
+                            id={'promo-code'}
+                            type="text"
+                            placeholder="XXXX-XXXX"
+                            maxLength={8}
+                            value={promoCode}
+                            onChange={(e) => {
+                                let input = e.target.value.toUpperCase().replace(/[^A-Z0-9]/g, "");
+                                input = input.slice(0, 8);
+                                if (input.length > 4) {
+                                    input = `${input.slice(0, 4)}${input.slice(4)}`;
+                                }
+                                setPromoCode(input);
+                            }}
+                        />
+
+                        <button className="apply-btn" onClick={handleApplyPromo}>Apply</button>
+                        {discount > 0 && <p style={{ color: 'green', fontSize: '0.9rem' }}>Discount applied: -${discount.toFixed(2)}</p>}
+
+                        <div className="sidebar-total">
+                            <span>{cartCount} Items</span>
+>>>>>>> 39a31864d31c1a0b421962039b1217ea1a8332a9
                             <span>${total.toFixed(2)}</span>
                         </div>
                     </div>
 
+<<<<<<< HEAD
                     <button className="checkout-btn" onClick={() => setShowPaymentModal(true)}>Checkout</button>
                 </div>
             )}
@@ -799,11 +923,20 @@ const CardPage = () => {
             )}
 
 
+=======
+                    <button className="checkout-btn">Checkout</button>
+                </div>
+
+
+
+            )}
+>>>>>>> 39a31864d31c1a0b421962039b1217ea1a8332a9
         </div>
     );
 };
 
 export default CardPage;
+<<<<<<< HEAD
 
 <style>
 {`
@@ -893,3 +1026,5 @@ export default CardPage;
     }
 `}
 </style>
+=======
+>>>>>>> 39a31864d31c1a0b421962039b1217ea1a8332a9

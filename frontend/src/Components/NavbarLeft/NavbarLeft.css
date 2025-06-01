@@ -4,7 +4,11 @@
     left: 0;
     width: 7%;
     height: 100%;
+<<<<<<< HEAD
     background: linear-gradient(to top, rgb(37, 40, 45), rgb(37, 40, 46));
+=======
+    background: rgb(37, 40, 45);
+>>>>>>> 39a31864d31c1a0b421962039b1217ea1a8332a9
     box-shadow: 0.5px 1px 1px rgb(55, 55, 55);
     transition: width 0.3s ease;
     z-index: 9999;
@@ -162,7 +166,11 @@
         width: 60%;
         height: 100%;
         z-index: 10000;
+<<<<<<< HEAD
         background: linear-gradient(to top, rgb(37, 40, 45), rgb(37, 40, 46));
+=======
+        background: rgb(37, 40, 45);
+>>>>>>> 39a31864d31c1a0b421962039b1217ea1a8332a9
     }
 
     .navbar-left.active {

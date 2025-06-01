@@ -1,11 +1,15 @@
 import React from 'react';
 import { useFavorites } from '../Context/FavoritesContext';
 import './Bookmark.css';
+<<<<<<< HEAD
 import { Link } from 'react-router-dom'; // If using React Router
+=======
+>>>>>>> 39a31864d31c1a0b421962039b1217ea1a8332a9
 
 const Bookmark = () => {
     const { favorites, removeFavorite } = useFavorites();
 
+<<<<<<< HEAD
     if (favorites.length === 0) {
         return (
             <div className="bookmark-empty">
@@ -32,11 +36,15 @@ const Bookmark = () => {
             </div>
         );
     }
+=======
+    if (favorites.length === 0) return <p>No favorites saved.</p>;
+>>>>>>> 39a31864d31c1a0b421962039b1217ea1a8332a9
 
     return (
         <div className="bookmark">
             <h1>Bookmarked Products</h1>
             <div className="favorites-list">
+<<<<<<< HEAD
                 {favorites.map(({ id, image, title, description, price }) => (
                     <div key={id} className="favorite-card">
                         <Link to={`/product/${id}`}>
@@ -53,6 +61,21 @@ const Bookmark = () => {
                         </button>
                     </div>
                 ))}
+=======
+
+                {favorites.map(({ id, image, title, description, price }) => (
+                    <div key={id} className="favorite-card">
+                        <img src={image} alt={title} />
+                        <h3>{title}</h3>
+                        <p>{description}</p>
+                        <p>Price: ${price}</p>
+                        <button className="remove-btn" onClick={() => removeFavorite(id)}>
+                            UnSave
+                        </button>
+                    </div>
+                ))}
+
+>>>>>>> 39a31864d31c1a0b421962039b1217ea1a8332a9
             </div>
         </div>
     );

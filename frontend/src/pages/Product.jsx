@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import './Product.css';
@@ -142,3 +143,16 @@ const Product = () => {
 };
 
 export default Product;
+=======
+import React from 'react'
+
+
+const Product = () => {
+    return (
+        <div>
+
+        </div>
+    )
+}
+export default Product
+>>>>>>> 39a31864d31c1a0b421962039b1217ea1a8332a9

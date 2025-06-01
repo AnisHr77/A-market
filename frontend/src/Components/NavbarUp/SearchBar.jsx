@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { FaSearch, FaHistory, FaTimes } from "react-icons/fa";
@@ -174,3 +175,23 @@ const SearchBar = () => {
 };
 
 export default SearchBar;
+=======
+import React from 'react'
+import { FaSearch } from "react-icons/fa"
+import {useState , useEffect} from "react";
+
+const SearchBar = () => {
+    const [search, setSearch] = useState('')
+
+
+    return (
+        <div className='input-wrapper'>
+            <FaSearch id="search-icon"  />
+            <input placeholder="Type to Search..."
+                   value={search}
+                   onChange={(e) => setSearch(e.target.value)} />
+        </div>
+    )
+}
+export default SearchBar
+>>>>>>> 39a31864d31c1a0b421962039b1217ea1a8332a9

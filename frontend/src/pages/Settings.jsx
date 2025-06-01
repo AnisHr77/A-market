@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 import NavBarLeftOfSetting from "../pages/ComponentOfSetting/NavBarLeftOfSetting/NavBarLeftOfSetting.jsx";
 import HeaderContent from "../pages/ComponentOfSetting/HeaderContent/HeaderContent.jsx";
@@ -33,3 +34,15 @@ function Setting(){
 
 }export default Setting;
 
+=======
+import React from 'react'
+
+const Settings = () => {
+    return (
+        <div>
+
+        </div>
+    )
+}
+export default Settings
+>>>>>>> 39a31864d31c1a0b421962039b1217ea1a8332a9

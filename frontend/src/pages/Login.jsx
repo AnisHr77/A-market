@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Login.css';
@@ -576,3 +577,16 @@ const Login = () => {
 };
 
 export default Login;
+=======
+import React from 'react'
+import Loginpage from '../Components/Login/LoginPage'
+const Login = () => {
+    return (
+        <div>
+            <Loginpage />
+
+        </div>
+    )
+}
+export default Login
+>>>>>>> 39a31864d31c1a0b421962039b1217ea1a8332a9

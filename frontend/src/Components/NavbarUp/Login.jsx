@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { useState, useEffect, useRef } from 'react';
 import { RiLogoutCircleRLine } from "react-icons/ri";
 import { useNavigate } from 'react-router-dom';
@@ -103,3 +104,21 @@ const Login = () => {
 };
 
 export default Login;
+=======
+import React from 'react'
+import { RiAccountCircleLine } from "react-icons/ri";
+import { IoIosNotificationsOutline } from "react-icons/io";
+
+
+
+const Login = () => {
+    return (
+        <div>
+
+            <a href="/Login"><RiAccountCircleLine id="account-icon" /></a>
+
+            </div>
+    )
+}
+export default Login
+>>>>>>> 39a31864d31c1a0b421962039b1217ea1a8332a9

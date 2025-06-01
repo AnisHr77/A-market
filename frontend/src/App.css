@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 body{
   background-color: rgba(30 ,33,38,1);
   margin: 0;
@@ -6,3 +7,121 @@ body{
   font-family: "Plus Jakarta ";
   width: 100vw;
 }
+=======
+body {
+  background-color: rgba(30, 33, 38, 1);
+  margin: 0;
+  overflow-x: hidden;
+  padding: 0;
+  font-family: "Plus Jakarta";
+  width: 100vw;
+  transition: background-color 0.3s ease; /* Add smooth transition */
+}
+
+.light-mode {
+  background-color: #ffffff; /* Lighter background for light mode */
+  color: #000000;
+}
+
+.dark-mode {
+  background-color: rgba(30, 33, 38, 1); /* Your original dark color */
+  color: #ffffff;
+}
+
+/* Navbar styles */
+.navbar-left {
+  transition: background-color 0.3s ease; /* Smooth transition */
+}
+
+/* Dark mode specific styles */
+.dark-mode .navbar-left {
+  background-color: #ffffff;
+}
+
+.dark-mode .icons a {
+  color: #ffffff;
+}
+
+.dark-mode .icons a:hover {
+  background-color: #626262;
+}
+
+/* Light mode specific styles */
+.light-mode .navbar-left {
+  background-color: #ffffff;
+  border-right: 1px solid #e0e0e0; /* Add subtle border */
+}
+
+.light-mode .icons a {
+  color: #ffffff; /* Dark text for light mode */
+}
+
+
+
+/* Theme toggle button */
+.theme-toggle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.theme-toggle:hover {
+  background-color: rgb(255, 0, 0);
+}
+
+.dark-mode .theme-toggle:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.dark-mode .navbar-left{
+background-color: rgb(38, 41, 46);
+
+}
+
+.light-mode .navbar-left{
+color: #ffffff;
+
+}
+
+
+.light-mode .offersCard{
+background-color: #000000;
+color: #ffffff;
+}
+
+.light-mode .Choosingcont { 
+background-color: #000000;
+color: #ffffff;
+}
+
+.light-mode .below-nav a {
+  color: #000000;
+}
+
+.light-mode .Conatiner{
+background-color: #000000;
+}
+
+.light-mode .Footer{
+background-color: #000000;
+color: #ffffff;
+}
+
+
+.light-mode .Container-icones{
+background-color: #1f1f1f;
+}
+
+.light-mode .Container-icones{
+background-color: #1f1f1f;
+}
+
+.light-mode .navbar-left{
+  background-color: #1f1f1f;
+}
+
+>>>>>>> 39a31864d31c1a0b421962039b1217ea1a8332a9

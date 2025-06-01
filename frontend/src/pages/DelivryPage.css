@@ -1,3 +1,8 @@
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 39a31864d31c1a0b421962039b1217ea1a8332a9
 .DelivryPage {
     background-color: #f7f6f4;
     width: 100vw;
@@ -79,6 +84,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+<<<<<<< HEAD
     gap: 15px;
     background: rgba(255, 255, 255, 0.95);
     padding: 15px 25px;
@@ -110,10 +116,27 @@
     transform: translateY(-50%);
     font-size: 18px;
     animation: bounce 2s infinite;
+=======
+    gap: 8px;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 8px 14px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    z-index: 10000;
+    width: auto;
+}
+
+.inp #labell {
+    font-size: 14px;
+    margin-right: 10px;
+    white-space: nowrap;
+    color: #1e1e1e;
+>>>>>>> 39a31864d31c1a0b421962039b1217ea1a8332a9
 }
 
 .inp input {
     position: relative;
+<<<<<<< HEAD
     top: 0;
     flex: 1;
     padding: 12px 20px;
@@ -124,10 +147,22 @@
     max-width: 250px;
     transition: all 0.3s ease;
     background: rgba(255, 255, 255, 0.9);
+=======
+    top: 0.4rem;
+    flex: 1;
+    padding: 6px 14px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline-offset: 2px;
+    max-width: 250px;
+    transition: border-color 0.3s ease;
+>>>>>>> 39a31864d31c1a0b421962039b1217ea1a8332a9
 }
 
 .inp input:focus {
     border-color: #504035;
+<<<<<<< HEAD
     box-shadow: 0 0 0 3px rgba(80, 64, 53, 0.2);
     transform: translateY(-2px);
 }
@@ -201,6 +236,27 @@
     50% {
         transform: translateY(-50%) scale(1.1);
     }
+=======
+    box-shadow: 0 0 6px rgba(80, 64, 53, 0.5);
+}
+
+.inp button {
+    padding: 6px 6px;
+    background-color: rgb(80, 60, 53);
+    border: none;
+    border-radius: 5px;
+    color: #e8e4e1;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.inp button:hover,
+.inp button:focus {
+    background-color: rgb(100, 80, 70);
+    box-shadow: 0 0 8px rgba(100, 80, 70, 0.6);
+    outline: none;
+>>>>>>> 39a31864d31c1a0b421962039b1217ea1a8332a9
 }
 
 /* —————— RESPONSIVE ADDITIONS —————— */
@@ -239,8 +295,15 @@
         left: 50%;
         transform: translateX(-50%);
         width: 90%;
+<<<<<<< HEAD
         max-width: 500px;
         padding: 12px 20px;
+=======
+        max-width: 400px;
+        justify-content: center;
+        padding: 10px;
+        gap: 12px;
+>>>>>>> 39a31864d31c1a0b421962039b1217ea1a8332a9
     }
     .inp input {
         max-width: 100%;
@@ -273,6 +336,7 @@
         width: 100%;
         max-width: none;
         margin: 0 0 15px;
+<<<<<<< HEAD
         padding: 10px 15px;
         flex-wrap: wrap;
     }
@@ -482,3 +546,18 @@
 .close-btn:hover {
     color: #000;
 }
+=======
+        justify-content: stretch;
+        gap: 10px;
+        transform: none;
+    }
+    .inp input {
+        max-width: 100%;
+        flex-grow: 1;
+    }
+    .inp button {
+        width: auto;
+        padding: 8px 12px;
+    }
+}
+>>>>>>> 39a31864d31c1a0b421962039b1217ea1a8332a9

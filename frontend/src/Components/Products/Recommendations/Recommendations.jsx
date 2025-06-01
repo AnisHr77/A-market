@@ -1,13 +1,23 @@
 import React, { useState, useEffect } from 'react';
 import RecommendationCard from './RecommendationCard';
+<<<<<<< HEAD
 import './Recommendation.css';
 import { FaChevronLeft, FaChevronRight, FaRegHeart } from "react-icons/fa6";
+=======
+import RecommendationData from './RecommendationData';
+import './Recommendation.css';
+import { FaChevronLeft, FaChevronRight } from "react-icons/fa6";
+import { FaRegHeart } from "react-icons/fa";
+>>>>>>> 39a31864d31c1a0b421962039b1217ea1a8332a9
 
 const Recommendations = () => {
     const cardWidth = 200;
     const gap = 48;
 
+<<<<<<< HEAD
     const [products, setProducts] = useState([]);
+=======
+>>>>>>> 39a31864d31c1a0b421962039b1217ea1a8332a9
     const [currentIndex, setCurrentIndex] = useState(0);
     const [cardsToShow, setCardsToShow] = useState(5);
     const [isSmallScreen, setIsSmallScreen] = useState(false);
@@ -28,6 +38,7 @@ const Recommendations = () => {
         return () => window.removeEventListener('resize', handleResize);
     }, []);
 
+<<<<<<< HEAD
     useEffect(() => {
         const fetchProducts = async () => {
             try {
@@ -45,6 +56,9 @@ const Recommendations = () => {
     }, []);
 
     const maxIndex = products.length - cardsToShow;
+=======
+    const maxIndex = RecommendationData.length - cardsToShow;
+>>>>>>> 39a31864d31c1a0b421962039b1217ea1a8332a9
     const sliderWidth = cardWidth * cardsToShow + gap * (cardsToShow - 1);
 
     const handleNext = () => {
@@ -56,6 +70,7 @@ const Recommendations = () => {
     };
 
     return (
+<<<<<<< HEAD
         <div id="Recomendations" style={{ overflow: 'hidden' }}>
             <div className="recommendations">
                 <h2 style={{ fontSize: '25px', margin: '1.5rem 0 1.5rem 1rem' }}>
@@ -127,6 +142,86 @@ const Recommendations = () => {
                         </button>
                     )}
                 </div>
+=======
+        <div className="recommendations">
+            <h2 style={{
+                fontSize: '25px',
+                marginBottom: '1.5rem',
+                marginTop: '1.5rem',
+                marginLeft: '1rem'
+            }}>
+                <FaRegHeart style={{
+                    fontWeight: 'bold',
+                    position: 'relative',
+                    top: '3px'
+                }} /> Recommendations
+            </h2>
+
+            <div
+                style={{
+                    position: 'relative',
+                    width: isSmallScreen ? '100%' : `${sliderWidth}px`,
+                    margin: '0 auto'
+                }}
+            >
+                {!isSmallScreen && (
+                    <button
+                        className="slider-btn"
+                        onClick={handlePrev}
+                        disabled={currentIndex === 0}
+                        style={{
+                            position: 'absolute',
+                            top: '25%',
+                            left: '-22px',
+                            transform: 'translateY(-50%)',
+                            zIndex: 2,
+                        }}
+                    >
+                        <FaChevronLeft style={{ color: '#303030', fontSize: '15px', fontWeight: 'bold' }} />
+                    </button>
+                )}
+
+                <div
+                    className="flexing"
+                    style={{
+                        overflowX: isSmallScreen ? 'auto' : 'hidden',
+                        overflowY: 'hidden',
+                        width: '100%',
+                        justifyContent: 'flex-start',
+                    }}
+                >
+                    <div
+                        style={{
+                            display: 'flex',
+                            gap: `${gap}px`,
+                            transform: isSmallScreen ? 'none' : `translateX(-${currentIndex * (cardWidth + gap)}px)`,
+                            transition: isSmallScreen ? 'none' : 'transform 0.5s ease',
+                            minWidth: isSmallScreen ? 'max-content' : 'auto',
+                        }}
+                    >
+                        {RecommendationData.map((item) => (
+                            <RecommendationCard key={item.id} item={item} />
+                        ))}
+                    </div>
+                </div>
+
+                {!isSmallScreen && (
+                    <button
+                        className="slider-btn"
+                        onClick={handleNext}
+                        disabled={currentIndex >= maxIndex}
+                        style={{
+                            position: 'absolute',
+                            right: '-20px',
+                            top: '25%',
+                            transform: 'translateY(-50%)',
+                            zIndex: 2,
+                        }}
+                    >
+                        <FaChevronRight style={{ color: '#303030', fontSize: '15px', fontWeight: 'bold' }} />
+                    </button>
+                )}
+>>>>>>> 39a31864d31c1a0b421962039b1217ea1a8332a9
             </div>
         </div>
     );

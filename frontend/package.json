@@ -11,7 +11,11 @@
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.2.0",
     "@testing-library/user-event": "^13.5.0",
+<<<<<<< HEAD
     "framer-motion": "^12.12.2",
+=======
+    "framer-motion": "^12.12.1",
+>>>>>>> 39a31864d31c1a0b421962039b1217ea1a8332a9
     "react": "^18.3.1",
     "react-card-flip": "^1.2.3",
     "react-dom": "^18.3.1",
@@ -19,12 +23,19 @@
     "react-router-dom": "^7.6.0",
     "react-scripts": "5.0.1",
     "react-toastify": "^11.0.5",
+<<<<<<< HEAD
     "recharts": "^2.15.3",
     "styled-components": "^6.1.18",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
     "start": "set PORT=7000 && react-scripts start",
+=======
+    "web-vitals": "^2.1.4"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+>>>>>>> 39a31864d31c1a0b421962039b1217ea1a8332a9
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
